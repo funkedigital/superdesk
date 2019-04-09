@@ -1,0 +1,8 @@
+. /opt/superdesk/activate.sh
+cd /opt/superdesk/client
+grunt build --webpack-devtool=cheap-eval-source-map --webpack-no-progress
+
+[ -d /opt/superdesk/client-core ] && cd /opt/superdesk/client-core
+while inotifywait -e modify -e create -e delete -r .; do
+    systemctl restart superdesk-client
+done
