@@ -1,6 +1,7 @@
-rest: gunicorn -c gunicorn_config.py wsgi
+logs: journalctl -u superdesk* -f >> /var/log/superdesk/main.log
+rest: gunicorn -b 0.0.0.0:5000 wsgi -t 300 -w 1 --access-logfile=- --access-logformat="%(m)s %(U)s status=%(s)s time=%(T)ss size=%(B)sb"
 wamp: python3 -u ws.py
-work: celery -A worker worker
+work: celery -A worker worker -c 1
 beat: celery -A worker beat --pid=
-capi: gunicorn -c gunicorn_config.py content_api.wsgi
-highcharts: python3 -u -m analytics.reports.highcharts_server
+capi: gunicorn -b 0.0.0.0:5400 content_api.wsgi -t 300 -w 1 --access-logfile=- --access-logformat="%(m)s %(U)s status=%(s)s time=%(T)ss size=%(B)sb"
+watch: sh /opt/superdesk/watch-server
