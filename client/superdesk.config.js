@@ -7,11 +7,10 @@
 module.exports = function(grunt) {
     return {
         apps: [
-            'superdesk.analytics'
+            'superdesk-publisher'
         ],
         importApps: [
             '../index',
-            'superdesk-analytics',
             'superdesk-publisher'
         ],
         defaultRoute: '/workspace/personal',
@@ -20,7 +19,7 @@ module.exports = function(grunt) {
             protocol: 'https',
             tenant: process.env.PUBLISHER_API_SUBDOMAIN || '',
             domain: process.env.PUBLISHER_API_DOMAIN || 'localhost',
-            base: 'api/v1'
+            base: 'api/v2'
         },
 
         langOverride: {
