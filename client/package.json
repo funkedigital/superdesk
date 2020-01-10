@@ -2,8 +2,7 @@
     "name": "superdesk",
     "license": "GPL-3.0",
     "dependencies": {
-        "superdesk-analytics": "superdesk/superdesk-analytics#master",
-        "superdesk-core": "file:../client-core",
-        "superdesk-publisher": "superdesk/superdesk-publisher#master"
+        "superdesk-core": "funkedigital/superdesk-client-core#stage-env",
+        "superdesk-publisher": "funkedigital/superdesk-publisher#stage-env"
     }
 }
