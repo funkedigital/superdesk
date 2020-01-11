@@ -17,9 +17,9 @@ get_addr() {
 global_timeout=120
 ping_timeout=2
 
-mongo_addr=$(get_addr "$MONGO_URI" 27017)
-redis_addr=$(get_addr "$REDIS_URL" 6379)
-elastic_addr=$(get_addr "$ELASTICSEARCH_URL" 9200)
+mongo_addr=$(get_addr "mongodb" 27017)
+redis_addr=$(get_addr "redis" 6379)
+elastic_addr=$(get_addr "elastic" 9200)
 
 mongo_is_listening=0
 redis_is_listening=0
