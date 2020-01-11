@@ -4,8 +4,8 @@ mongodb:
     service: mongodb
   ports:
     - "27017:27017"
-  #volumes:
-  #  - /home/ubuntu/mongo_data:/data
+  volumes:
+    - /home/ubuntu/mongo_data:/data
 
 redis:
   extends:

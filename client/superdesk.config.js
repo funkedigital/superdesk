@@ -7,13 +7,11 @@
 module.exports = function(grunt) {
     return {
         apps: [
-            'superdesk-publisher',
-            'superdesk.analytics'
+            'superdesk-publisher'
         ],
         importApps: [
             '../index',
-            'superdesk-publisher',
-            'superdesk.analytics'
+            'superdesk-publisher'
         ],
         defaultRoute: '/workspace/personal',
 
