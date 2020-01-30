@@ -1,0 +1,129 @@
+# Default values for superdesk.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+elasticsearch:
+  name: elasticsearch
+  repository: docker.pkg.github.com/funkedigital/superdesk-fd/elasticsearch
+  tag: 1.0
+  pullPolicy: Always
+
+mongodb:
+  name: mongodb
+  repository: docker.pkg.github.com/funkedigital/superdesk-fd/mongo
+  tag: 1.0
+  pullPolicy: Always
+
+redis:
+  name: redis
+  repository: docker.pkg.github.com/funkedigital/superdesk-fd/redis
+  tag: 1.0
+  pullPolicy: Always
+
+postfix:
+  name: postfix
+  repository: docker.pkg.github.com/funkedigital/superdesk-fd/postfix
+  tag: 1.0
+  pullPolicy: Always
+
+superdesk:
+  name: superdesk
+  repository: docker.pkg.github.com/funkedigital/superdesk-fd/superdesk
+  tag: 1.0
+  pullPolicy: Always
+
+postgres:
+  name: postgres
+  repository: docker.pkg.github.com/funkedigital/superdesk-fd/postgres
+  tag: 1.0
+  pullPolicy: Always
+
+memcached:
+  name: memcached
+  repository: docker.pkg.github.com/funkedigital/superdesk-fd/memcached
+  tag: 1.0
+  pullPolicy: Always
+
+php:
+  name: php
+  repository: docker.pkg.github.com/funkedigital/superdesk-fd/php
+  tag: 2.0
+  pullPolicy: Always
+
+nginx:
+  name: nginx
+  repository: docker.pkg.github.com/funkedigital/superdesk-fd/nginx
+  tag: 1.0
+  pullPolicy: Always
+
+rabbitmq:
+  name: rabbitmq
+  repository: docker.pkg.github.com/funkedigital/superdesk-fd/rabbitmq
+  tag: 1.0
+  pullPolicy: Always
+
+supervisor:
+  name: supervisor
+  repository: docker.pkg.github.com/funkedigital/superdesk-fd/supervisor
+  tag: 1.0
+  pullPolicy: Always
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths: []
+
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
