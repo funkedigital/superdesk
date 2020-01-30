@@ -1,11 +1,20 @@
+{{- if .Values.ingress.enabled -}}
+{{- $fullName := include "superdesk.fullname" . -}}
+{{- $svcPort := .Values.service.port -}}
+{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
 apiVersion: extensions/v1beta1
+{{- end }}
 kind: Ingress
 metadata:
-  name: ingress-service
+  name: {{ $fullName }}
+  labels:
+{{ include "superdesk.labels" . | indent 4 }}
+  {{- with .Values.ingress.annotations }}
   annotations:
-    {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
-    {{ end }}
+  {{- end }}
 spec:
 {{- if .Values.ingress.tls }}
   tls:
@@ -19,13 +28,14 @@ spec:
 {{- end }}
   rules:
   {{- range .Values.ingress.hosts }}
-  - host: {{ .host | quote }}
-    http:
-      paths:
+    - host: {{ .host | quote }}
+      http:
+        paths:
         {{- range .paths }}
-        - path: {{ .path }}
-          backend:
-            serviceName: {{ .backend.serviceName }}
-            servicePort: {{ .backend.servicePort }}
-    {{- end }}
+          - path: {{ . }}
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: {{ $svcPort }}
+        {{- end }}
   {{- end }}
+{{- end }}
