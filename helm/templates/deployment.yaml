@@ -1,0 +1,224 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "superdesk.fullname" . }}
+  labels:
+{{ include "superdesk.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "superdesk.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "superdesk.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ template "superdesk.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Values.elasticsearch.name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.elasticsearch.repository }}:{{ .Values.elasticsearch.tag }}"
+          imagePullPolicy: {{ .Values.elasticsearch.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 9200
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+        - name: {{ .Values.mongodb.name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.mongodb.repository }}:{{ .Values.mongodb.tag }}"
+          imagePullPolicy: {{ .Values.mongodb.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 27017
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+        - name: {{ .Values.redis.name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.redis.repository }}:{{ .Values.redis.tag }}"
+          imagePullPolicy: {{ .Values.redis.pullPolicy }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+        - name: {{ .Values.postfix.name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.postfix.repository }}:{{ .Values.postfix.tag }}"
+          imagePullPolicy: {{ .Values.postfix.pullPolicy }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+        - name: {{ .Values.superdesk.name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.superdesk.repository }}:{{ .Values.superdesk.tag }}"
+          imagePullPolicy: {{ .Values.superdesk.pullPolicy }}
+          ports:
+            - name: p1
+              containerPort: 5000
+              protocol: TCP
+            - name: p2
+              containerPort: 5100
+              protocol: TCP
+            - name: p3
+              containerPort: 5400
+              protocol: TCP
+            - name: p4
+              containerPort: 9000
+              protocol: TCP
+            - name: p5
+              containerPort: 35729
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+        - name: {{ .Values.postgres.name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.postgres.repository }}:{{ .Values.postgres.tag }}"
+          imagePullPolicy: {{ .Values.postgres.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 5432
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+        - name: {{ .Values.memcached.name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.memcached.repository }}:{{ .Values.memcached.tag }}"
+          imagePullPolicy: {{ .Values.memcached.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 11211
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+        - name: {{ .Values.nginx.name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.nginx.repository }}:{{ .Values.nginx.tag }}"
+          imagePullPolicy: {{ .Values.nginx.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+        - name: {{ .Values.rabbitmq.name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.rabbitmq.repository }}:{{ .Values.rabbitmq.tag }}"
+          imagePullPolicy: {{ .Values.rabbitmq.pullPolicy }}
+          ports:
+            - name: p1
+              containerPort: 5672
+              protocol: TCP
+            - name: p2
+              containerPort: 15672
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+        - name: {{ .Values.supervisor.name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.supervisor.repository }}:{{ .Values.supervisor.tag }}"
+          imagePullPolicy: {{ .Values.supervisor.pullPolicy }}
+          ports:
+            - name: p1
+              containerPort: 8081 
+              protocol: TCP
+            - name: p2
+              containerPort: 5555
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
