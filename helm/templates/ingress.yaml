@@ -11,7 +11,6 @@ metadata:
 
         sub_filter 'ws://localhost:5100' 'wss://$host/ws';
 
-
         sub_filter ':5000/api' '/api';
         sub_filter ':5100/ws' '/ws';
         sub_filter ':5400/contentapi' '/contentapi';
@@ -20,14 +19,7 @@ metadata:
         sub_filter 'ws://localhost/ws' 'wss://$host/ws';
         sub_filter 'ws://0.0.0.0:5100' 'wss://$host/ws';
 
-        location /ws {
-              proxy_pass http://localhost:5100;
-              proxy_http_version 1.1;
-              proxy_buffering off;
-              proxy_read_timeout 3600;
-              proxy_set_header Upgrade $http_upgrade;
-              proxy_set_header Connection "Upgrade";
-            }
+
 
 spec:
   rules:
@@ -45,7 +37,7 @@ spec:
             backend:
               serviceName: superdesk-service-ip
               servicePort: 5400
-          - path: /ws/
+          - path: /ws
             backend:
               serviceName: superdesk-service-ip
               servicePort: 5100
