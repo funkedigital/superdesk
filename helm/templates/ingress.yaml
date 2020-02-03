@@ -1,41 +1,34 @@
-{{- if .Values.ingress.enabled -}}
-{{- $fullName := include "superdesk.fullname" . -}}
-{{- $svcPort := .Values.service.port -}}
-{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
-apiVersion: networking.k8s.io/v1beta1
-{{- else -}}
 apiVersion: extensions/v1beta1
-{{- end }}
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
-  labels:
-{{ include "superdesk.labels" . | indent 4 }}
-  {{- with .Values.ingress.annotations }}
+  name: ingress-service
   annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
+    kubernetes.io/ingress.class: nginx
+#    nginx.ingress.kubernetes.io/rewrite-target: /$1/$2-$3/$5
+#    nginx.ingress.kubernetes.io/affinity: "cookie"
+#    nginx.ingress.kubernetes.io/session-cookie-name: "INGRESSCOOKIE"
+#    nginx.ingress.kubernetes.io/session-cookie-path: /
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+        sub_filter 'http://localhost:5000/api/client_config' 'http://192.168.64.6/api';
+
 spec:
-{{- if .Values.ingress.tls }}
-  tls:
-  {{- range .Values.ingress.tls }}
-    - hosts:
-      {{- range .hosts }}
-        - {{ . | quote }}
-      {{- end }}
-      secretName: {{ .secretName }}
-  {{- end }}
-{{- end }}
   rules:
-  {{- range .Values.ingress.hosts }}
-    - host: {{ .host | quote }}
-      http:
+    - http:
         paths:
-        {{- range .paths }}
-          - path: {{ . }}
+          - path: /
             backend:
-              serviceName: {{ $fullName }}
-              servicePort: {{ $svcPort }}
-        {{- end }}
-  {{- end }}
-{{- end }}
+              serviceName: superdesk-service-ip
+              servicePort: 9000
+          - path: /api
+            backend:
+              serviceName: superdesk-service-ip
+              servicePort: 5000
+          - path: /contentapi/
+            backend:
+              serviceName: superdesk-service-ip
+              servicePort: 5400
+          - path: /ws/
+            backend:
+              serviceName: superdesk-service-ip
+              servicePort: 5100
