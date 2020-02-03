@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: superdesk-service-ip
+spec:
+  type: ClusterIP
+  selector:
+    component: web
+  ports:
+    - name: fe
+      port: 9000
+      targetPort: 9000
+    - name: be
+      port: 5000
+      targetPort: 5000
+    - name: content-api
+      port: 5400
+      targetPort: 5400
+    - name: ws-ser
+      port: 5100
+      targetPort: 5100
