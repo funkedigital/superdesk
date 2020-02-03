@@ -11,7 +11,7 @@ RUN apt-get update && \
   libfreetype6-dev liblcms2-dev libwebp-dev \
   curl libfontconfig nginx \
   libxml2-dev libxslt1-dev \
-  python3-venv \
+  python3-venv inotify-tools \
   && rm /etc/nginx/sites-enabled/default
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y --no-install-recommends \
@@ -28,7 +28,7 @@ ENV TZ Europe/London
 WORKDIR /opt/superdesk/
 COPY ./docker/nginx.conf /etc/nginx/nginx.conf
 COPY ./docker/superdesk_vhost.conf /etc/nginx/sites-enabled/superdesk.conf
-COPY ./docker/start.sh /opt/superdesk/start.sh
+COPY ./docker/start-dev.sh /opt/superdesk/start.sh
 CMD /opt/superdesk/start.sh
 
 # client ports
