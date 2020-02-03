@@ -15,6 +15,11 @@ spec:
       containers:
         - name: client
           image: mdridi/superdesk
+          resources:
+            limits:
+              memory: 12Gi
+            requests:
+              memory: 12Gi
           ports:
             - containerPort: 9000
             - containerPort: 5000
