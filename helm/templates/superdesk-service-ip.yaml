@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.superdesk.serviceName }}
+  name: superdesk-service-ip
 spec:
-  type: {{ .Values.service.type }}
+  type: ClusterIP
   selector:
-    component: {{ .Values.superdesk.component }}
+    component: web
   ports:
     - name: fe
       port: 9000
@@ -19,9 +19,3 @@ spec:
     - name: ws-ser
       port: 5100
       targetPort: 5100
-    - name: ws-sersd
-      port: 443
-      targetPort: 443
-    - name: ws-sers
-      port: 80
-      targetPort: 80

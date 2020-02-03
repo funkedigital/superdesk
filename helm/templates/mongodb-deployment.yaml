@@ -1,28 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.mongodb.name }}
+  name: mongodb-deployment
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      component: {{ .Values.mongodb.component }}
+      component: mongodb
   template:
     metadata:
       labels:
-        component: {{ .Values.mongodb.component }}
+        component: mongodb
     spec:
-      volumes:
-        - name: mongodb-storage
-          persistentVolumeClaim:
-            claimName: mongodb-persistent-volume-claim
       containers:
-        - name: {{ .Values.mongodb.name }}
-          image: "{{ .Values.mongodb.image }}:{{ .Values.mongodb.tag }}"
+        - name: mongodb
+          image: mongo:3.4
           ports:
             - containerPort: 27017
-          volumeMounts:
-            - name: mongodb-storage
-              mountPath: /data/db
-              subPath: mongodb
-

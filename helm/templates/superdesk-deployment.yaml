@@ -1,83 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.superdesk.name }}
+  name: superdesk-deployment
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      component: {{ .Values.superdesk.component }}
+      component: web
   template:
     metadata:
       labels:
-        component: {{ .Values.superdesk.component }}
+        component: web
     spec:
-      volumes:
-        # TODO clarify if really needed!
-        - name: superdesk-storage
-          persistentVolumeClaim:
-            claimName: superdesk-persistent-volume-claim
-        - name: superdesk-config-volume
-          configMap:
-            name: superdesk-config-map
       containers:
         - name: client
-          image: "{{ .Values.superdesk.image }}:{{ .Values.superdesk.tag }}"
+          image: mdridi/superdesk
           resources:
             limits:
-              memory: 5Gi
+              cpu: 6
+              memory: 12Gi
             requests:
-              memory: 5Gi
-          volumeMounts:
-            - name: superdesk-config-volume
-              mountPath: /opt/superdesk/client
+              cpu: 6
+              memory: 12Gi
           ports:
             - containerPort: 9000
             - containerPort: 5000
             - containerPort: 5100
             - containerPort: 5400
-            - containerPort: 443
-            - containerPort: 80
-          env:
-            - name: HOST
-              value: "superdesk"
-#            - name: HOST_SSL
-#              value: ""
-            - name: DB_HOST
-              value: "mongodb"
-            - name: DB_NAME
-              value: "superdesk"
-            - name: SUPERDESK_URL
-              value: "http://superdesk/api"
-            - name: CONTENTAPI_URL
-              value: "http://superdesk/contentapi"
-            - name: SUPERDESK_WS_URL
-              value: "ws://superdesk/ws"
-            - name: SUPERDESK_CLIENT_URL
-              value: "http://superdesk"
-            - name: SUPERDESK_CONFIG
-              value: /opt/superdesk/client/superdesk.cloud.config.js
-            - name: DOCKER_IP
-              value: "superdesk"
-            - name: MONGO_URI
-              value: "mongodb://mongodb/superdesk"
-            - name: LEGAL_ARCHIVE_URI
-              value: "mongodb://mongodb/superdesk_la"
-            - name: ARCHIVED_URI
-              value: "mongodb://mongodb/superdesk_ar"
-            - name: ELASTICSEARCH_URL
-              value: "http://elastic:9200"
-            - name: ELASTICSEARCH_INDEX
-              value: "superdesk"
-            - name: CONTENTAPI_ELASTICSEARCH_INDEX
-              value: "superdesk_ca"
-            - name: CONTENTAPI_ELASTIC_INDEX
-              value: "superdesk_ca"
-            - name: CONTENTAPI_MONGO_URI
-              value: "mongodb://mongodb/superdesk_ca"
-            - name: REDIS_URL
-              value: "redis://redis:6379/1"
-            - name: ELASTICSEARCH_URL
-              value: "http://elastic:9200"
-      imagePullSecrets:
-        - name: harbor-access
+
