@@ -1,0 +1,4 @@
+[ -d /opt/superdesk/server-core ] && cd /opt/superdesk/server-core || cd /opt/superdesk/server
+while inotifywait -e modify -e create -e delete -r .; do
+    systemctl restart superdesk
+done
