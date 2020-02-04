@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.nginx.serviceName }}
+  name: nginx-service-ip
 spec:
-  type: {{ .Values.service.type }}
+  type: ClusterIP
   selector:
-    component: {{ .Values.nginx.component }}
+    component: nginx
   ports:
     - name: mm
       port: 80

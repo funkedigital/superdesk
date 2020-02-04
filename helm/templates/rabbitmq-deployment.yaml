@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.rabbitmq.name }}
+  name: rabbitmq-deployment
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      component: {{ .Values.rabbitmq.component }}
+      component: rabbitmq
   template:
     metadata:
       labels:
-        component: {{ .Values.rabbitmq.component }}
+        component: rabbitmq
     spec:
       containers:
         - name: rabbitmq
-          image: "{{ .Values.rabbitmq.image }}:{{ .Values.rabbitmq.tag }}"
+          image: rabbitmq:management
           ports:
             - containerPort: 5672
             - containerPort: 15672

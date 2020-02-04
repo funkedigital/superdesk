@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.memcached.serviceName }}
+  name: memcached
 spec:
-  type: {{ .Values.service.type }}
+  type: ClusterIP
   selector:
-    component: {{ .Values.memcached.component }}
+    component: memcached
   ports:
     - name: mm
       port: 11211

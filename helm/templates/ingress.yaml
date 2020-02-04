@@ -1,28 +1,35 @@
-
-{{- if .Values.ingress.enabled -}}
-
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: superdesk-ingress
+  name: ingress-service
   annotations:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
     certmanager.k8s.io/cluster-issuer: "letsencrypt-staging"
     nginx.ingress.kubernetes.io/server-snippet: |
+      sub_filter_once off;
+      sub_filter 'ws://localhost:5100' 'wss://$host/ws';
+      proxy_set_header Host $host;
+      sub_filter 'ws://localhost:5100' 'wss://$host/ws';
+      sub_filter ':5000/api' '/api';
+      sub_filter ':5100/ws' '/ws';
+      sub_filter ':5400/contentapi' '/contentapi';
+      sub_filter_types application/javascript;
+      sub_filter 'http://localhost' 'https://$host';
+      sub_filter 'ws://localhost/ws' 'wss://$host/ws';
+      sub_filter 'ws://0.0.0.0:5100' 'wss://$host/ws';
 
-        sub_filter 'ws://localhost:5100' 'wss://$host/ws';
-        sub_filter ':5000/api' '/api';
-        sub_filter ':5100/ws' '/ws';
-        sub_filter ':5400/contentapi' '/contentapi';
-        sub_filter_types application/javascript;
-        sub_filter 'http://localhost' 'https://$host';
-        sub_filter 'ws://localhost/ws' 'wss://$host/ws';
-        sub_filter 'ws://0.0.0.0:5100' 'wss://$host/ws';
 
 spec:
   rules:
-    - http: 
+    - host: publisher
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: nginx-service-ip
+              servicePort: 80
+    - http:
         paths:
           - path: /
             backend:
@@ -40,5 +47,3 @@ spec:
             backend:
               serviceName: superdesk-service-ip
               servicePort: 5100
-
-{{- end }}

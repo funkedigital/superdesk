@@ -1,21 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.nginx.name }}
+  name: nginx-deployment
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      component: {{ .Values.nginx.component }}
+      component: nginx
   template:
     metadata:
       labels:
-        component: {{ .Values.nginx.component }}
+        component: nginx
     spec:
       containers:
         - name: nginxpub
-          image: "{{ .Values.nginx.image }}:{{ .Values.nginx.tag }}"
+          image: mdridi/nginx-publisher
           ports:
             - containerPort: 80
-      imagePullSecrets:
-        - name: harbor-access
