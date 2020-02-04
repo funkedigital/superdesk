@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: supervisor-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: supervisor
+  template:
+    metadata:
+      labels:
+        component: supervisor
+    spec:
+      containers:
+        - name: supervisor
+          image: mdridi/supervisor
+          ports:
+            - containerPort: 8080
+            - containerPort: 5555
+          env:
+            - name: WEBSOCKET_PORT
+              value: "8080"
+            - name: WEBSOCKET_HOST
+              value: "0.0.0.0"
