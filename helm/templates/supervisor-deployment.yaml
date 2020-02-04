@@ -1,27 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.supervisor.name }}
+  name: supervisor-deployment
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      component: {{ .Values.supervisor.component }}
+      component: supervisor
   template:
     metadata:
       labels:
-        component: {{ .Values.supervisor.component }}
+        component: supervisor
     spec:
-      volumes:
-        - name: publisher-storage
-          persistentVolumeClaim:
-            claimName: publisher-persistent-volume-claim
       containers:
         - name: supervisor
-          image: "{{ .Values.supervisor.image }}:{{ .Values.supervisor.tag }}"
-          volumeMounts:
-            - name: publisher-storage
-              mountPath: /var/www/publisher/
+          image: mdridi/supervisor
           ports:
             - containerPort: 8080
             - containerPort: 5555
@@ -30,5 +23,3 @@ spec:
               value: "8080"
             - name: WEBSOCKET_HOST
               value: "0.0.0.0"
-      imagePullSecrets:
-        - name: harbor-access
