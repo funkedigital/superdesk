@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: supervisor
+spec:
+  type: ClusterIP
+  selector:
+    component: supervisor
+  ports:
+    - name: sup
+      port: 5555
+      targetPort: 5555
+    - name: yup
+      port: 8080
+      targetPort: 8081
