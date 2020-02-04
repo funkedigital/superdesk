@@ -48,16 +48,16 @@ resources:
 
 ingress:
   enabled: true
-    hosts:
-      - host: hasura.cloud.funkedigital.de
-        paths: ['/']
-      tls:
-        - hosts:
-            - hasura.cloud.funkedigital.de
-            secretName: hasura.tls
-      annotations:
-        kubernetes.io/ingress.class: nginx
-        kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: hasura.cloud.funkedigital.de
+      paths: ['/']
+  tls:
+    - hosts:
+        - hasura.cloud.funkedigital.de
+        secretName: hasura.tls
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
 
 nodeSelector: {}
 
