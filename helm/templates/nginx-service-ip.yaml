@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service-ip
+spec:
+  type: ClusterIP
+  selector:
+    component: nginx
+  ports:
+    - name: mm
+      port: 80
+      targetPort: 80

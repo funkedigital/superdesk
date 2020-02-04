@@ -30,9 +30,9 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
-  type: ClusterIP
-  port: 9000
+#service:
+#  type: ClusterIP
+#  port: 9000
 
 resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -51,7 +51,7 @@ ingress:
   hosts:
     - host: hasura.cloud.funkedigital.de
       paths: ['/']
-    
+
 
 nodeSelector: {}
 

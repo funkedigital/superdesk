@@ -1,20 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: elasticsearch
+  name: elastic-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: elasticsearch
+      component: elastic
   template:
     metadata:
       labels:
-        component: elasticsearch
+        component: elastic
     spec:
       containers:
-        - name: elasticsearch
-          image: elasticsearch:5.6
+        - name: elastic
+          image: elasticsearch:2
           ports:
             - containerPort: 9200
-            - containerPort: 9300
