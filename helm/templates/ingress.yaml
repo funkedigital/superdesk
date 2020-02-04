@@ -1,3 +1,6 @@
+
+{{- if .Values.ingress.enabled -}}
+
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -37,3 +40,5 @@ spec:
             backend:
               serviceName: superdesk-service-ip
               servicePort: 5100
+
+{{- end }}
