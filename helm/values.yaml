@@ -55,9 +55,9 @@ ingress:
     - host: chart-example.local
       paths: []
   tls: []
-  - secretName: chart-example-tls
-    hosts:
-      - chart-example.local
+    - secretName: chart-example-tls
+      hosts:
+        - chart-example.local
 
 
 nodeSelector: {}
