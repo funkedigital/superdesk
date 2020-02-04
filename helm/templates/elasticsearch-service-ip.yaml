@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch
+spec:
+  type: ClusterIP
+  selector:
+    component: elasticsearch
+  ports:
+    - name: mm
+      port: 9201
+      targetPort: 9200
+    - name: mmm
+      port: 9301
+      targetPort: 9300
