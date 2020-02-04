@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: php
+  template:
+    metadata:
+      labels:
+        component: php
+    spec:
+      containers:
+        - name: php
+          image: mdridi/web-publisher
+          ports:
+            - containerPort: 9000
