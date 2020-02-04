@@ -1,7 +1,4 @@
-logs: journalctl -u superdesk* -f >> /var/log/superdesk/main.log
-rest: gunicorn -b 0.0.0.0:5000 wsgi -t 300 -w 1 --access-logfile=- --access-logformat="%(m)s %(U)s status=%(s)s time=%(T)ss size=%(B)sb"
+rest: python3 app.py
 wamp: python3 -u ws.py
-work: celery -A worker worker -c 1
+work: celery -A worker worker
 beat: celery -A worker beat --pid=
-capi: gunicorn -b 0.0.0.0:5400 content_api.wsgi -t 300 -w 1 --access-logfile=- --access-logformat="%(m)s %(U)s status=%(s)s time=%(T)ss size=%(B)sb"
-watch: sh /opt/superdesk/watch-server
