@@ -54,8 +54,7 @@ ingress:
   tls:
     secretName: hasura.tls
     - hosts:
-        - hasura.cloud.funkedigital.de
-
+      - hasura.cloud.funkedigital.de
   annotations:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
