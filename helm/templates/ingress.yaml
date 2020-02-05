@@ -36,11 +36,11 @@ spec:
             backend:
               serviceName: superdesk-service-ip
               servicePort: 9000
-          - path: /api/
+          - path: /api
             backend:
               serviceName: superdesk-service-ip
               servicePort: 5000
-          - path: /contentapi/
+          - path: /contentapi
             backend:
               serviceName: superdesk-service-ip
               servicePort: 5400
