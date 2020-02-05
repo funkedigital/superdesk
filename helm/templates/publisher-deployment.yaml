@@ -15,5 +15,13 @@ spec:
       containers:
         - name: php
           image: mdridi/web-publisher
+          resources:
+            limits:
+              memory: 6Gi
+            requests:
+              memory: 6Gi
           ports:
             - containerPort: 9000
+
+#          command: ["/bin/sh"]
+#          args: ["-c", "while true; do echo hello; sleep 10;done"]
