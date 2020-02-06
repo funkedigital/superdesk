@@ -17,11 +17,59 @@ spec:
           image: mdridi/web-publisher
           resources:
             limits:
-              memory: 6Gi
+              memory: 7Gi
             requests:
-              memory: 6Gi
+              memory: 7Gi
           ports:
             - containerPort: 9000
+          env:
+            - name: DATABASE_URL
+              value: "pgsql://postgres:postgres@postgres/publisher_%kernel.environment%"
+            - name: APP_ENV
+              value: "dev"
+            - name: APP_DEBUG
+              value: "1"
+            - name: ELASTICA_HOST
+              value: "elasticsearch"
+            - name: ELASTICA_PORT
+              value: "9201"
+            - name: APP_SECRET
+              value: "CHANGEME"
+            - name: DOCTRINE_CACHE_DRIVER
+              value: "memcached"
+            - name: SWP_DOMAIN
+              value: "publisher.local"
+            - name: SENTRY_DSN
+              value: "false"
+            - name: MAILER_URL
+              value: "smtp://localhost"
+            - name: CORS_ALLOW_ORIGIN
+              value: "*"
+            - name: ELASTICA_INDEX_NAME
+              value: "swp_index-docker"
+            - name: FS_MAIN_ADAPTER
+              value: "local_adapter"
+            - name: SESSION_MEMCACHED_HOST
+              value: "memcached"
+            - name: SESSION_MEMCACHED_PORT
+              value: "11211"
+            - name: SESSION_MEMCACHED_PREFIX
+              value: "sess"
+            - name: SESSION_MEMCACHED_EXPIRE
+              value: "3600"
+            - name: RABBIT_MQ_HOST
+              value: "rabbitmq"
+            - name: RABBIT_MQ_PORT
+              value: "5672"
+            - name: RABBIT_MQ_USER
+              value: "guest"
+            - name: RABBIT_MQ_PASSWORD
+              value: "guest"
+            - name: WEBSOCKET_PORT
+              value: "8080"
+            - name: WEBSOCKET_HOST
+              value: "8080"
+
 
 #          command: ["/bin/sh"]
-#          args: ["-c", "while true; do echo hello; sleep 10;done"]
+#          args: ["-c", "cd /var/www/publisher && php /usr/bin/composer install; mkdir /var/www/publisher/var/cache;  mkdir /var/www/publisher/var/cache/dev; chmod 777 -R /var/www/publisher/var/cache/dev/; mkdir /var/www/publisher/var/log; chmod 777 /var/www/publisher/var/log/; "]
