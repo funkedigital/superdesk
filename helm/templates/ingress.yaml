@@ -5,7 +5,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
-    certmanager.k8s.io/cluster-issuer: "letsencrypt-staging"
+#    certmanager.k8s.io/cluster-issuer: "letsencrypt-staging"
+#    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/server-snippet: |
       sub_filter_once off;
@@ -23,12 +24,12 @@ metadata:
 
 spec:
   rules:
-    - host: "*.local"
+    - host: "publisher"
       http:
         paths:
           - path: /
             backend:
-              serviceName: nginx-service-ip
+              serviceName: publisher
               servicePort: 80
     - http:
         paths:
