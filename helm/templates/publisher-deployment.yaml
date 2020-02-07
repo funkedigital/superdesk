@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: php
+  name: {{ .Values.publisher.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      component: php
+      component: {{ .Values.publisher.component }}
   template:
     metadata:
       labels:
-        component: php
+        component: {{ .Values.publisher.component }}
     spec:
       containers:
         - name: php
-          image: mdridi/web-publisher
+          image: {{ .Values.publisher.image }}
           resources:
             limits:
               memory: 7Gi

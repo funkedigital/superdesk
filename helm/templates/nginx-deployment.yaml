@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: {{ .Values.nginx.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      component: nginx
+      component: {{ .Values.nginx.component }}
   template:
     metadata:
       labels:
-        component: nginx
+        component: {{ .Values.nginx.component }}
     spec:
       containers:
         - name: nginxpub
-          image: mdridi/nginx-publisher
+          image: {{ .Values.nginx.image }}
           ports:
             - containerPort: 80

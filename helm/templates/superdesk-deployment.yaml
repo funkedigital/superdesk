@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: superdesk-deployment
+  name: {{ .Values.superdesk.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      component: web
+      component: {{ .Values.superdesk.component }}
   template:
     metadata:
       labels:
-        component: web
+        component: {{ .Values.superdesk.component }}
     spec:
       containers:
         - name: client
-          image: mdridi/superdesk
+          image: {{ .Values.superdesk.image }}
           resources:
             limits:
               memory: 5Gi

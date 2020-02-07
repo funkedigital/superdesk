@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: elastic-deployment
+  name: {{ .Values.elasticsearchSuperdesk.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      component: elastic
+      component: {{ .Values.elasticsearchSuperdesk.component }}
   template:
     metadata:
       labels:
-        component: elastic
+        component: {{ .Values.elasticsearchSuperdesk.component }}
     spec:
       containers:
-        - name: elastic
-          image: elasticsearch:2
+        - name: {{ .Values.elasticsearchSuperdesk.component }}
+          image: "{{ .Values.elasticsearchSuperdesk.image }}:{{ .Values.elasticsearchSuperdesk.tag }}"
           ports:
             - containerPort: 9200

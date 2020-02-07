@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres
+  name: {{ .Values.postgres.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      component: postgres
+      component: {{ .Values.postgres.component }}
   template:
     metadata:
       labels:
-        component: postgres
+        component: {{ .Values.postgres.component }}
     spec:
       volumes:
         - name: postgres-storage
@@ -18,7 +18,7 @@ spec:
             claimName: database-persistent-volume-claim
       containers:
         - name: postgres
-          image: postgres
+          image: {{ .Values.postgres.image }}
           ports:
             - containerPort: 5432
           volumeMounts:
