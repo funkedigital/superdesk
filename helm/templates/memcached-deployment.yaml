@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: memcached-deployment
+  name: {{ .Values.memcached.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      component: memcached
+      component: {{ .Values.memcached.component }}
   template:
     metadata:
       labels:
-        component: memcached
+        component: {{ .Values.memcached.component }}
     spec:
       containers:
-        - name: memcached
-          image: memcached
+        - name: {{ .Values.memcached.name }}
+          image: {{ .Values.memcached.image }}
           ports:
             - containerPort: 11211
