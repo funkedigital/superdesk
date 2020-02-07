@@ -1,50 +1,92 @@
-# Default values for helmy.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
 replicaCount: 1
 
-#image:
-#  repository: nginx
-#  pullPolicy: IfNotPresent
+elasticsearchPublisher:
+  name: elasticsearch
+  component: elasticsearch
+  image: elasticsearch
+  tag: 5.6
+  serviceName: elasticsearch
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+elasticsearchSuperdesk:
+  name: elastic-deployment
+  component: elastic
+  image: elasticsearch
+  tag: 2
+  serviceName: elastic
 
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name:
+memcached:
+  name: memcached-deployment
+  component: memcached
+  image: memcached
+  tag: latest
+  serviceName: elastic
 
-podSecurityContext: {}
-  # fsGroup: 2000
+mongodb:
+  name: mongodb-deployment
+  component: mongodb
+  image: mongo
+  tag: 3.4
+  serviceName: mongodb
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+nginx:
+  name: nginx-deployment
+  component: nginx
+  image: mdridi/nginx-publisher
+  tag: latest
+  serviceName: publisher
 
-#service:
-#  type: ClusterIP
-#  port: 9000
+postgres:
+  name: postgres
+  component: postgres
+  image: postgres
+  tag: latest
+  serviceName: postgres
+
+publisher:
+  name: php
+  component: php
+  image: mdridi/web-publisher
+  tag: latest
+  serviceName: php
+
+rabbitmq:
+  name: rabbitmq-deployment
+  component: rabbitmq
+  image: rabbitmq
+  tag: management
+  serviceName: rabbitmq
+
+redis:
+  name: redis-deployment
+  component: redis
+  image: redis
+  tag: 5.0
+  serviceName: redis
+
+superdesk:
+  name: superdesk-deployment
+  component: web
+  image: mdridi/superdesk
+  tag: latest
+  serviceName: superdesk-service-ip
+
+supervisor:
+  name: supervisor-deployment
+  component: supervisor
+  image: mdridi/supervisor
+  tag: latest
+  serviceName: supervisor
+
+service:
+  type: ClusterIP
 
 resources:
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-   limits:
-     cpu: 7
-     memory: 13Gi
-   requests:
-     cpu: 7
-     memory: 13Gi
+  limits:
+    cpu: 7
+    memory: 13Gi
+  requests:
+    cpu: 7
+    memory: 13Gi
 
 ingress:
   enabled: true
@@ -53,8 +95,4 @@ ingress:
       paths: ['/']
 
 
-nodeSelector: {}
 
-tolerations: []
-
-affinity: {}

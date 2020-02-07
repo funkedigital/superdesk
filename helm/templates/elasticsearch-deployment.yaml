@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: elasticsearch
+  name: {{ .Values.elasticsearchPublisher.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      component: elasticsearch
+      component: {{ .Values.elasticsearchPublisher.component }}
   template:
     metadata:
       labels:
-        component: elasticsearch
+        component: {{ .Values.elasticsearchPublisher.component }}
     spec:
       containers:
-        - name: elasticsearch
-          image: elasticsearch:5.6
+        - name: {{ .Values.elasticsearchPublisher.name }}
+          image: "{{ .Values.elasticsearchPublisher.image }}:{{ .Values.elasticsearchPublisher.tag }}"
           ports:
             - containerPort: 9200
             - containerPort: 9300
