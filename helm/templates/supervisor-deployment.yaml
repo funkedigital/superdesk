@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: supervisor-deployment
+  name: {{ .Values.supervisor.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      component: supervisor
+      component: {{ .Values.supervisor.component }}
   template:
     metadata:
       labels:
-        component: supervisor
+        component: {{ .Values.supervisor.component }}
     spec:
       containers:
         - name: supervisor
-          image: mdridi/supervisor
+          image: {{ .Values.supervisor.image }}
           ports:
             - containerPort: 8080
             - containerPort: 5555

@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: elastic
+  name: {{ .Values.elasticsearchSuperdesk.serviceName }}
 spec:
-  type: ClusterIP
+  type: {{ .Values.service.type }}
   selector:
-    component: elastic
+    component: {{ .Values.elasticsearchSuperdesk.component }}
   ports:
     - port: 9200
       targetPort: 9200
