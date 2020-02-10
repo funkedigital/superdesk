@@ -1,0 +1,23 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: {{ .Values.mongodb.name }}
+  labels:
+    component: {{ .Values.mongodb.component }}
+spec:
+  containers:
+    - name: {{ .Values.mongodb.name }}
+      image: "{{ .Values.mongodb.image }}:{{ .Values.mongodb.tag }}"
+      ports:
+        - containerPort: 27017
+      lifecycle:
+        postStart:
+          exec:
+            command: ["/bin/sh","-c","
+        apt-get update -y;
+        apt-get install wget -y;
+        cd / && wget https://fdl-superdesk-local-dev-image.s3-eu-west-1.amazonaws.com/superdesk.gz;
+        mongorestore --gzip --archive=superdesk.gz --db superdesk;
+                                                  "]
+
+
