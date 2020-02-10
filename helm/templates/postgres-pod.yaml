@@ -1,0 +1,38 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: {{ .Values.postgres.name }}
+  labels:
+    component: {{ .Values.postgres.component }}
+spec:
+  volumes:
+    - name: postgres-storage
+      persistentVolumeClaim:
+        claimName: database-persistent-volume-claim
+  containers:
+    - name: postgres
+      image: {{ .Values.postgres.image }}
+      ports:
+        - containerPort: 5432
+      volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+          subPath: postgres
+      env:
+        - name: POSTGRES_DB
+          value: "publisher_dev"
+        - name: POSTGRES_USER
+          value: "postgres"
+        - name: POSTGRES_PASSWORD
+          value: "postgres"
+      lifecycle:
+        postStart:
+          exec:
+            command: ["/bin/sh","-c","
+        apt-get update -y;
+        apt-get install wget -y;
+        cd / && wget https://fdl-superdesk-local-dev-image.s3-eu-west-1.amazonaws.com/db_backup.sql;
+        psql -U postgres -d publisher_dev < db_backup.sql;
+                                                  "]
+
+
