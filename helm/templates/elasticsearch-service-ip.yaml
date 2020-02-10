@@ -8,8 +8,8 @@ spec:
     component: {{ .Values.elasticsearchPublisher.component }}
   ports:
     - name: mm
-      port: 9201
+      port: 9200
       targetPort: 9200
     - name: mmm
-      port: 9301
+      port: 9300
       targetPort: 9300

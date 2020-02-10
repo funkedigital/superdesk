@@ -19,7 +19,7 @@ memcached:
   component: memcached
   image: memcached
   tag: latest
-  serviceName: elastic
+  serviceName: memcached
 
 mongodb:
   name: mongodb-deployment
@@ -45,7 +45,8 @@ postgres:
 publisher:
   name: php
   component: php
-  image: mdridi/web-publisher
+  image: mdridi/publisher-dev
+#  image: mdridi/web-publisher
   tag: latest
   serviceName: php
 
