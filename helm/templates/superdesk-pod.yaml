@@ -1,0 +1,39 @@
+#kind: Pod
+#apiVersion: v1
+#metadata:
+#  name: {{ .Values.superdesk.name }}
+#  labels:
+#    component: {{ .Values.superdesk.component }}
+#spec:
+#  containers:
+#    - name: client
+#      image: {{ .Values.superdesk.image }}
+#      resources:
+#        limits:
+#          memory: 5Gi
+#        requests:
+#          memory: 5Gi
+#      ports:
+#        - containerPort: 9000
+#        - containerPort: 5000
+#        - containerPort: 5100
+#        - containerPort: 5400
+#      lifecycle:
+#        postStart:
+#          exec:
+#            command: ["/bin/sh","-c","
+#
+#        cat <<\"EOF\" > /opt/superdesk/client/dist/config.js
+#                                                      window.superdeskConfig={
+#                        apps: ['superdesk-publisher'],
+#                        publisher: {
+#                          protocol: \"http\",
+#                          tenant: '',
+#                          domain: 'publisher',
+#                          base: 'api/v2'
+#                        },
+#                      };
+#                        EOF
+#                                                  "]
+#
+#
