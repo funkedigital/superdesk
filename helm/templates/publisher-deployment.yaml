@@ -12,10 +12,6 @@ spec:
       labels:
         component: {{ .Values.publisher.component }}
     spec:
-      volumes:
-        - name: publisher-storage
-          persistentVolumeClaim:
-            claimName: database-persistent-volume-claim
       containers:
         - name: php
           image: {{ .Values.publisher.image }}
@@ -26,9 +22,6 @@ spec:
               memory: 7Gi
           ports:
             - containerPort: 9000
-          volumeMounts:
-            - name: publisher-storage
-              mountPath: /var/www/publisher/app
           env:
             - name: DATABASE_URL
               value: "pgsql://postgres:postgres@postgres/publisher_%kernel.environment%"
