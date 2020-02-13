@@ -1,88 +1,75 @@
-#apiVersion: apps/v1
-#kind: Deployment
-#metadata:
-#  name: {{ .Values.publisher.name }}
-#spec:
-#  replicas: {{ .Values.replicaCount }}
-#  selector:
-#    matchLabels:
-#      component: {{ .Values.publisher.component }}
-#  template:
-#    metadata:
-#      labels:
-#        component: {{ .Values.publisher.component }}
-#    spec:
-#      containers:
-#        - name: php
-#          image: {{ .Values.publisher.image }}
-#          resources:
-#            limits:
-#              memory: 7Gi
-#            requests:
-#              memory: 7Gi
-#          ports:
-#            - containerPort: 9000
-#          env:
-#            - name: DATABASE_URL
-#              value: "pgsql://postgres:postgres@postgres/publisher_%kernel.environment%"
-#            - name: APP_ENV
-#              value: "dev"
-#            - name: APP_DEBUG
-#              value: "1"
-#            - name: ELASTICA_HOST
-#              value: "elasticsearch"
-#            - name: ELASTICA_PORT
-#              value: "9200"
-#            - name: APP_SECRET
-#              value: "CHANGEME"
-#            - name: DOCTRINE_CACHE_DRIVER
-#              value: "memcached"
-#            - name: SWP_DOMAIN
-#              value: "publisher"
-#            - name: SENTRY_DSN
-#              value: "false"
-#            - name: MAILER_URL
-#              value: "smtp://localhost"
-#            - name: CORS_ALLOW_ORIGIN
-#              value: "*"
-#            - name: ELASTICA_INDEX_NAME
-#              value: "swp_index-docker"
-#            - name: FS_MAIN_ADAPTER
-#              value: "local_adapter"
-#            - name: SESSION_MEMCACHED_HOST
-#              value: "memcached"
-#            - name: SESSION_MEMCACHED_PORT
-#              value: "11211"
-#            - name: SESSION_MEMCACHED_PREFIX
-#              value: "sess"
-#            - name: SESSION_MEMCACHED_EXPIRE
-#              value: "3600"
-#            - name: RABBIT_MQ_HOST
-#              value: "rabbitmq"
-#            - name: RABBIT_MQ_PORT
-#              value: "5672"
-#            - name: RABBIT_MQ_USER
-#              value: "guest"
-#            - name: RABBIT_MQ_PASSWORD
-#              value: "guest"
-#            - name: WEBSOCKET_PORT
-#              value: "8080"
-#            - name: WEBSOCKET_HOST
-#              value: "8080"
-
-#          command: ["/bin/sh"]
-#          args: ["-c", "
-#                                      cd /var/www/publisher && mkdir /var/www/publisher/var/cache >/dev/null 2>&1;
-#                                      cd /var/www/publisher && mkdir /var/www/publisher/var/cache/dev >/dev/null 2>&1;
-#                                      cd /var/www/publisher && chmod 777 -R /var/www/publisher/var/cache/dev/;
-#                                      cd /var/www/publisher && mkdir /var/www/publisher/var/log >/dev/null 2>&1;
-#                                      cd /var/www/publisher && chmod 777 /var/www/publisher/var/log/;
-#                                      cd /var/www/publisher && php /usr/bin/composer install -n;
-#                                      cd /var/www/publisher && php bin/console doctrine:migrations:migrate --no-interaction;
-#                                      cd /var/www/publisher && php bin/console swp:organization:create --default -n;
-#                                      cd /var/www/publisher && php bin/console swp:tenant:create --default -n;
-#                                      cd /var/www/publisher && php /usr/bin/composer dump-env dev;
-#                                      "]
-#        restartPolicy: OnFailure
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.publisher.name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      component: {{ .Values.publisher.component }}
+  template:
+    metadata:
+      labels:
+        component: {{ .Values.publisher.component }}
+    spec:
+      containers:
+        - name: php
+          image: {{ .Values.publisher.image }}
+          resources:
+            limits:
+              memory: 7Gi
+            requests:
+              memory: 7Gi
+          ports:
+            - containerPort: 9000
+          env:
+            - name: DATABASE_URL
+              value: "pgsql://postgres:postgres@postgres/publisher_%kernel.environment%"
+            - name: APP_ENV
+              value: "dev"
+            - name: APP_DEBUG
+              value: "1"
+            - name: ELASTICA_HOST
+              value: "elasticsearch"
+            - name: ELASTICA_PORT
+              value: "9200"
+            - name: APP_SECRET
+              value: "CHANGEME"
+            - name: DOCTRINE_CACHE_DRIVER
+              value: "memcached"
+            - name: SWP_DOMAIN
+              value: "publisher"
+            - name: SENTRY_DSN
+              value: "false"
+            - name: MAILER_URL
+              value: "smtp://localhost"
+            - name: CORS_ALLOW_ORIGIN
+              value: "http://{{ .Values.ingress.hosts.superdesk }}"
+            - name: ELASTICA_INDEX_NAME
+              value: "swp_index-docker"
+            - name: FS_MAIN_ADAPTER
+              value: "local_adapter"
+            - name: SESSION_MEMCACHED_HOST
+              value: "memcached"
+            - name: SUPERDESK_SERVERS
+              value: "[\"http://{{ .Values.ingress.hosts.superdesk }}\"]"
+            - name: SESSION_MEMCACHED_PORT
+              value: "11211"
+            - name: SESSION_MEMCACHED_PREFIX
+              value: "sess"
+            - name: SESSION_MEMCACHED_EXPIRE
+              value: "3600"
+            - name: RABBIT_MQ_HOST
+              value: "rabbitmq"
+            - name: RABBIT_MQ_PORT
+              value: "5672"
+            - name: RABBIT_MQ_USER
+              value: "guest"
+            - name: RABBIT_MQ_PASSWORD
+              value: "guest"
+            - name: WEBSOCKET_PORT
+              value: "443"
+            - name: WEBSOCKET_HOST
+              value: "127.0.0.1"
 
 
