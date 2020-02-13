@@ -45,8 +45,8 @@ postgres:
 publisher:
   name: php
   component: php
-  image: mdridi/publisher-dev
-#  image: mdridi/web-publisher
+#  image: mdridi/publisher-dev
+  image: mdridi/web-publisher
   tag: latest
   serviceName: php
 
@@ -92,8 +92,7 @@ resources:
 ingress:
   enabled: true
   hosts:
-    - host: hasura.cloud.funkedigital.de
-      paths: ['/']
+    superdesk: 192.168.64.6
 
 
 
