@@ -29,13 +29,6 @@ spec:
           volumeMounts:
             - name: publisher-storage
               mountPath: /var/www/publisher/app
-              subPath: app
-            - name: publisher-storage
-              mountPath: /var/www/publisher/public
-              subPath: public
-            - name: publisher-storage
-              mountPath: /var/www/publisher/templates
-              subPath: templates
           env:
             - name: DATABASE_URL
               value: "pgsql://postgres:postgres@postgres/publisher_%kernel.environment%"
