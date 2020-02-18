@@ -12,6 +12,10 @@ spec:
       labels:
         component: {{ .Values.superdesk.component }}
     spec:
+      volumes:
+        - name: superdesk-storage
+          persistentVolumeClaim:
+            claimName: superdesk-persistent-volume-claim
       containers:
         - name: client
           image: {{ .Values.superdesk.image }}

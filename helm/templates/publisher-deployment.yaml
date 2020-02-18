@@ -12,6 +12,10 @@ spec:
       labels:
         component: {{ .Values.publisher.component }}
     spec:
+      volumes:
+        - name: publisher-storage
+          persistentVolumeClaim:
+            claimName: publisher-persistent-volume-claim
       containers:
         - name: php
           image: {{ .Values.publisher.image }}
