@@ -61,7 +61,7 @@ spec:
             - name: MAILER_URL
               value: "smtp://localhost"
             - name: CORS_ALLOW_ORIGIN
-              value: "http://{{ .Values.ingress.hosts.superdesk }}"
+              value: "http://{{ .Values.publisher.superdeskHost }}"
             - name: ELASTICA_INDEX_NAME
               value: "swp_index-docker"
             - name: FS_MAIN_ADAPTER
@@ -69,7 +69,7 @@ spec:
             - name: SESSION_MEMCACHED_HOST
               value: "memcached"
             - name: SUPERDESK_SERVERS
-              value: "[\"http://{{ .Values.ingress.hosts.superdesk }}\"]"
+              value: "[\"http://{{ .Values.publisher.superdeskHost }}\"]"
             - name: SESSION_MEMCACHED_PORT
               value: "11211"
             - name: SESSION_MEMCACHED_PREFIX
