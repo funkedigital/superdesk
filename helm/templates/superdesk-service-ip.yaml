@@ -19,3 +19,9 @@ spec:
     - name: ws-ser
       port: 5100
       targetPort: 5100
+    - name: ws-sersd
+      port: 443
+      targetPort: 443
+    - name: ws-sers
+      port: 80
+      targetPort: 80
