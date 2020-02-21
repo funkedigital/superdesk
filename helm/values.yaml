@@ -49,6 +49,7 @@ publisher:
   image: mdridi/web-publisher
   tag: latest
   serviceName: php
+  superdeskHost: 192.168.64.6
 
 rabbitmq:
   name: rabbitmq-deployment
@@ -91,8 +92,49 @@ resources:
 
 ingress:
   enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
   hosts:
-    superdesk: 192.168.64.6
-
-
+    - host: stage.wmn.de
+      paths:
+        - path: /
+          backend:
+            serviceName: stage-wmn-de
+            servicePort: 80
+    - host: superdesk
+      paths:
+        - path: /
+          backend:
+            serviceName: superdesk-service-ip
+            servicePort: 80
+        - path: /api
+          backend:
+            serviceName: superdesk-service-ip
+            servicePort: 5000
+        - path: /contentapi
+          backend:
+            serviceName: superdesk-service-ip
+            servicePort: 5400
+        - path: /ws
+          backend:
+            serviceName: superdesk-service-ip
+            servicePort: 5100
+    - host: publisher
+      paths:
+        - path: /
+          backend:
+            serviceName: publisher
+            servicePort: 80
+  tls:
+    - hosts:
+        - stage.wmn.de
+      secretName: stage.wmn.de.tls
+    - hosts:
+        - superdesk
+      secretName: superdesk.tls
+    - hosts:
+        - publisher
+      secretName: publisher.tls
 
