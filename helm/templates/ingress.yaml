@@ -31,12 +31,13 @@ spec:
             backend:
               serviceName: publisher
               servicePort: 80
-    - http:
+    - host: "superdesk"
+      http:
         paths:
           - path: /
             backend:
               serviceName: superdesk-service-ip
-              servicePort: 9000
+              servicePort: 80
           - path: /api
             backend:
               serviceName: superdesk-service-ip

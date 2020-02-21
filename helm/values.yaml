@@ -67,7 +67,7 @@ redis:
 superdesk:
   name: superdesk-deployment
   component: web
-  image: mdridi/superdesk
+  image: mdridi/superdesk-prod
   tag: latest
   serviceName: superdesk-service-ip
 
