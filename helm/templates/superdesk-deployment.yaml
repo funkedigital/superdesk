@@ -13,9 +13,13 @@ spec:
         component: {{ .Values.superdesk.component }}
     spec:
       volumes:
+        # TODO clarify if really needed!
         - name: superdesk-storage
           persistentVolumeClaim:
             claimName: superdesk-persistent-volume-claim
+        - name: superdesk-config-volume
+          configMap:
+            name: superdesk-config-map
       containers:
         - name: client
           image: {{ .Values.superdesk.image }}
@@ -24,6 +28,9 @@ spec:
               memory: 5Gi
             requests:
               memory: 5Gi
+          volumeMounts:
+            - name: superdesk-config-volume
+              mountPath: /opt/superdesk/client
           ports:
             - containerPort: 9000
             - containerPort: 5000
