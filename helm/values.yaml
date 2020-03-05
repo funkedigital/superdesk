@@ -1,4 +1,5 @@
 replicaCount: 1
+proto: https
 
 elasticsearchPublisher:
   name: elasticsearch
@@ -31,7 +32,7 @@ mongodb:
 nginx:
   name: nginx-deployment
   component: nginx
-  image: mdridi/nginx-publisher
+  image: harbor.cloud.funkedigital.de/superdesk/stage/nginx
   tag: latest
   serviceName: publisher
 
@@ -46,7 +47,7 @@ publisher:
   name: php
   component: php
 #  image: mdridi/publisher-dev
-  image: mdridi/web-publisher
+  image: harbor.cloud.funkedigital.de/superdesk/stage/php
   tag: latest
   serviceName: php
   superdeskHost: 192.168.64.6
@@ -68,14 +69,14 @@ redis:
 superdesk:
   name: superdesk-deployment
   component: web
-  image: mdridi/superdesk-prod
+  image: harbor.cloud.funkedigital.de/superdesk/stage/superdesk
   tag: latest
   serviceName: superdesk-service-ip
 
 supervisor:
   name: supervisor-deployment
   component: supervisor
-  image: mdridi/supervisor
+  image: harbor.cloud.funkedigital.de/superdesk/stage/supervisor
   tag: latest
   serviceName: supervisor
 
@@ -97,13 +98,7 @@ ingress:
     kubernetes.io/tls-acme: "true"
     nginx.ingress.kubernetes.io/use-regex: "true"
   hosts:
-    - host: stage.wmn.de
-      paths:
-        - path: /
-          backend:
-            serviceName: stage-wmn-de
-            servicePort: 80
-    - host: superdesk
+    - host: superdesk.cloud.funkedigital.de
       paths:
         - path: /
           backend:
@@ -121,7 +116,13 @@ ingress:
           backend:
             serviceName: superdesk-service-ip
             servicePort: 5100
-    - host: publisher
+    - host: publisher.cloud.funkedigital.de
+      paths:
+        - path: /
+          backend:
+            serviceName: publisher
+            servicePort: 80
+    - host: stage.wmn.de
       paths:
         - path: /
           backend:
@@ -132,9 +133,9 @@ ingress:
         - stage.wmn.de
       secretName: stage.wmn.de.tls
     - hosts:
-        - superdesk
+        - superdesk.cloud.funkedigital.de
       secretName: superdesk.tls
     - hosts:
-        - publisher
+        - publisher.cloud.funkedigital.de
       secretName: publisher.tls
 

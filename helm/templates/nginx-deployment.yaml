@@ -14,6 +14,8 @@ spec:
     spec:
       containers:
         - name: nginxpub
-          image: {{ .Values.nginx.image }}
+          image: "{{ .Values.nginx.image }}:{{ .Values.nginx.tag }}"
           ports:
             - containerPort: 80
+      imagePullSecrets:
+        - name: harbor-access
