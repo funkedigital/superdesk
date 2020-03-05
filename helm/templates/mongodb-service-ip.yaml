@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.mongodb.serviceName }}
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    component: {{ .Values.mongodb.component }}
+  ports:
+    - port: 27017
+      targetPort: 27017

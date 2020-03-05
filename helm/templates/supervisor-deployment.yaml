@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.supervisor.name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      component: {{ .Values.supervisor.component }}
+  template:
+    metadata:
+      labels:
+        component: {{ .Values.supervisor.component }}
+    spec:
+      containers:
+        - name: supervisor
+          image: "{{ .Values.supervisor.image }}:{{ .Values.supervisor.tag }}"
+          ports:
+            - containerPort: 8080
+            - containerPort: 5555
+          env:
+            - name: WEBSOCKET_PORT
+              value: "8080"
+            - name: WEBSOCKET_HOST
+              value: "0.0.0.0"
+      imagePullSecrets:
+        - name: harbor-access

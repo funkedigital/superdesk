@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.nginx.name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      component: {{ .Values.nginx.component }}
+  template:
+    metadata:
+      labels:
+        component: {{ .Values.nginx.component }}
+    spec:
+      containers:
+        - name: nginxpub
+          image: "{{ .Values.nginx.image }}:{{ .Values.nginx.tag }}"
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: harbor-access
