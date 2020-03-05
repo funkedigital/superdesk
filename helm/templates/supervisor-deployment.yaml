@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: supervisor
-          image: {{ .Values.supervisor.image }}
+          image: "{{ .Values.supervisor.image }}:{{ .Values.supervisor.tag }}"
           ports:
             - containerPort: 8080
             - containerPort: 5555
@@ -23,3 +23,5 @@ spec:
               value: "8080"
             - name: WEBSOCKET_HOST
               value: "0.0.0.0"
+      imagePullSecrets:
+        - name: harbor-access

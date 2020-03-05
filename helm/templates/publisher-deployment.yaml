@@ -18,7 +18,7 @@ spec:
             claimName: publisher-persistent-volume-claim
       containers:
         - name: php
-          image: {{ .Values.publisher.image }}
+          image: "{{ .Values.publisher.image }}:{{ .Values.publisher.tag }}"
           resources:
             limits:
               memory: 7Gi
@@ -88,5 +88,6 @@ spec:
               value: "443"
             - name: WEBSOCKET_HOST
               value: "127.0.0.1"
-
+      imagePullSecrets:
+        - name: harbor-access
 
