@@ -27,18 +27,20 @@ spec:
           ports:
             - containerPort: 9000
           volumeMounts:
-            - name: publisher-storage
-              mountPath: /var/www/publisher/public/bundles/_themes
-            - name: publisher-storage
-              mountPath: /var/www/publisher/public/uploads
-            - name: publisher-storage
-              mountPath: /var/www/publisher/publisher/app
-            - name: publisher-storage
-              mountPath: /var/www/publisher/publisher/templates
-            - name: publisher-storage
-              mountPath: /var/www/publisher/app/themes
-            - name: publisher-storage
-              mountPath: /var/www/publisher/app/meta
+            - mountPath: /var/www/publisher/public/bundles/_themes
+              name: publisher-storage
+            - mountPath: /var/www/publisher/public/uploads
+              name: publisher-storage
+            - mountPath: /var/www/publisher/publisher/templates
+              name: publisher-storage
+            - mountPath: /var/www/publisher/app/themes
+              name: publisher-storage
+            - mountPath: /var/www/publisher/app/meta
+              name: publisher-storage
+            - mountPath: /var/www/publisher/var/cache/dev
+              name: publisher-storage
+            - mountPath: /var/www/publisher/var/log
+              name: publisher-storage
           env:
             - name: DATABASE_URL
               value: "pgsql://postgres:postgres@postgres/publisher_%kernel.environment%"
