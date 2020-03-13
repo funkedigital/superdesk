@@ -139,3 +139,4 @@ ingress:
         - publisher.cloud.funkedigital.de
       secretName: publisher.tls
 
+
