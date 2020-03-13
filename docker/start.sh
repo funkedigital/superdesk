@@ -19,5 +19,5 @@ sed -i \
  app*.js &&
 nginx &
 
-#cd /opt/superdesk && sleep 5 && bash honcho start
+cd /opt/superdesk && sleep 5 && bash honcho start
 
