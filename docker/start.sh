@@ -23,9 +23,5 @@ sed -i \
  app*.js &&
 nginx &
 
-grunt build
-
 #cd /opt/superdesk && sleep 5 && bash honcho start
-cd /opt/superdesk && bash ./scripts/fig_wrapper.sh honcho start
-
-grunt build
+cd /opt/superdesk && sleep 5 && grunt build && bash ./scripts/fig_wrapper.sh honcho start
