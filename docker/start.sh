@@ -10,6 +10,10 @@ python3 -m venv env && . env/bin/activate && pip install -Ur dev-requirements.tx
 python3 manage.py app:initialize_data &&
 python3 manage.py users:create -u admin -p admin -e 'admin@example.com' --admin
 
+cd /opt/superdesk/client &&
+npm install &&
+grunt build
+
 cd /opt/superdesk/client/dist &&
 sed -i \
  -e "s/http:\/\/localhost:5000\/api/$(echo $SUPERDESK_URL | sed 's/\//\\\//g')/g" \
@@ -22,6 +26,4 @@ nginx &
 #cd /opt/superdesk && sleep 5 && bash honcho start
 cd /opt/superdesk && bash ./scripts/fig_wrapper.sh honcho start
 
-cd /opt/superdesk/client &&
-npm install &&
-grunt build
+
