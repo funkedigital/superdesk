@@ -54,7 +54,7 @@ RUN python3 -m pip install -U -r requirements.txt --ignore-installed
 # install client
 COPY ./client /opt/superdesk/client/
 RUN npm install -g npm grunt-cli
-RUN cd ./client && npm install && grunt build
+#RUN cd ./client && npm install && grunt build
 
 # copy git revision informations (used in "about" screen)
 COPY .git/HEAD /opt/superdesk/.git/
