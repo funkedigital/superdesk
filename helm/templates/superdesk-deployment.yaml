@@ -55,6 +55,8 @@ spec:
               value: "ws://superdesk/ws"
             - name: SUPERDESK_CLIENT_URL
               value: "http://superdesk"
+            - name: SUPERDESK_CONFIG
+              value: /opt/superdesk/client/superdesk.config.js
             - name: DOCKER_IP
               value: "superdesk"
             - name: MONGO_URI
