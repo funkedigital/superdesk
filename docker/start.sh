@@ -12,9 +12,7 @@ python3 manage.py users:create -u admin -p admin -e 'admin@example.com' --admin
 
 cd /opt/superdesk/client &&
 npm install &&
-grunt build
-
-# copy superdesk config to dist
+grunt build &&
 find ./dist/ -maxdepth 1 -name "config.*.js" -exec cp ./superdesk.cloud.config.js {} \;
 
 cd /opt/superdesk/client/dist &&
