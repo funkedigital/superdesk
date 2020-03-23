@@ -15,7 +15,7 @@ npm install &&
 grunt build
 
 # copy superdesk config to dist
-find ./dist/ -maxdepth 1 -name "config.*.js" -exec cp ./superdesk.config.js {} \;
+find ./dist/ -maxdepth 1 -name "config.*.js" -exec cp ./superdesk.cloud.config.js {} \;
 
 cd /opt/superdesk/client/dist &&
 sed -i \
