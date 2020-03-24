@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd /opt/superdesk/client &&
+rm -rf ./dist/ ./node_modules/ &&
 npm install &&
 grunt build &&
 find ./dist/ -maxdepth 1 -name "config.*.js" -exec cp ./superdesk.cloud.config.js {} \;
