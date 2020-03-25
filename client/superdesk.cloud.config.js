@@ -8,4 +8,5 @@ window.superdeskConfig={
         wsPort: '8080',
         base: 'api/v2'
     },
+    defaultTimezone: 'Europe/Berlin'
 };
