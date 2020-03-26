@@ -12,10 +12,17 @@ spec:
       labels:
         component: {{ .Values.nginx.component }}
     spec:
+      volumes:
+        - name: publisher-storage
+          persistentVolumeClaim:
+            claimName: publisher-persistent-volume-claim
       containers:
         - name: nginxpub
           image: "{{ .Values.nginx.image }}:{{ .Values.nginx.tag }}"
           ports:
             - containerPort: 80
+          volumeMounts:
+            - mountPath: /var/www/publisher/public/uploads
+              name: publisher-storage
       imagePullSecrets:
         - name: harbor-access
