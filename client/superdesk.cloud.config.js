@@ -5,8 +5,8 @@ window.superdeskConfig={
         tenant: '',
         domain: 'publisher.cloud.funkedigital.de',
         wsDomain: 'publisher.cloud.funkedigital.de',
-        wsPath: 'ws',
-        wsPort: '8080',
+        wsPath: '/ws',
+        wsPort: '',
         base: 'api/v2'
     },
     defaultTimezone: 'Europe/Berlin'
