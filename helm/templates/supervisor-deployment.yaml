@@ -23,5 +23,7 @@ spec:
               value: "8080"
             - name: WEBSOCKET_HOST
               value: "0.0.0.0"
+            - name: MESSENGER_TRANSPORT_DSN
+              value: "amqp://guest:guest@rabbitmq:5672/%2f/messages"
       imagePullSecrets:
         - name: harbor-access
