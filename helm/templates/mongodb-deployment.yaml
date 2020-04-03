@@ -25,4 +25,6 @@ spec:
             - name: mongodb-storage
               mountPath: /data/db
               subPath: mongodb
-
+          env:
+            - name: TZ
+              value: {{ .Values.timezone | quote }}

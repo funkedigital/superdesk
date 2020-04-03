@@ -1,6 +1,6 @@
 replicaCount: 1
 proto: https
-stage: stage
+stage: prod
 timezone: Europe/Berlin
 
 elasticsearchPublisher:
@@ -34,7 +34,7 @@ mongodb:
 nginx:
   name: nginx-deployment
   component: nginx
-  image: harbor.cloud.funkedigital.de/superdesk/stage/nginx
+  image: harbor.cloud.funkedigital.de/superdesk/prod/nginx
   tag: latest
   serviceName: publisher
 
@@ -48,7 +48,7 @@ postgres:
 publisher:
   name: php
   component: php
-  image: harbor.cloud.funkedigital.de/superdesk/stage/php
+  image: harbor.cloud.funkedigital.de/superdesk/prod/php
   tag: latest
   serviceName: php
   superdeskHost: 192.168.64.6
@@ -70,14 +70,14 @@ redis:
 superdesk:
   name: superdesk-deployment
   component: web
-  image: harbor.cloud.funkedigital.de/superdesk/stage/superdesk
+  image: harbor.cloud.funkedigital.de/superdesk/prod/superdesk
   tag: latest
   serviceName: superdesk-service-ip
 
 supervisor:
   name: supervisor-deployment
   component: supervisor
-  image: harbor.cloud.funkedigital.de/superdesk/stage/supervisor
+  image: harbor.cloud.funkedigital.de/superdesk/prod/supervisor
   tag: latest
   serviceName: supervisor
 
@@ -102,7 +102,7 @@ ingress:
     nginx.ingress.kubernetes.io/proxy-body-size: "1024m"
     nginx.org/client-max-body-size: "1024m"
   hosts:
-    - host: superdesk-stage.cloud.funkedigital.de
+    - host: superdesk.cloud.funkedigital.de
       paths:
         - path: /
           backend:
@@ -120,17 +120,17 @@ ingress:
           backend:
             serviceName: superdesk-service-ip
             servicePort: 5100
-    - host: publisher-stage.cloud.funkedigital.de
-      paths:
-        - path: /
-          backend:
-            serviceName: publisher
-            servicePort: 80
-        - path: /ws
-          backend:
-            serviceName: supervisor
-            servicePort: 8080
-    - host: stage.wmn.de
+    - host: publisher.cloud.funkedigital.de
+        paths:
+          - path: /
+            backend:
+              serviceName: publisher
+              servicePort: 80
+          - path: /ws
+            backend:
+              serviceName: supervisor
+              servicePort: 8080
+    - host: origin.wmn.de
       paths:
         - path: /
           backend:
@@ -138,12 +138,12 @@ ingress:
             servicePort: 80
   tls:
     - hosts:
-        - stage.wmn.de
-      secretName: stage.wmn.de.tls
+        - origin.wmn.de
+      secretName: origin.wmn.de.tls
     - hosts:
-        - superdesk-stage.cloud.funkedigital.de
-      secretName: superdesk-stage.tls
+        - superdesk.cloud.funkedigital.de
+      secretName: superdesk.tls
     - hosts:
-        - publisher-stage.cloud.funkedigital.de
-      secretName: publisher-stage.tls
+        - publisher.cloud.funkedigital.de
+      secretName: publisher.tls
 

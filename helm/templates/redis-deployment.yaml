@@ -17,3 +17,6 @@ spec:
           image: "{{ .Values.redis.image }}:{{ .Values.redis.tag }}"
           ports:
             - containerPort: 6379
+          env:
+            - name: TZ
+              value: {{ .Values.timezone | quote }}

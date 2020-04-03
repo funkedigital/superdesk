@@ -17,3 +17,6 @@ spec:
           image: {{ .Values.memcached.image }}
           ports:
             - containerPort: 11211
+          env:
+            - name: TZ
+              value: {{ .Values.timezone | quote }}

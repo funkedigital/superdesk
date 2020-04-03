@@ -17,3 +17,6 @@ spec:
           image: "{{ .Values.elasticsearchSuperdesk.image }}:{{ .Values.elasticsearchSuperdesk.tag }}"
           ports:
             - containerPort: 9200
+          env:
+            - name: TZ
+              value: {{ .Values.timezone | quote }}

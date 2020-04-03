@@ -90,6 +90,8 @@ spec:
               value: "443"
             - name: WEBSOCKET_HOST
               value: "127.0.0.1"
+            - name: TZ
+              value: {{ .Values.timezone | quote }}
       imagePullSecrets:
         - name: harbor-access
 

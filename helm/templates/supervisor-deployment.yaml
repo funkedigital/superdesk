@@ -25,5 +25,8 @@ spec:
               value: "0.0.0.0"
             - name: MESSENGER_TRANSPORT_DSN
               value: "amqp://guest:guest@rabbitmq:5672/%2f/messages"
+            - name: TZ
+              value: {{ .Values.timezone | quote }}
+
       imagePullSecrets:
         - name: harbor-access

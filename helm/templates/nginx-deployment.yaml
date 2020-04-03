@@ -24,5 +24,8 @@ spec:
           volumeMounts:
             - mountPath: /var/www/publisher/public/uploads
               name: publisher-storage
+          env:
+            - name: TZ
+              value: {{ .Values.timezone | quote }}
       imagePullSecrets:
         - name: harbor-access
