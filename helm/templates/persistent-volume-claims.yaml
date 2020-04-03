@@ -7,7 +7,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 6Gi
+      storage: 50Gi
 
 ---
 
@@ -20,7 +20,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 6Gi
+      storage: 100Gi
 
 ---
 
@@ -33,7 +33,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 7Gi
+      storage: 1Ti
 
 ---
 
@@ -46,4 +46,4 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 7Gi
+      storage: 1Ti
