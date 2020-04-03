@@ -4,7 +4,7 @@ cd /opt/superdesk/client &&
 rm -rf ./dist/ ./node_modules/ &&
 npm install &&
 grunt build &&
-find ./dist/ -maxdepth 1 -name "config.*.js" -exec cp ./superdesk.cloud.config.js {} \;
+find ./dist/ -maxdepth 1 -name "config.*.js" -exec cp ./$SUPERDESK_CONFIG {} \;
 
 cd /opt/superdesk/client/dist &&
 sed -i \
