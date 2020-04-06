@@ -24,9 +24,6 @@ spec:
               memory: 5Gi
             requests:
               memory: 5Gi
-          volumeMounts:
-            - name: superdesk-config-volume
-              mountPath: /opt/superdesk/client
           ports:
             - containerPort: 9000
             - containerPort: 5000
