@@ -33,23 +33,19 @@ spec:
             - containerPort: 80
           env:
             - name: HOST
-              value: "superdesk"
-#            - name: HOST_SSL
-#              value: ""
+              value: "{{ .Values.superdesk.baseUrl }}"
             - name: DB_HOST
               value: "mongodb"
             - name: DB_NAME
               value: "superdesk"
             - name: SUPERDESK_URL
-              value: "http://superdesk/api"
+              value: "{{ .Values.proto }}://{{ .Values.superdesk.baseUrl }}/api"
             - name: CONTENTAPI_URL
-              value: "http://superdesk/contentapi"
+              value: "{{ .Values.proto }}://{{ .Values.superdesk.baseUrl }}/contentapi"
             - name: SUPERDESK_WS_URL
-              value: "ws://superdesk/ws"
+              value: "wss://{{ .Values.superdesk.baseUrl }}/ws"
             - name: SUPERDESK_CLIENT_URL
-              value: "http://superdesk"
-            - name: SUPERDESK_CONFIG
-              value: /opt/superdesk/client/superdesk-{{ .Values.stage }}.cloud.config.js
+              value: "{{ .Values.proto}}://{{ .Values.superdesk.baseUrl }}"
             - name: DOCKER_IP
               value: "superdesk"
             - name: MONGO_URI
@@ -70,9 +66,9 @@ spec:
               value: "mongodb://mongodb/superdesk_ca"
             - name: REDIS_URL
               value: "redis://redis:6379/1"
-            - name: ELASTICSEARCH_URL
-              value: "http://elastic:9200"
             - name: TZ
               value: {{ .Values.timezone | quote }}
+            - name: SUPERDESK_CLIENT_CONFIG_FILE
+              value: "superdesk-{{ .Values.stage }}.cloud.config.js"
       imagePullSecrets:
         - name: harbor-access

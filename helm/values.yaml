@@ -73,6 +73,7 @@ superdesk:
   image: harbor.cloud.funkedigital.de/superdesk/stage/superdesk
   tag: latest
   serviceName: superdesk-service-ip
+  baseUrl: "superdesk-stage.cloud.funkedigital.de"
 
 supervisor:
   name: supervisor-deployment
