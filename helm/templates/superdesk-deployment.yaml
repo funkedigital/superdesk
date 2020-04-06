@@ -13,13 +13,9 @@ spec:
         component: {{ .Values.superdesk.component }}
     spec:
       volumes:
-        # TODO clarify if really needed!
         - name: superdesk-storage
           persistentVolumeClaim:
             claimName: superdesk-persistent-volume-claim
-        - name: superdesk-config-volume
-          configMap:
-            name: superdesk-config-map
       containers:
         - name: client
           image: "{{ .Values.superdesk.image }}:{{ .Values.superdesk.tag }}"
