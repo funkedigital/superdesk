@@ -21,9 +21,11 @@ spec:
           image: "{{ .Values.publisher.image }}:{{ .Values.publisher.tag }}"
           resources:
             limits:
-              memory: 7Gi
+              cpu: "8"
+              memory: 128Gi
             requests:
-              memory: 7Gi
+              cpu: "8"
+              memory: 128Gi
           ports:
             - containerPort: 9000
           volumeMounts:
