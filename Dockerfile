@@ -12,6 +12,7 @@ RUN apt-get update && \
   curl libfontconfig nginx \
   libxml2-dev libxslt1-dev \
   python3-venv inotify-tools \
+  tzdata \
   && rm /etc/nginx/sites-enabled/default
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install -y --no-install-recommends \
