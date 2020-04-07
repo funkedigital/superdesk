@@ -27,6 +27,5 @@ spec:
               value: "amqp://guest:guest@rabbitmq:5672/%2f/messages"
             - name: TZ
               value: {{ .Values.timezone | quote }}
-
       imagePullSecrets:
         - name: harbor-access
