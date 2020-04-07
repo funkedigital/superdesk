@@ -53,7 +53,7 @@ publisher:
   image: harbor.cloud.funkedigital.de/superdesk/prod/php
   tag: latest
   serviceName: php
-  superdeskHost: 192.168.64.6
+  superdeskHost: "superdesk.cloud.funkedigital.de"
 
 rabbitmq:
   name: rabbitmq-deployment
