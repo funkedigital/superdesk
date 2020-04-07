@@ -70,5 +70,26 @@ spec:
               value: {{ .Values.timezone | quote }}
             - name: SUPERDESK_CLIENT_CONFIG_FILE
               value: "superdesk-{{ .Values.stage }}.cloud.config.js"
+          # probe after +5min (building client takes time) and check against :5000/api
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /api
+              port: 5000
+              scheme: HTTP
+            initialDelaySeconds: 360
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 2
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /api
+              port: 5000
+              scheme: HTTP
+            initialDelaySeconds: 320
+            periodSeconds: 5
+            successThreshold: 2
+            timeoutSeconds: 2
       imagePullSecrets:
         - name: harbor-access
