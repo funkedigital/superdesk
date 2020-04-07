@@ -124,15 +124,15 @@ ingress:
             serviceName: superdesk-service-ip
             servicePort: 5100
     - host: publisher.cloud.funkedigital.de
-        paths:
-          - path: /
-            backend:
-              serviceName: publisher
-              servicePort: 80
-          - path: /ws
-            backend:
-              serviceName: supervisor
-              servicePort: 8080
+      paths:
+        - path: /
+          backend:
+            serviceName: publisher
+            servicePort: 80
+        - path: /ws
+          backend:
+            serviceName: supervisor
+            servicePort: 8080
     - host: origin.wmn.de
       paths:
         - path: /
