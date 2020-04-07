@@ -45,15 +45,18 @@ spec:
             - name: DATABASE_URL
               value: "pgsql://postgres:postgres@postgres/publisher_%kernel.environment%"
             - name: APP_ENV
-              value: "dev"
+              value: {{ .Values.appEnv | quote }}
             - name: APP_DEBUG
-              value: "1"
+              value: {{ .Values.appDebug | quote }}
             - name: ELASTICA_HOST
               value: "elasticsearch"
             - name: ELASTICA_PORT
               value: "9200"
             - name: APP_SECRET
-              value: "CHANGEME"
+              valueFrom:
+                secretKeyRef:
+                  name: publisher-app-secret
+                  key: APP_SECRET
             - name: DOCTRINE_CACHE_DRIVER
               value: "memcached"
             - name: SWP_DOMAIN
@@ -71,7 +74,7 @@ spec:
             - name: SESSION_MEMCACHED_HOST
               value: "memcached"
             - name: SUPERDESK_SERVERS
-              value: "[\"http://{{ .Values.publisher.superdeskHost }}\"]"
+              value: "[\"{{ .Values.proto }}://{{ .Values.publisher.superdeskHost }}\"]"
             - name: SESSION_MEMCACHED_PORT
               value: "11211"
             - name: SESSION_MEMCACHED_PREFIX
@@ -92,6 +95,29 @@ spec:
               value: "127.0.0.1"
             - name: TZ
               value: {{ .Values.timezone | quote }}
+            - name: FIXTURES_TYPE
+              value: {{ .Values.appEnv }}
+          # probe after ??? min and check against :9000/index.php ?
+         #livenessProbe:
+         #  failureThreshold: 10
+         #  httpGet:
+         #    path: /api
+         #    port: 5000
+         #    scheme: HTTP
+         #  initialDelaySeconds: 360
+         #  periodSeconds: 10
+         #  successThreshold: 1
+         #  timeoutSeconds: 2
+         #readinessProbe:
+         #  failureThreshold: 3
+         #  httpGet:
+         #    path: /api
+         #    port: 5000
+         #    scheme: HTTP
+         #  initialDelaySeconds: 320
+         #  periodSeconds: 5
+         #  successThreshold: 2
+         #  timeoutSeconds: 2
       imagePullSecrets:
         - name: harbor-access
 

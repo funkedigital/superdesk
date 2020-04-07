@@ -71,6 +71,7 @@ spec:
             - name: SUPERDESK_CLIENT_CONFIG_FILE
               value: "superdesk-{{ .Values.stage }}.cloud.config.js"
           # probe after +5min (building client takes time) and check against :5000/api
+          # TODO use values.yaml
           livenessProbe:
             failureThreshold: 10
             httpGet:

@@ -1,6 +1,8 @@
 replicaCount: 1
 proto: https
 stage: stage
+appEnv: dev
+appDebug: 1
 timezone: Europe/Berlin
 
 elasticsearchPublisher:
@@ -51,7 +53,7 @@ publisher:
   image: harbor.cloud.funkedigital.de/superdesk/stage/php
   tag: latest
   serviceName: php
-  superdeskHost: 192.168.64.6
+  superdeskHost: "superdesk-stage.cloud.funkedigital.de"
 
 rabbitmq:
   name: rabbitmq-deployment
