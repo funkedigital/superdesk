@@ -26,6 +26,7 @@ spec:
               mountPath: /var/lib/postgresql/data
               subPath: postgres
           env:
+            # FIXME ALTER DATABASE publisher_dev RENAME TO publisher;
             - name: POSTGRES_DB
               value: "publisher_dev"
             - name: POSTGRES_USER
@@ -34,4 +35,7 @@ spec:
               value: "postgres"
             - name: TZ
               value: {{ .Values.timezone | quote }}
-
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "sleep 5 && rm -f /etc/localtime && ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime"]
