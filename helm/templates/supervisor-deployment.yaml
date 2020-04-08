@@ -17,12 +17,66 @@ spec:
           image: "{{ .Values.supervisor.image }}:{{ .Values.supervisor.tag }}"
           ports:
             - containerPort: 8080
+              protocol: TCP
             - containerPort: 5555
+              protocol: TCP
           env:
-            - name: WEBSOCKET_PORT
-              value: "8080"
+            - name: APP_DEBUG
+              value: {{ .Values.appDebug | quote }}
+            - name: APP_ENV
+              value: {{ .Values.appEnv }}
+            - name: APP_SECRET
+              value: Ai2woh2che0faa6feeg0giD8thohLaiz
+            - name: CORS_ALLOW_ORIGIN
+              value: https://superdesk.cloud.funkedigital.de
+            - name: DATABASE_URL
+              value: pgsql://postgres:postgres@postgres/publisher
+            - name: DOCTRINE_CACHE_DRIVER
+              value: memcached
+            - name: ELASTICA_HOST
+              value: elasticsearch
+            - name: ELASTICA_INDEX_NAME
+              value: swp_index
+            - name: ELASTICA_PORT
+              value: "9200"
+            - name: FS_MAIN_ADAPTER
+              value: local_adapter
+            - name: MAILER_URL
+              value: smtp://localhost
+            - name: RABBIT_MQ_HOST
+              value: rabbitmq
+            - name: RABBIT_MQ_PASSWORD
+              value: guest
+            - name: RABBIT_MQ_PORT
+              value: "5672"
+            - name: RABBIT_MQ_USER
+              value: guest
+            - name: RABBIT_MQ_VHOST
+              value: /
+            - name: SENTRY_DSN
+              value: "false"
+            - name: SESSION_MEMCACHED_EXPIRE
+              value: "3600"
+            - name: SESSION_MEMCACHED_HOST
+              value: memcached
+            - name: SESSION_MEMCACHED_PORT
+              value: "11211"
+            - name: SESSION_MEMCACHED_PREFIX
+              value: sess
+            - name: SUPERDESK_SERVERS
+              value: '["https://superdesk.cloud.funkedigital.de"]'
+            - name: SWP_DOMAIN
+              value: publisher
+            - name: SYMFONY_ENV
+              value: prod
             - name: WEBSOCKET_HOST
-              value: "0.0.0.0"
+              value: 127.0.0.1
+            - name: WEBSOCKET_PORT
+              value: "443"
+            #- name: WEBSOCKET_PORT
+            #  value: "8080"
+            #- name: WEBSOCKET_HOST
+            #  value: "0.0.0.0"
             - name: MESSENGER_TRANSPORT_DSN
               value: "amqp://guest:guest@rabbitmq:5672/%2f/messages"
             - name: TZ
