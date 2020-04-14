@@ -68,7 +68,7 @@ spec:
             - name: MAILER_URL
               value: "smtp://localhost"
             - name: CORS_ALLOW_ORIGIN
-              value: "http://{{ .Values.publisher.superdeskHost }}"
+              value: "{{ .Values.proto }}://{{ .Values.publisher.superdeskHost }}"
             - name: ELASTICA_INDEX_NAME
               value: "swp_index-docker"
             - name: FS_MAIN_ADAPTER
