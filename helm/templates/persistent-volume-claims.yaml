@@ -7,7 +7,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 50Gi
+      storage: {{ .Values.postgres.pvcSize }}
 
 ---
 
@@ -20,7 +20,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 100Gi
+      storage: {{ .Values.mongodb.pvcSize }}
 
 ---
 
@@ -33,7 +33,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 1Ti
+      storage: {{ .Values.publisher.pvcSize }}
 
 ---
 
@@ -46,4 +46,4 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 1Ti
+      storage: {{ .Values.superdesk.pvcSize }}
