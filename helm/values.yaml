@@ -142,7 +142,7 @@ ingress:
         - path: /
           backend:
             serviceName: publisher
-            servicePort: 80
+            servicePort: proxy-cache
   tls:
     - hosts:
         - stage.wmn.de

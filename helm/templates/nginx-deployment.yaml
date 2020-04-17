@@ -21,6 +21,7 @@ spec:
           image: "{{ .Values.nginx.image }}:{{ .Values.nginx.tag }}"
           ports:
             - containerPort: 80
+            - containerPort: 8080
           volumeMounts:
             - mountPath: /var/www/publisher/public/uploads
               name: publisher-storage
