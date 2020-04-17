@@ -12,6 +12,15 @@ spec:
       labels:
         component: {{ .Values.rabbitmq.component }}
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - lb
       containers:
         - name: rabbitmq
           image: "{{ .Values.rabbitmq.image }}:{{ .Values.rabbitmq.tag }}"

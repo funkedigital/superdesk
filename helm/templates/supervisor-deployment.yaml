@@ -12,6 +12,15 @@ spec:
       labels:
         component: {{ .Values.supervisor.component }}
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - lb
       volumes:
         - name: publisher-storage
           persistentVolumeClaim:
