@@ -12,6 +12,10 @@ spec:
       labels:
         component: {{ .Values.supervisor.component }}
     spec:
+      volumes:
+        - name: publisher-storage
+          persistentVolumeClaim:
+            claimName: publisher-persistent-volume-claim
       containers:
         - name: supervisor
           image: "{{ .Values.supervisor.image }}:{{ .Values.supervisor.tag }}"
@@ -20,6 +24,11 @@ spec:
               protocol: TCP
             - containerPort: 5555
               protocol: TCP
+          volumeMounts:
+          - mountPath: /var/www/publisher/app/logs
+            name: publisher-storage
+          - mountPath: /var/www/publisher/public/uploads
+            name: publisher-storage
           env:
             - name: APP_DEBUG
               value: {{ .Values.appDebug | quote }}
