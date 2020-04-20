@@ -10,3 +10,6 @@ spec:
     - name: mm
       port: 80
       targetPort: 80
+    - name: proxy-cache
+      port: 8080
+      targetPort: 8080
