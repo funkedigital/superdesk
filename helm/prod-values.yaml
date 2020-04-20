@@ -138,13 +138,22 @@ ingress:
           backend:
             serviceName: supervisor
             servicePort: 8080
+    - host: www.wmn.de
+      paths:
+        - path: /
+          backend:
+            serviceName: publisher
+            servicePort: proxy-cache
     - host: origin.wmn.de
       paths:
         - path: /
           backend:
             serviceName: publisher
-            servicePort: 80
+            servicePort: proxy-cache
   tls:
+    - hosts:
+        - www.wmn.de
+      secretName: www.wmn.de.tls
     - hosts:
         - origin.wmn.de
       secretName: origin.wmn.de.tls
@@ -154,4 +163,6 @@ ingress:
     - hosts:
         - publisher.cloud.funkedigital.de
       secretName: publisher.tls
+
+
 
