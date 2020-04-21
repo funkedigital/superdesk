@@ -50,7 +50,7 @@ spec:
             - name: CORS_ALLOW_ORIGIN
               value: '["{{ .Values.proto }}://{{ .Values.superdesk.swpHost }}", "{{ .Values.proto }}://{{ .Values.publisher.superdeskHost }}"]'
             - name: DATABASE_URL
-              value: pgsql://postgres:postgres@postgres/publisher
+              value: pgsql://postgres:postgres@postgres/publications
             - name: ELASTICA_HOST
               value: elasticsearch
             - name: ELASTICA_INDEX_NAME

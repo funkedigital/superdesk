@@ -54,7 +54,7 @@ spec:
               name: publisher-storage
           env:
             - name: DATABASE_URL
-              value: "pgsql://postgres:postgres@postgres/publisher"
+              value: "pgsql://postgres:postgres@postgres/publications"
             - name: APP_ENV
               value: {{ .Values.appEnv | quote }}
             - name: APP_DEBUG
