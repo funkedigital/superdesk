@@ -12,6 +12,15 @@ spec:
       labels:
         component: {{ .Values.supervisor.component }}
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - lb
       volumes:
         - name: publisher-storage
           persistentVolumeClaim:
@@ -25,10 +34,10 @@ spec:
             - containerPort: 5555
               protocol: TCP
           volumeMounts:
-          - mountPath: /var/www/publisher/app/logs
-            name: publisher-storage
-          - mountPath: /var/www/publisher/public/uploads
-            name: publisher-storage
+            - mountPath: /var/www/publisher/app/logs
+              name: publisher-storage
+            - mountPath: /var/www/publisher/public/uploads
+              name: publisher-storage
           env:
             - name: APP_DEBUG
               value: {{ .Values.appDebug | quote }}
@@ -41,7 +50,7 @@ spec:
             - name: CORS_ALLOW_ORIGIN
               value: '["{{ .Values.proto }}://{{ .Values.superdesk.swpHost }}", "{{ .Values.proto }}://{{ .Values.publisher.superdeskHost }}"]'
             - name: DATABASE_URL
-              value: pgsql://postgres:postgres@postgres/publisher
+              value: pgsql://postgres:postgres@postgres/publications
             - name: ELASTICA_HOST
               value: elasticsearch
             - name: ELASTICA_INDEX_NAME
@@ -63,7 +72,7 @@ spec:
             - name: RABBIT_MQ_VHOST
               value: /
             - name: TZ
-              value: Europe/Berlin
+              value: {{ .Values.timezone }}
             - name: WEBSOCKET_HOST
               value: 0.0.0.0
             - name: WEBSOCKET_PORT

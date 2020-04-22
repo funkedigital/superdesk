@@ -12,6 +12,15 @@ spec:
       labels:
         component: {{ .Values.postgres.component }}
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - lb
       volumes:
         - name: postgres-storage
           persistentVolumeClaim:
@@ -26,9 +35,8 @@ spec:
               mountPath: /var/lib/postgresql/data
               subPath: postgres
           env:
-            # FIXME ALTER DATABASE publisher_dev RENAME TO publisher;
             - name: POSTGRES_DB
-              value: "publisher_dev"
+              value: "publications"
             - name: POSTGRES_USER
               value: "postgres"
             - name: POSTGRES_PASSWORD

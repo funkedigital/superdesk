@@ -12,6 +12,15 @@ spec:
       labels:
         component: {{ .Values.superdesk.component }}
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - lb
       volumes:
         - name: superdesk-storage
           persistentVolumeClaim:
@@ -21,9 +30,11 @@ spec:
           image: "{{ .Values.superdesk.image }}:{{ .Values.superdesk.tag }}"
           resources:
             limits:
-              memory: 5Gi
+              cpu: "8"
+              memory: 128Gi
             requests:
-              memory: 5Gi
+              cpu: "8"
+              memory: 128Gi
           ports:
             - containerPort: 9000
             - containerPort: 5000
