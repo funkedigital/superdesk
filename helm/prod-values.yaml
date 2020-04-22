@@ -79,6 +79,7 @@ superdesk:
   tag: latest
   serviceName: superdesk-service-ip
   baseUrl: "superdesk.cloud.funkedigital.de"
+  swpHost: "publisher-stage.cloud.funkedigital.de"
   pvcSize: 100Gi
 
 supervisor:
