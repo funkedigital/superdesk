@@ -1,9 +1,10 @@
 #!/bin/bash
 
+# find the config filename and replace it by our sd config, based on environment
 cd /opt/superdesk/client &&
-rm -rf ./dist/ ./node_modules/ &&
-npm install &&
-grunt build &&
+#rm -rf ./dist/ ./node_modules/ &&
+#npm install &&
+#grunt build &&
 find ./dist/ -maxdepth 1 -name "config.*.js" -exec cp "/opt/superdesk/client/$SUPERDESK_CLIENT_CONFIG_FILE" {} \;
 #find ./dist/ -maxdepth 1 -name "config.*.js" -exec cp /opt/superdesk/client/superdesk-stage.cloud.config.js {} \;
 
