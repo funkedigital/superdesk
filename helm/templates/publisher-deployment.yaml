@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.publisher.name }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 3
   selector:
     matchLabels:
       component: {{ .Values.publisher.component }}
