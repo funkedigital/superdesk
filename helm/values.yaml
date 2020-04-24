@@ -30,7 +30,7 @@ mongodb:
   name: mongodb-deployment
   component: mongodb
   image: mongo
-  tag: 3.6
+  tag: 3.4
   serviceName: mongodb
   pvcSize: 100Gi
 
