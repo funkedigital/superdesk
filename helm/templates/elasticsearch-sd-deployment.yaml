@@ -29,7 +29,3 @@ spec:
           env:
             - name: TZ
               value: {{ .Values.timezone | quote }}
-          lifecycle:
-            postStart:
-              exec:
-                command: ["/bin/sh", "-c", "sleep 5 && rm -f /etc/localtime && ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime"]

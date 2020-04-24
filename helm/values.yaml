@@ -16,7 +16,7 @@ elasticsearchSuperdesk:
   name: elastic-deployment
   component: elastic
   image: elasticsearch
-  tag: 2
+  tag: 2.4-alpine
   serviceName: elastic
 
 memcached:
@@ -30,7 +30,7 @@ mongodb:
   name: mongodb-deployment
   component: mongodb
   image: mongo
-  tag: 3.4
+  tag: 3.6
   serviceName: mongodb
   pvcSize: 100Gi
 
@@ -68,7 +68,7 @@ rabbitmq:
 redis:
   name: redis-deployment
   component: redis
-  image: redis
+  image: redis:alpine
   tag: 5.0
   serviceName: redis
 
@@ -138,6 +138,16 @@ ingress:
           backend:
             serviceName: supervisor
             servicePort: 8080
+    - host: waz.cloud.funkedigital.de
+      paths:
+        - path: /
+          backend:
+            serviceName: publisher
+            servicePort: 80
+        - path: /ws
+          backend:
+            serviceName: supervisor
+            servicePort: 8080
     - host: stage.wmn.de
       paths:
         - path: /
@@ -154,4 +164,7 @@ ingress:
     - hosts:
         - publisher-stage.cloud.funkedigital.de
       secretName: publisher-stage.tls
+    - hosts:
+        - waz.cloud.funkedigital.de
+      secretName: waz.cloud.funkedigital.de.tls
 
