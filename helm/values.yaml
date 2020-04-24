@@ -1,8 +1,8 @@
 replicaCount: 1
 proto: https
 stage: stage
-appEnv: dev
-appDebug: 1
+appEnv: prod
+appDebug: 0
 timezone: Europe/Berlin
 
 elasticsearchPublisher:
@@ -105,7 +105,6 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
-    nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/body-size: "1024m"
     nginx.ingress.kubernetes.io/proxy-body-size: "1024m"
     nginx.org/client-max-body-size: "1024m"
@@ -154,6 +153,10 @@ ingress:
           backend:
             serviceName: publisher
             servicePort: 80
+        - path: /ws
+          backend:
+            serviceName: supervisor
+            servicePort: 8080
   tls:
     - hosts:
         - stage.wmn.de
