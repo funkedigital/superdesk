@@ -23,7 +23,8 @@ spec:
                       - lb
       containers:
         - name: redis
-          image: "{{ .Values.redis.image }}:{{ .Values.redis.tag }}"
+          #image: "{{ .Values.redis.image }}:{{ .Values.redis.tag }}"
+          image: "{{ .Values.redis.image }}"
           ports:
             - containerPort: 6379
           env:

@@ -36,7 +36,7 @@ spec:
               subPath: postgres
           env:
             - name: POSTGRES_DB
-              value: "publisher"
+              value: "publications"
             - name: POSTGRES_USER
               value: "postgres"
             - name: POSTGRES_PASSWORD

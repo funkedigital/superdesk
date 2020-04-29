@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.supervisor.name }}
 spec:
-  replicas: 3
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       component: {{ .Values.supervisor.component }}
@@ -72,7 +72,7 @@ spec:
             - name: RABBIT_MQ_VHOST
               value: /
             - name: TZ
-              value: Europe/Berlin
+              value: {{ .Values.timezone }}
             - name: WEBSOCKET_HOST
               value: 0.0.0.0
             - name: WEBSOCKET_PORT

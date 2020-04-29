@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.publisher.name }}
 spec:
-  replicas: 3
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       component: {{ .Values.publisher.component }}
@@ -108,27 +108,6 @@ spec:
               value: {{ .Values.timezone | quote }}
             - name: FIXTURES_TYPE
               value: {{ .Values.appEnv }}
-          # probe after ??? min and check against :9000/index.php ?
-         #livenessProbe:
-         #  failureThreshold: 10
-         #  httpGet:
-         #    path: /api
-         #    port: 5000
-         #    scheme: HTTP
-         #  initialDelaySeconds: 360
-         #  periodSeconds: 10
-         #  successThreshold: 1
-         #  timeoutSeconds: 2
-         #readinessProbe:
-         #  failureThreshold: 3
-         #  httpGet:
-         #    path: /api
-         #    port: 5000
-         #    scheme: HTTP
-         #  initialDelaySeconds: 320
-         #  periodSeconds: 5
-         #  successThreshold: 2
-         #  timeoutSeconds: 2
       imagePullSecrets:
         - name: harbor-access
 

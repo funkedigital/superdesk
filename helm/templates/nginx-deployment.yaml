@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.nginx.name }}
 spec:
-  replicas: 3
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       component: {{ .Values.nginx.component }}
