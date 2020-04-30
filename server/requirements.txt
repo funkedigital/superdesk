@@ -2,4 +2,4 @@ gunicorn==19.7.1
 honcho==1.0.1
 newrelic>=2.66,<2.67
 
--e git+git://github.com/funkedigital/superdesk-core.git@release/1.33.1#egg=superdesk-core
+-e git+git://github.com/funkedigital/superdesk-core.git@stage-env#egg=superdesk-core
