@@ -9,3 +9,4 @@
 # at https://www.sourcefabric.org/superdesk/license
 
 from .feeding_services.funke_xmli import FUNKEXMLIFeedingService  # NOQA
+from .feed_parsers.fd_xmli import XMLIFeedParser  # NOQA

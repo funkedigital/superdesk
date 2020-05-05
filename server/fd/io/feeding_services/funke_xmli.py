@@ -9,7 +9,7 @@
 # at https://www.sourcefabric.org/superdesk/license
 
 import re
-#import feedparser
+# import feedparser
 import xmltodict
 from lxml import etree
 import requests
@@ -19,7 +19,7 @@ from datetime import datetime
 from superdesk.errors import IngestApiError, ParserError
 from superdesk.io.registry import register_feeding_service, register_feeding_service_parser
 from superdesk.io.feeding_services.http_base_service import HTTPFeedingServiceBase
-from superdesk.io.feed_parsers import XMLIFeedParser
+from server.fd.io import XMLIFeedParser
 
 utcfromtimestamp = datetime.utcfromtimestamp
 
