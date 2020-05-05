@@ -19,7 +19,7 @@ from datetime import datetime
 from superdesk.errors import IngestApiError, ParserError
 from superdesk.io.registry import register_feeding_service, register_feeding_service_parser
 from superdesk.io.feeding_services.http_base_service import HTTPFeedingServiceBase
-from server.fd.io import XMLIFeedParser
+from fd.io.fd_xmli import XMLIFeedParser
 
 utcfromtimestamp = datetime.utcfromtimestamp
 
