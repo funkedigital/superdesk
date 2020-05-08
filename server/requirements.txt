@@ -6,4 +6,4 @@ lxml==4.5.0
 requests>=2.23.0
 xmltodict
 
--e git+git://github.com/funkedigital/superdesk-core.git@Add_FD_XMLI_Importer#egg=superdesk-core
+-e git+git://github.com/funkedigital/superdesk-core.git@release/1.33.1#egg=superdesk-core
