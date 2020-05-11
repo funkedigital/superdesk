@@ -30,7 +30,7 @@ WORKDIR /opt/superdesk/
 COPY ./docker/nginx.conf /etc/nginx/nginx.conf
 COPY ./docker/superdesk_vhost.conf /etc/nginx/sites-enabled/superdesk.conf
 COPY ./docker/start.sh /opt/superdesk/start.sh
-#COPY ./docker/start-client.sh /opt/superdesk/start-client.sh
+COPY ./docker/start-client.sh /opt/superdesk/start-client.sh
 
 # client ports
 EXPOSE 9000
@@ -58,7 +58,7 @@ CMD /opt/superdesk/start.sh
 COPY ./client /opt/superdesk/client/
 RUN npm install -g npm grunt-cli
 RUN cd ./client && npm install && grunt build
-#CMD /opt/superdesk/start-client.sh
+CMD /opt/superdesk/start-client.sh
 
 # copy git revision informations (used in "about" screen)
 COPY .git/HEAD /opt/superdesk/.git/

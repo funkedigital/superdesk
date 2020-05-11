@@ -4,8 +4,8 @@ mongodb:
     service: mongodb
   ports:
     - "27017:27017"
-  volumes:
-    - /home/jhalitschke/workspace/funkedigital/superdesk-stage_2020-05-07.gz:/superdesk-stage_2020-05-07.gz
+  #volumes:
+  #  - /home/ubuntu/mongo_data:/data
 
 redis:
   extends:
