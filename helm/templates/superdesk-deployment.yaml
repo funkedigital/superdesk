@@ -21,6 +21,16 @@ spec:
                     operator: NotIn
                     values:
                       - lb
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - storage
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - database
       volumes:
         - name: superdesk-storage
           persistentVolumeClaim:
@@ -31,10 +41,10 @@ spec:
           resources:
             limits:
               cpu: "8"
-              memory: 128Gi
+              memory: 16Gi
             requests:
-              cpu: "8"
-              memory: 128Gi
+              cpu: "4"
+              memory: 8Gi
           ports:
             - containerPort: 9000
             - containerPort: 5000
@@ -81,27 +91,5 @@ spec:
               value: {{ .Values.timezone | quote }}
             - name: SUPERDESK_CLIENT_CONFIG_FILE
               value: "superdesk-{{ .Values.stage }}.cloud.config.js"
-          # probe after +5min (building client takes time) and check against :5000/api
-          # TODO use values.yaml
-          livenessProbe:
-            failureThreshold: 10
-            httpGet:
-              path: /api
-              port: 5000
-              scheme: HTTP
-            initialDelaySeconds: 360
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 2
-          readinessProbe:
-            failureThreshold: 3
-            httpGet:
-              path: /api
-              port: 5000
-              scheme: HTTP
-            initialDelaySeconds: 320
-            periodSeconds: 5
-            successThreshold: 2
-            timeoutSeconds: 2
       imagePullSecrets:
         - name: harbor-access

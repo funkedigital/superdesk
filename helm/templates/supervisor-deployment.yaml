@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.supervisor.name }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 3
   selector:
     matchLabels:
       component: {{ .Values.supervisor.component }}
@@ -21,6 +21,16 @@ spec:
                     operator: NotIn
                     values:
                       - lb
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - storage
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - database
       volumes:
         - name: publisher-storage
           persistentVolumeClaim:
@@ -28,16 +38,23 @@ spec:
       containers:
         - name: supervisor
           image: "{{ .Values.supervisor.image }}:{{ .Values.supervisor.tag }}"
+          resources:
+            limits:
+              cpu: "8"
+              memory: 16Gi
+            requests:
+              cpu: "4"
+              memory: 8Gi
           ports:
             - containerPort: 8080
               protocol: TCP
             - containerPort: 5555
               protocol: TCP
           volumeMounts:
-          - mountPath: /var/www/publisher/app/logs
-            name: publisher-storage
-          - mountPath: /var/www/publisher/public/uploads
-            name: publisher-storage
+            - mountPath: /var/www/publisher/app/logs
+              name: publisher-storage
+            - mountPath: /var/www/publisher/public/uploads
+              name: publisher-storage
           env:
             - name: APP_DEBUG
               value: {{ .Values.appDebug | quote }}

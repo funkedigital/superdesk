@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.publisher.name }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 3
   selector:
     matchLabels:
       component: {{ .Values.publisher.component }}
@@ -21,6 +21,16 @@ spec:
                     operator: NotIn
                     values:
                       - lb
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - storage
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - database
       volumes:
         - name: publisher-storage
           persistentVolumeClaim:
@@ -30,11 +40,11 @@ spec:
           image: "{{ .Values.publisher.image }}:{{ .Values.publisher.tag }}"
           resources:
             limits:
-              cpu: "8"
-              memory: 128Gi
+              cpu: "12"
+              memory: 20Gi
             requests:
               cpu: "8"
-              memory: 128Gi
+              memory: 10Gi
           ports:
             - containerPort: 9000
           volumeMounts:

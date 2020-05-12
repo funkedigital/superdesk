@@ -21,9 +21,26 @@ spec:
                     operator: NotIn
                     values:
                       - lb
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - storage
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - database
       containers:
         - name: {{ .Values.memcached.name }}
           image: {{ .Values.memcached.image }}
+          resources:
+            limits:
+              cpu: "8"
+              memory: 16Gi
+            requests:
+              cpu: "4"
+              memory: 8Gi
           ports:
             - containerPort: 11211
           env:

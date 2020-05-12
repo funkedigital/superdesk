@@ -21,9 +21,26 @@ spec:
                     operator: NotIn
                     values:
                       - lb
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - storage
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - database
       containers:
         - name: rabbitmq
           image: "{{ .Values.rabbitmq.image }}:{{ .Values.rabbitmq.tag }}"
+          resources:
+            limits:
+              cpu: "8"
+              memory: 16Gi
+            requests:
+              cpu: "4"
+              memory: 8Gi
           ports:
             - containerPort: 5672
             - containerPort: 15672

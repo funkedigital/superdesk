@@ -21,6 +21,16 @@ spec:
                     operator: NotIn
                     values:
                       - lb
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - storage
+              - matchExpressions:
+                  - key: instance/type
+                    operator: NotIn
+                    values:
+                      - database
       volumes:
         - name: postgres-storage
           persistentVolumeClaim:
@@ -28,6 +38,13 @@ spec:
       containers:
         - name: postgres
           image: {{ .Values.postgres.image }}
+          resources:
+            limits:
+              cpu: "12"
+              memory: 20Gi
+            requests:
+              cpu: "8"
+              memory: 10Gi
           ports:
             - containerPort: 5432
           volumeMounts:
