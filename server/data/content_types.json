@@ -1,0 +1,744 @@
+[
+    {
+      "_id": "5d48392332827c0ea7f5e5a6",
+      "priority": 0,
+      "label": "verticals_evergreen",
+      "is_used": true,
+      "enabled": true,
+      "editor": {
+        "teaser_mediawall_title": null,
+        "subtitle": null,
+        "location": null,
+        "customembed": {
+          "order": 11,
+          "section": "content"
+        },
+        "footer": null,
+        "body_html": {
+          "editor3": true,
+          "required": true,
+          "formatOptions": [
+            "h2",
+            "bold",
+            "italic",
+            "underline",
+            "quote",
+            "link",
+            "embed",
+            "media",
+            "h3",
+            "h4",
+            "unordered list",
+            "strikethrough",
+            "table",
+            "ordered list",
+            "subscript",
+            "superscript"
+          ],
+          "order": 9,
+          "cleanPastedHTML": false
+        },
+        "byline": null,
+        "seo_canonical_url": null,
+        "gallery": {
+          "showCrops": true,
+          "section": "content",
+          "imageTitle": true,
+          "sdWidth": "full",
+          "order": 10
+        },
+        "authors": {
+          "sdWidth": "full",
+          "order": 1,
+          "required": true
+        },
+        "bulletpoints": null,
+        "feature_media": {
+          "order": 6
+        },
+        "subject": {
+          "sdWidth": "full",
+          "order": 10,
+          "required": false,
+          "section": "header"
+        },
+        "is_no_follow": null,
+        "urgency": null,
+        "priority": null,
+        "attachments": null,
+        "usageterms": null,
+        "media_description": null,
+        "seo_title": {
+          "order": 5,
+          "section": "content",
+          "required": true
+        },
+        "video": null,
+        "dateline": null,
+        "abstract": {
+          "order": 8,
+          "formatOptions": [
+            "bold",
+            "italic",
+            "underline",
+            "link"
+          ],
+          "required": true
+        },
+        "slugline": {
+          "sdWidth": "full",
+          "order": 3,
+          "required": true
+        },
+        "audio": null,
+        "ednote": null,
+        "anpa_take_key": null,
+        "company_codes": null,
+        "sign_off": null,
+        "genre": null,
+        "sms": null,
+        "metaDescription": null,
+        "anpa_category": null,
+        "body_footer": null,
+        "headline": {
+          "order": 4,
+          "formatOptions": [
+            "underline",
+            "link",
+            "bold"
+          ],
+          "required": true
+        },
+        "keywords": {
+          "section": "header",
+          "required": true,
+          "sdWidth": "full",
+          "order": 2
+        },
+        "place": null,
+        "seo_description": {
+          "order": 7,
+          "section": "content",
+          "required": true
+        },
+        "videoembed": null,
+        "language": null
+      },
+      "schema": {
+        "subject": {
+          "type": "list",
+          "nullable": false,
+          "required": false,
+          "enabled": true,
+          "mandatory_in_list": {
+            "scheme": {}
+          },
+          "schema": {}
+        },
+        "teaser_mediawall_title": null,
+        "subtitle": null,
+        "location": null,
+        "customembed": {
+          "nullable": true,
+          "required": false,
+          "enabled": true,
+          "type": "embed"
+        },
+        "footer": null,
+        "body_html": {
+          "nullable": false,
+          "type": "string",
+          "required": true
+        },
+        "byline": null,
+        "seo_canonical_url": null,
+        "gallery": {
+          "nullable": true,
+          "required": false,
+          "enabled": true,
+          "type": "media"
+        },
+        "authors": {
+          "schema": {
+            "schema": {
+              "role": {
+                "type": "string"
+              },
+              "parent": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "type": "dict"
+          },
+          "nullable": false,
+          "required": true,
+          "type": "list",
+          "mandatory_in_list": null
+        },
+        "bulletpoints": null,
+        "feature_media": {
+          "nullable": true,
+          "type": "media",
+          "required": false
+        },
+        "priority": null,
+        "urgency": null,
+        "attachments": null,
+        "usageterms": null,
+        "media_description": null,
+        "seo_title": {
+          "nullable": false,
+          "required": true,
+          "enabled": true,
+          "type": "text"
+        },
+        "video": null,
+        "dateline": null,
+        "abstract": {
+          "nullable": false,
+          "required": true,
+          "type": "string",
+          "maxlength": 160
+        },
+        "slugline": {
+          "nullable": false,
+          "type": "string",
+          "required": true
+        },
+        "audio": null,
+        "ednote": null,
+        "anpa_take_key": null,
+        "company_codes": null,
+        "sign_off": null,
+        "genre": null,
+        "sms": null,
+        "metaDescription": null,
+        "anpa_category": null,
+        "body_footer": null,
+        "headline": {
+          "nullable": false,
+          "type": "string",
+          "required": true
+        },
+        "keywords": {
+          "nullable": false,
+          "required": true,
+          "enabled": true,
+          "type": "list"
+        },
+        "place": null,
+        "seo_description": {
+          "nullable": false,
+          "required": true,
+          "enabled": true,
+          "type": "text"
+        },
+        "videoembed": null,
+        "language": null
+      }
+    },
+    {
+      "_id": "5cd99da6a7bd87627c5dffbb",
+      "label": "verticals_news_article",
+      "is_used": true,
+      "priority": 0,
+      "enabled": true,
+      "schema": {
+        "subject": {
+          "type": "list",
+          "nullable": false,
+          "required": false,
+          "enabled": true,
+          "mandatory_in_list": {
+            "scheme": {}
+          },
+          "schema": {}
+        },
+        "teaser_mediawall_title": null,
+        "subtitle": null,
+        "location": null,
+        "customembed": {
+          "nullable": true,
+          "required": false,
+          "enabled": true,
+          "type": "embed"
+        },
+        "footer": null,
+        "body_html": {
+          "nullable": false,
+          "type": "string",
+          "required": true
+        },
+        "byline": null,
+        "seo_canonical_url": null,
+        "gallery": {
+          "nullable": true,
+          "required": false,
+          "enabled": true,
+          "type": "media"
+        },
+        "authors": {
+          "schema": {
+            "schema": {
+              "role": {
+                "type": "string"
+              },
+              "parent": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "type": "dict"
+          },
+          "nullable": true,
+          "required": false,
+          "type": "list",
+          "mandatory_in_list": null
+        },
+        "bulletpoints": null,
+        "feature_media": {
+          "nullable": true,
+          "type": "media",
+          "required": false
+        },
+        "priority": null,
+        "urgency": null,
+        "attachments": null,
+        "usageterms": null,
+        "media_description": {
+          "nullable": true,
+          "required": false,
+          "enabled": true,
+          "type": "string"
+        },
+        "seo_title": {
+          "nullable": false,
+          "required": true,
+          "enabled": true,
+          "type": "text"
+        },
+        "video": null,
+        "dateline": null,
+        "abstract": {
+          "nullable": true,
+          "type": "string",
+          "required": false
+        },
+        "slugline": {
+          "nullable": false,
+          "required": true,
+          "enabled": true,
+          "type": "string"
+        },
+        "audio": null,
+        "ednote": null,
+        "anpa_take_key": null,
+        "company_codes": null,
+        "sign_off": null,
+        "genre": null,
+        "sms": null,
+        "metaDescription": null,
+        "anpa_category": null,
+        "body_footer": null,
+        "headline": {
+          "nullable": false,
+          "type": "string",
+          "required": true
+        },
+        "keywords": {
+          "nullable": true,
+          "required": false,
+          "enabled": true,
+          "type": "list"
+        },
+        "place": null,
+        "seo_description": {
+          "nullable": true,
+          "required": false,
+          "enabled": true,
+          "type": "text"
+        },
+        "videoembed": null,
+        "language": null
+      },
+      "editor": {
+        "teaser_mediawall_title": null,
+        "subtitle": null,
+        "location": null,
+        "customembed": {
+          "sdWidth": "full",
+          "order": 12,
+          "section": "content"
+        },
+        "footer": null,
+        "body_html": {
+          "order": 10,
+          "imageTitle": true,
+          "required": true,
+          "sdWidth": "full",
+          "formatOptions": [
+            "h2",
+            "bold",
+            "italic",
+            "underline",
+            "quote",
+            "link",
+            "embed",
+            "media",
+            "h3",
+            "h4",
+            "ordered list",
+            "strikethrough",
+            "table",
+            "unordered list",
+            "subscript",
+            "superscript"
+          ],
+          "editor3": true,
+          "cleanPastedHTML": false
+        },
+        "byline": null,
+        "seo_canonical_url": null,
+        "gallery": {
+          "showCrops": true,
+          "section": "content",
+          "imageTitle": true,
+          "sdWidth": "full",
+          "order": 11
+        },
+        "authors": {
+          "sdWidth": "full",
+          "order": 1,
+          "required": false
+        },
+        "bulletpoints": null,
+        "feature_media": {
+          "showCrops": true,
+          "sdWidth": "full",
+          "order": 6
+        },
+        "subject": {
+          "sdWidth": "full",
+          "order": 10,
+          "required": false,
+          "section": "header"
+        },
+        "is_no_follow": null,
+        "urgency": null,
+        "priority": null,
+        "attachments": null,
+        "usageterms": null,
+        "media_description": {
+          "sdWidth": "full",
+          "order": 9,
+          "section": "content"
+        },
+        "seo_title": {
+          "section": "content",
+          "required": true,
+          "sdWidth": "full",
+          "order": 5
+        },
+        "video": null,
+        "dateline": null,
+        "abstract": {
+          "required": false,
+          "sdWidth": "full",
+          "formatOptions": [
+            "link"
+          ],
+          "order": 7
+        },
+        "slugline": {
+          "section": "header",
+          "required": true,
+          "sdWidth": "full",
+          "order": 3
+        },
+        "audio": null,
+        "ednote": null,
+        "anpa_take_key": null,
+        "company_codes": null,
+        "sign_off": null,
+        "genre": null,
+        "sms": null,
+        "metaDescription": null,
+        "anpa_category": null,
+        "body_footer": null,
+        "headline": {
+          "required": true,
+          "sdWidth": "full",
+          "formatOptions": [
+            "underline",
+            "link",
+            "bold"
+          ],
+          "order": 4
+        },
+        "keywords": {
+          "section": "header",
+          "required": false,
+          "sdWidth": "full",
+          "order": 2
+        },
+        "place": null,
+        "seo_description": {
+          "order": 8,
+          "section": "content",
+          "required": false
+        },
+        "videoembed": null,
+        "language": null
+      },
+      "description": "News Article",
+      "widgets_config": [
+        {
+          "is_displayed": false,
+          "widget_id": "macros"
+        }
+      ]
+    },
+    {
+      "_id": "5d49287ec86e6f6b15679556",
+      "priority": 0,
+      "label": "verticals_advertorial",
+      "is_used": true,
+      "enabled": true,
+      "editor": {
+        "videoembed": null,
+        "byline": null,
+        "seo_title": {
+          "order": 5,
+          "required": true,
+          "section": "content"
+        },
+        "keywords": {
+          "order": 2,
+          "required": true,
+          "section": "header",
+          "sdWidth": "full"
+        },
+        "sms": null,
+        "bulletpoints": null,
+        "audio": null,
+        "teaser_mediawall_title": null,
+        "feature_media": {
+          "order": 6
+        },
+        "footer": null,
+        "abstract": {
+          "order": 8,
+          "required": true,
+          "formatOptions": [
+            "bold",
+            "italic",
+            "underline",
+            "link"
+          ]
+        },
+        "language": null,
+        "company_codes": null,
+        "location": null,
+        "body_footer": null,
+        "place": null,
+        "genre": null,
+        "anpa_take_key": null,
+        "subject": {
+          "order": 12,
+          "sdWidth": "full"
+        },
+        "body_html": {
+          "cleanPastedHTML": false,
+          "order": 9,
+          "required": true,
+          "formatOptions": [
+            "h2",
+            "bold",
+            "italic",
+            "underline",
+            "quote",
+            "link",
+            "embed",
+            "media",
+            "h3",
+            "h4",
+            "ordered list",
+            "unordered list",
+            "table",
+            "strikethrough",
+            "subscript",
+            "superscript"
+          ],
+          "editor3": true
+        },
+        "seo_canonical_url": null,
+        "usageterms": null,
+        "customembed": {
+          "order": 11,
+          "section": "content"
+        },
+        "metaDescription": null,
+        "seo_description": {
+          "order": 7,
+          "required": true,
+          "section": "content"
+        },
+        "is_no_follow": null,
+        "sign_off": null,
+        "gallery": {
+          "order": 10,
+          "section": "content",
+          "imageTitle": true,
+          "sdWidth": "full",
+          "showCrops": true
+        },
+        "attachments": null,
+        "authors": {
+          "order": 1,
+          "sdWidth": "full",
+          "required": true
+        },
+        "media_description": null,
+        "headline": {
+          "order": 4,
+          "required": true,
+          "formatOptions": [
+            "underline",
+            "link",
+            "bold"
+          ]
+        },
+        "anpa_category": null,
+        "slugline": {
+          "order": 3,
+          "sdWidth": "full",
+          "required": true
+        },
+        "video": null,
+        "ednote": null,
+        "subtitle": null,
+        "dateline": null,
+        "urgency": null,
+        "priority": null
+      },
+      "schema": {
+        "subject": {
+          "type": "list",
+          "nullable": false,
+          "required": false,
+          "enabled": true,
+          "mandatory_in_list": {
+            "scheme": {}
+          },
+          "schema": {}
+        },
+        "video": null,
+        "byline": null,
+        "seo_title": {
+          "required": true,
+          "type": "text",
+          "enabled": true,
+          "nullable": false
+        },
+        "keywords": {
+          "required": true,
+          "type": "list",
+          "enabled": true,
+          "nullable": false
+        },
+        "sms": null,
+        "bulletpoints": null,
+        "audio": null,
+        "teaser_mediawall_title": null,
+        "feature_media": {
+          "required": false,
+          "type": "media",
+          "nullable": true
+        },
+        "footer": null,
+        "abstract": {
+          "required": true,
+          "type": "string",
+          "nullable": false
+        },
+        "language": null,
+        "company_codes": null,
+        "location": null,
+        "body_footer": null,
+        "videoembed": null,
+        "dateline": null,
+        "anpa_take_key": null,
+        "genre": null,
+        "body_html": {
+          "required": true,
+          "type": "string",
+          "nullable": false
+        },
+        "seo_canonical_url": null,
+        "usageterms": null,
+        "customembed": {
+          "required": false,
+          "type": "embed",
+          "enabled": true,
+          "nullable": true
+        },
+        "metaDescription": null,
+        "seo_description": {
+          "required": true,
+          "type": "text",
+          "enabled": true,
+          "nullable": false
+        },
+        "place": null,
+        "sign_off": null,
+        "gallery": {
+          "required": false,
+          "type": "media",
+          "enabled": true,
+          "nullable": true
+        },
+        "attachments": null,
+        "authors": {
+          "required": true,
+          "type": "list",
+          "schema": {
+            "schema": {
+              "parent": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            },
+            "type": "dict"
+          },
+          "nullable": false,
+          "mandatory_in_list": null
+        },
+        "headline": {
+          "required": true,
+          "type": "string",
+          "nullable": false
+        },
+        "urgency": null,
+        "slugline": {
+          "required": true,
+          "type": "string",
+          "nullable": false
+        },
+        "media_description": null,
+        "ednote": null,
+        "subtitle": null,
+        "anpa_category": null,
+        "priority": null
+      }
+    }
+  ]
