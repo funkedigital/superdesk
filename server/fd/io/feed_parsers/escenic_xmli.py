@@ -56,7 +56,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         parsed_el = self.parse_elements(tree.find('NewsItem/Identification/NewsIdentifier'))
         items['guid'] = parsed_el['PublicIdentifier']
         items['version'] = parsed_el['RevisionId']
-        items['ingest_provider_sequence'] = parsed_el['ProviderId']
+        items['ingest_provider_sequence'] = parsed_el['NewsItemId']
         items['data'] = parsed_el['DateId']
 
     def parse_news_management(self, items, tree):
