@@ -92,4 +92,4 @@ spec:
             - name: SUPERDESK_CLIENT_CONFIG_FILE
               value: "superdesk-{{ .Values.stage }}.cloud.config.js"
       imagePullSecrets:
-        - name: ecr-docker-access
+        - name: harbor-access

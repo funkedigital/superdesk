@@ -95,4 +95,4 @@ spec:
             - name: WEBSOCKET_PORT
               value: "8080"
       imagePullSecrets:
-        - name: ecr-docker-access
+        - name: harbor-access
