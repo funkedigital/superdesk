@@ -83,7 +83,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         propertites = tree.findall('NewsItem/NewsComponent/Metadata/Property')
         for i in propertites:
             if i.get('FormalName', '') == 'DateLine':
-                self.set_dateline(items, text=i.get('Value', ''))
+                self.set_dateline(items, text=self.datetime(i.get('Value', '')))
             elif i.get('FormalName', '') != '':
                 items[(i.get('FormalName')).lower()] = i.get('Value', '')
 
