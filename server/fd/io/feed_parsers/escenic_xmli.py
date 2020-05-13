@@ -44,6 +44,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
             self.parse_newslines(items, xml)
             self.parse_news_management(items, xml)
             self.parse_metadata(items, xml)
+            self.parse_byline(items, xml)
             items['body_html'] = etree.tostring(
                 xml.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content'),
                 encoding='unicode').replace('<body.content>', '').replace('</body.content>', '')
@@ -51,6 +52,10 @@ class EscenicXMLIFeedParser(XMLFeedParser):
             return items
         except Exception as ex:
             raise ParserError.newsmlTwoParserError(ex, provider)
+
+    def parse_byline(self, items, tree):
+        parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.head'))
+        items['byline'] = parsed_el.get('byline', '')
 
     def parse_news_identifier(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/Identification/NewsIdentifier'))
@@ -74,7 +79,6 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/NewsLines'))
         items['headline'] = parsed_el.get('HeadLine', '')
         items['slugline'] = parsed_el.get('SlugLine', '')
-        items['byline'] = parsed_el.get('ByLine', '')
         items['copyrightline'] = parsed_el.get('CopyrightLine', '')
 
     def parse_metadata(self, items, tree):
