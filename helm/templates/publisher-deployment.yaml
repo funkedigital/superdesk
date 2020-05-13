@@ -119,5 +119,5 @@ spec:
             - name: FIXTURES_TYPE
               value: {{ .Values.appEnv }}
       imagePullSecrets:
-        - name: harbor-access
+        - name: ecr-docker-access
 

@@ -37,7 +37,7 @@ mongodb:
 nginx:
   name: nginx-deployment
   component: nginx
-  image: harbor.cloud.funkedigital.de/superdesk/stage/nginx
+  image: 528761028293.dkr.ecr.eu-central-1.amazonaws.com/superdesk/nginx:latest
   tag: latest
   serviceName: publisher
 
@@ -52,7 +52,7 @@ postgres:
 publisher:
   name: php
   component: php
-  image: harbor.cloud.funkedigital.de/superdesk/stage/php
+  image: 528761028293.dkr.ecr.eu-central-1.amazonaws.com/superdesk/php:latest
   tag: latest
   serviceName: php
   superdeskHost: "superdesk-stage.cloud.funkedigital.de"
@@ -75,7 +75,7 @@ redis:
 superdesk:
   name: superdesk-deployment
   component: web
-  image: harbor.cloud.funkedigital.de/superdesk/stage/superdesk
+  image: 528761028293.dkr.ecr.eu-central-1.amazonaws.com/superdesk/superdesk:latest
   tag: latest
   serviceName: superdesk-service-ip
   baseUrl: "superdesk-stage.cloud.funkedigital.de"
@@ -85,7 +85,7 @@ superdesk:
 supervisor:
   name: supervisor-deployment
   component: supervisor
-  image: harbor.cloud.funkedigital.de/superdesk/stage/supervisor
+  image: 528761028293.dkr.ecr.eu-central-1.amazonaws.com/superdesk/supervisor:latest
   tag: latest
   serviceName: supervisor
 
