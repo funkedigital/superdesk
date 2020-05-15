@@ -13,12 +13,14 @@ import re
 import xmltodict
 from lxml import etree
 import requests
+import logging
 
 from superdesk.errors import IngestApiError, ParserError
 from superdesk.io.registry import register_feeding_service, register_feeding_service_parser
 from superdesk.io.feeding_services.http_base_service import HTTPFeedingServiceBase
 from fd.io.feed_parsers.escenic_xmli import EscenicXMLIFeedParser
 
+logger = logging.getLogger(__name__)
 
 class EscenicXMLIFeedingService(HTTPFeedingServiceBase):
     """
@@ -62,17 +64,22 @@ class EscenicXMLIFeedingService(HTTPFeedingServiceBase):
         response = requests.get(url)
         data = xmltodict.parse(response.content)
         items = []
-        urls = data['urlset']['url']
-        for i in urls[:2]:
-            u = i.get('loc', '')
-            if u != '':
-                url = u.replace('.html', '.xmli')
-                print(url)
-                ii = requests.get(url)
-                xml_elements = etree.fromstring(ii.content)
-                print(xml_elements)
-                xmliparser = EscenicXMLIFeedParser()
-                items.append(xmliparser.parse(xml_elements, self.provider))
+        if 'url' in data:
+            urls = data['urlset']['url']
+            for i in urls[:2]:
+                u = i.get('loc', '')
+                if u != '':
+                    url = u.replace('.html', '.xmli')
+                    # print(url)
+                    ii = requests.get(url)
+                    xml_elements = etree.fromstring(ii.content)
+                    # print(xml_elements)
+                    xmliparser = EscenicXMLIFeedParser()
+                    parsed_items = xmliparser.parse(xml_elements, self.provider)
+                    # print(parsed_items)
+                    items.append(parsed_items)
+        else:
+            logger.error('News sitemap contains no urls.')
 
         return items
 

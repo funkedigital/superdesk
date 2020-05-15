@@ -40,6 +40,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
     def parse(self, xml, provider=None):
         items = {}
         try:
+            self.parse_media(items, xml)
             self.parse_news_identifier(items, xml)
             self.parse_newslines(items, xml)
             self.parse_news_management(items, xml)
@@ -53,6 +54,16 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         except Exception as ex:
             raise ParserError.newsmlTwoParserError(ex, provider)
 
+
+    # TODO check internal links like /12345656 (escenic id) and look for <NewsItemId>229126224</NewsItemId> in source_id
+    # relative links to category pages /sport/football and absolute links remain untouched
+
+    def parse_media(self, items, tree):
+        parsed_media = self.media_parser(
+            tree.findall('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content/media/'))
+        # TODO add featuremedia from the landscape image in landscape format (width > height)
+        # using superdesk.media.renditions.update_renditions? like in /superdesk-core/superdesk/io/feed_parsers/wordpress_wxr.py
+
     def parse_byline(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.head'))
         items['byline'] = parsed_el.get('byline', '')
@@ -61,7 +72,8 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         parsed_el = self.parse_elements(tree.find('NewsItem/Identification/NewsIdentifier'))
         items['guid'] = parsed_el['PublicIdentifier']
         items['version'] = parsed_el['RevisionId']
-        items['ingest_provider_sequence'] = parsed_el['NewsItemId']
+        # items['ingest_provider_sequence'] = parsed_el['ProviderId'] set by superdesk.io.ingest.IngestService.set_ingest_provider_sequence if None
+        items['source_id'] = parsed_el['NewsItemId'] # for internal link lookup
         items['data'] = parsed_el['DateId']
 
     def parse_news_management(self, items, tree):
@@ -87,9 +99,18 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         propertites = tree.findall('NewsItem/NewsComponent/Metadata/Property')
         for i in propertites:
             if i.get('FormalName', '') == 'DateLine':
-                self.set_dateline(items, text=self.datetime(i.get('Value', '')))
+                self.set_dateline(items, text=self.datetime(i.get('Value', ''))) # TODO clarify format, maybe use also Location for city
             elif i.get('FormalName', '') != '':
                 items[(i.get('FormalName')).lower()] = i.get('Value', '')
+
+    def media_parser(self, tree):
+        items = []
+        for item in tree:
+            if item.text is None:
+                # read the attribute for the items
+                if item.tag != 'HeadLine':
+                    items.append(item.attrib)
+        return items
 
     def parse_elements(self, tree):
         items = {}
