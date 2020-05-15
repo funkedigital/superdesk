@@ -16,21 +16,21 @@ spec:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-              - matchExpressions:
-                  - key: instance/type
-                    operator: NotIn
-                    values:
-                      - lb
-              - matchExpressions:
-                  - key: instance/type
-                    operator: NotIn
-                    values:
-                      - storage
-              - matchExpressions:
-                  - key: instance/type
-                    operator: NotIn
-                    values:
-                      - database
+            - matchExpressions:
+              - key: instance/type
+                operator: NotIn
+                values:
+                - lb
+            - matchExpressions:
+              - key: instance/type
+                operator: NotIn
+                values:
+                - storage
+            - matchExpressions:
+              - key: instance/type
+                operator: NotIn
+                values:
+                - database
       containers:
         - name: redis
           #image: "{{ .Values.redis.image }}:{{ .Values.redis.tag }}"
