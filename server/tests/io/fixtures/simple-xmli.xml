@@ -1,0 +1,159 @@
+<NewsML>
+    <NewsEnvelope>
+        <DateAndTime>20200406T101307+0100</DateAndTime>
+    </NewsEnvelope>
+    <NewsItem>
+        <Identification>
+            <NewsIdentifier>
+                <ProviderId>https://www.waz.de/</ProviderId>
+                <DateId>20200325</DateId>
+                <NewsItemId>228775113</NewsItemId>
+                <RevisionId PreviousRevision="0" Update="N">1</RevisionId>
+                <PublicIdentifier>urn:newsml:49:20200325:228775113:1</PublicIdentifier>
+            </NewsIdentifier>
+        </Identification>
+        <NewsManagement>
+            <NewsItemType FormalName="News Article"/>
+            <FirstCreated>20200325T165915+0100</FirstCreated>
+            <ThisRevisionCreated>20200325T165912+0100</ThisRevisionCreated>
+            <Status FormalName=""/>
+        </NewsManagement>
+        <NewsComponent>
+            <Role FormalName="Text"/>
+            <NewsLines>
+                <HeadLine>Dieb schlägt Autoscheibe ein – und klaut Klopapier</HeadLine>
+                <SlugLine>Polizei</SlugLine>
+                <CopyrightLine>(C) Funke Mediengruppe 2020</CopyrightLine>
+            </NewsLines>
+            <RightsMetadata>
+                <UsageRights>
+                    <StartDate>20200325T165912+0100</StartDate>
+                    <EndDate>29990101T020000+0200</EndDate>
+                </UsageRights>
+            </RightsMetadata>
+            <Metadata>
+                <MetadataType FormalName="FUNKE"/>
+                <Property FormalName="DateLine" Value="20200325T165912+0100"/>
+                <Property FormalName="URL"
+                          Value="https://www.waz.de/panorama/autoknacker-schlaegt-scheibe-ein-und-klaut-klopapier-id228775113.html"/>
+                <Property FormalName="Author" Value=""/>
+                <Property FormalName="Escenic_Source" Value="meth01b"/>
+                <Property FormalName="Escenic_SourceId" Value="50ebbe34-6ead-11ea-8a53-d3fa31c35829"/>
+                <Property FormalName="Channel" Value="Panorama"/>
+                <Property FormalName="Location" Value=""/>
+                <Property FormalName="SeoHeadline" Value="Klopapier gestohlen - Dieb schlägt Autoscheibe in Kiel ein"/>
+                <Property FormalName="isPaidContent" Value="false"/>
+            </Metadata>
+            <ContentItem>
+                <MediaType FormalName="ComplexData"/>
+                <MimeType FormalName="text/vnd.IPTC.NITF"/>
+                <DataContent>
+                    <nitf>
+                        <head>
+                            <title>Dieb schlägt Autoscheibe ein – und klaut Klopapier</title>
+                            <meta content="https://www.waz.de/" name="origin"/>
+                            <meta content="Funke Mediengruppe" name="copyright"/>
+                            <meta content="Escenic5" name="generator"/>
+                            <docdata>
+                                <doc-id regsrc="https://www.waz.de/" id="228775113"/>
+                                <date.issue norm="20200325T165912+0100"/>
+                            </docdata>
+                        </head>
+                        <body>
+                            <body.head>
+                                <hedline>
+                                    <hl1>Dieb schlägt Autoscheibe ein – und klaut Klopapier</hl1>
+                                    <hl2 class="kicker">Polizei</hl2>
+                                    <hl2 class="deck">
+                                        In Kiel hat ein Dieb sechs Pakete Klopapier aus einem Fahrzeug geklaut. Der
+                                        Sachschaden am Auto ist höher als der Wert der Beute.
+                                    </hl2>
+                                    <hl2 class="iPad_kicker">Polizei</hl2>
+                                </hedline>
+                                <byline/>
+                                <abstract>
+                                    <p>
+                                        In Kiel hat ein Dieb sechs Pakete Klopapier aus einem Fahrzeug geklaut. Der
+                                        Sachschaden am Auto ist höher als der Wert der Beute.
+                                    </p>
+                                </abstract>
+                            </body.head>
+                            <body.content>
+                                <p class="intro">
+                                    In Kiel hat ein Dieb sechs Pakete Klopapier aus einem Fahrzeug geklaut. Der
+                                    Sachschaden am Auto ist höher als der Wert der Beute.
+                                </p>
+                                <p>
+                                    <strong>Kiel</strong>
+                                    In Corona-Zeiten wird
+                                    <strong>Klopapier</strong>
+                                    für so manchen offenbar zur attraktiven Beute: Sechs Pakete hat ein
+                                    <strong>Autoknacker</strong>
+                                    in Kiel erbeutet.
+                                </p>
+                                <p>
+                                    Der Unbekannte schlug in der Nacht zu Dienstag nach Polizeiangaben die Scheibe eines
+                                    im Stadtteil Gaarden geparkten Autos ein und erbeutete das
+                                    <strong>Toilettenpapier</strong>
+                                    und zwei Bohrschrauber im Wert von insgesamt
+                                    <strong>80 Euro</strong>
+                                    aus dem Inneren des Fahrzeugs.
+                                </p>
+                                <p>
+                                    Ob das derzeit begehrte Klopapier tatsächlich der Grund für den Aufbruch oder
+                                    Zufallsfund war, konnte die Kieler Polizeidirektion am Mittwoch nicht sicher sagen.
+                                    Der Sachschaden am Fahrzeug beträgt jedenfalls rund 300 Euro.
+                                </p>
+                                <p>
+                                    In der Coronavirus-Krise scheinen viel Deutsche von der Angst ergriffen, kein
+                                    Klopapier zu bekommen. Weil Toilettenpapier zeitweise in zahlreichen Supermärkten
+                                    ausverkauft war, bestellten Käufer zunehmend online.
+                                </p>
+                                <p>
+                                    • In der Bildergalerie lesen Sie von anderen kuriosen Polizeieinsätzen:
+                                </p>
+                                <p></p>
+                                <p>(dpa/les)</p>
+                                <media class="teaser" id="escenic-image-228775111" media-type="image">
+                                    <media-reference
+                                            source="https://img.waz.de/img/panorama/crop228775111/282185123-w1080-cv21_9-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg"
+                                            width="1080" height="462"
+                                            alternate-text="Ein Dieb hat in Kiel eine Autoscheibe eingeschlagen, um Bohrschrauber und Toilettenpapier mitgehen zu lassen. (Symbolbild)"
+                                            copyright="imago stockpeople"/>
+                                    <media-reference
+                                            source="https://img.waz.de/img/panorama/crop228775111/2567511771-w940-cv1_1-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg"
+                                            width="940" height="940"
+                                            alternate-text="Ein Dieb hat in Kiel eine Autoscheibe eingeschlagen, um Bohrschrauber und Toilettenpapier mitgehen zu lassen. (Symbolbild)"
+                                            copyright="imago stockpeople"/>
+                                    <media-caption>
+                                        Ein Dieb hat in Kiel eine Autoscheibe eingeschlagen, um Bohrschrauber und
+                                        Toilettenpapier mitgehen zu lassen. (Symbolbild)
+                                    </media-caption>
+                                </media>
+                                <media class="teaser" id="escenic-image-228775111" media-type="image">
+                                    <media-reference
+                                            source="https://img.waz.de/img/panorama/crop228775111/282185123-w1080-cv21_9-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg"
+                                            width="1080" height="462" alternate-text="" copyright="imago stockpeople"/>
+                                    <media-reference
+                                            source="https://img.waz.de/img/panorama/crop228775111/2567511771-w940-cv1_1-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg"
+                                            width="940" height="940" alternate-text="" copyright="imago stockpeople"/>
+                                    <media-caption></media-caption>
+                                </media>
+                                <media class="teaser" id="escenic-image-228775111" media-type="image">
+                                    <media-reference
+                                            source="https://img.waz.de/img/panorama/crop228775111/282185123-w1080-cv21_9-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg"
+                                            width="1080" height="462" alternate-text="" copyright="imago stockpeople"/>
+                                    <media-reference
+                                            source="https://img.waz.de/img/panorama/crop228775111/2567511771-w940-cv1_1-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg"
+                                            width="940" height="940" alternate-text="" copyright="imago stockpeople"/>
+                                    <media-caption></media-caption>
+                                </media>
+                                <block class="related-links"></block>
+                            </body.content>
+                        </body>
+                    </nitf>
+                </DataContent>
+            </ContentItem>
+        </NewsComponent>
+    </NewsItem>
+</NewsML>
