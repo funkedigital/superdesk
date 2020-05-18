@@ -1,0 +1,1 @@
+import fd.publish.formatters.fd_ninjs_formatter

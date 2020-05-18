@@ -34,8 +34,12 @@ if init_data.exists():
 INSTALLED_APPS.extend([
     #'analytics',
     'apps.languages',
+    'apps.publish.formatters',
+    'apps.publish',
+    
     'fd.io.feed_parsers',
-    'fd.io.feeding_services'
+    'fd.io.feeding_services',
+    'fd.publish.formatters'
 ])
 
 RENDITIONS = {
