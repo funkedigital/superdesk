@@ -20,7 +20,7 @@ from superdesk.metadata.item import ITEM_TYPE, CONTENT_TYPE, GUID_FIELD
 from superdesk.metadata.utils import is_normal_package
 from superdesk.utc import utc
 from lxml import etree
-
+from superdesk.io.feeding_services.rss import RSSFeedingService, generate_tag_from_url
 
 logger = logging.getLogger(__name__)
 
@@ -35,16 +35,18 @@ class EscenicXMLIFeedParser(XMLFeedParser):
     label = 'Escenic XMLI Parser'
 
     def can_parse(self, xml):
-        return xml.tag == 'NewsML'
+        return True
 
     def parse(self, xml, provider=None):
         items = {}
+
         try:
-            self.parse_news_identifier(items, xml)
             self.parse_newslines(items, xml)
-            self.parse_news_management(items, xml)
+            self.parse_media(items, xml)
+            self.parse_news_identifier(items, xml)
+            # self.parse_news_management(items, xml) buggy
             self.parse_metadata(items, xml)
-            self.parse_byline(items, xml)
+            # self.parse_byline(items, xml) buggy
             items['body_html'] = etree.tostring(
                 xml.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content'),
                 encoding='unicode').replace('<body.content>', '').replace('</body.content>', '')
@@ -52,6 +54,39 @@ class EscenicXMLIFeedParser(XMLFeedParser):
             return items
         except Exception as ex:
             raise ParserError.newsmlTwoParserError(ex, provider)
+
+    # TODO check internal links like /12345656 (escenic id) and look for <NewsItemId>229126224</NewsItemId> in source_id
+    # relative links to category pages /sport/football and absolute links remain untouched
+
+    def parse_media(self, items, tree):
+        parsed_media = self.media_parser(
+            tree.findall('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content/media/'))
+
+        items['associations'] = {
+            'featuremedia': {
+                'type': 'picture',
+                'guid': generate_tag_from_url(parsed_media[0]['source']),
+                'headline': items['headline'] ,
+                'creditline': parsed_media[0]['copyright'],
+                'description_text': parsed_media[0]['alternate-text'],
+                # 'firstcreated': items['versioncreated'],
+                # 'versioncreated': items['versioncreated'],
+                'renditions': {
+                    'baseImage': {
+                        'href': parsed_media[0]['source'],
+                        'width': parsed_media[0]['width'],
+                        'height': parsed_media[0]['height'],
+                        'mimetype': 'image/jpeg',
+                    },
+                    'viewImage': {
+                        'href': parsed_media[0]['source'],
+                        'width': parsed_media[0]['width'],
+                        'height': parsed_media[0]['height'],
+                        'mimetype': 'image/jpeg',
+                    }
+                },
+            },
+        }
 
     def parse_byline(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.head'))
@@ -61,7 +96,8 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         parsed_el = self.parse_elements(tree.find('NewsItem/Identification/NewsIdentifier'))
         items['guid'] = parsed_el['PublicIdentifier']
         items['version'] = parsed_el['RevisionId']
-        items['ingest_provider_sequence'] = parsed_el['ProviderId']
+        # items['ingest_provider_sequence'] = parsed_el['ProviderId'] set by superdesk.io.ingest.IngestService.set_ingest_provider_sequence if None
+        items['source_id'] = parsed_el['NewsItemId']  # for internal link lookup
         items['data'] = parsed_el['DateId']
 
     def parse_news_management(self, items, tree):
@@ -87,9 +123,19 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         propertites = tree.findall('NewsItem/NewsComponent/Metadata/Property')
         for i in propertites:
             if i.get('FormalName', '') == 'DateLine':
-                self.set_dateline(items, text=self.datetime(i.get('Value', '')))
+                self.set_dateline(items, text=self.datetime(
+                    i.get('Value', '')))  # TODO clarify format, maybe use also Location for city
             elif i.get('FormalName', '') != '':
                 items[(i.get('FormalName')).lower()] = i.get('Value', '')
+
+    def media_parser(self, tree):
+        items = []
+        for item in tree:
+            if item.text is None:
+                # read the attribute for the items
+                if item.tag != 'HeadLine':
+                    items.append(item.attrib)
+        return items
 
     def parse_elements(self, tree):
         items = {}
@@ -107,5 +153,6 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         # Escenic datetime format from CE(S)T
         local_dt = datetime.datetime.strptime(string, '%Y%m%dT%H%M%S%z')
         return local_dt
+
 
 register_feed_parser(EscenicXMLIFeedParser.NAME, EscenicXMLIFeedParser())
