@@ -35,7 +35,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
     label = 'Escenic XMLI Parser'
 
     def can_parse(self, xml):
-        return True
+        return xml.tag == 'NewsML'
 
     def parse(self, xml, provider=None):
         items = {}
