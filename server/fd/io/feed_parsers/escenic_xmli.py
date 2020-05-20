@@ -39,7 +39,6 @@ class EscenicXMLIFeedParser(XMLFeedParser):
 
     def parse(self, xml, provider=None):
         items = {}
-
         try:
             self.parse_newslines(items, xml)
             self.parse_media(items, xml)
@@ -50,7 +49,6 @@ class EscenicXMLIFeedParser(XMLFeedParser):
             items['body_html'] = etree.tostring(
                 xml.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content'),
                 encoding='unicode').replace('<body.content>', '').replace('</body.content>', '')
-
             return items
         except Exception as ex:
             raise ParserError.newsmlTwoParserError(ex, provider)
@@ -121,12 +119,25 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/Metadata'))
         items['metadatatype'] = parsed_el['MetadataType']['FormalName']
         propertites = tree.findall('NewsItem/NewsComponent/Metadata/Property')
+        sub = []
+
         for i in propertites:
             if i.get('FormalName', '') == 'DateLine':
                 self.set_dateline(items, text=self.datetime(
                     i.get('Value', '')))  # TODO clarify format, maybe use also Location for city
+            elif i.get('FormalName', '') == 'isPaidContent':
+                sub.append({
+                    'name': 'paid content',
+                    'parent': 'paid content',
+                    'qcode': 'paid_content',
+                    'scheme': 'paid_content',
+                })
+
             elif i.get('FormalName', '') != '':
                 items[(i.get('FormalName')).lower()] = i.get('Value', '')
+
+        if len(sub) != 0:
+            items['subject'] = sub
 
     def media_parser(self, tree):
         items = []

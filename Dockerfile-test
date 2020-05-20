@@ -52,6 +52,9 @@ COPY ./server /opt/superdesk
 RUN python3 -m pip install --upgrade pip setuptools wheel
 RUN python3 -m pip install -U -r dev-requirements.txt 
 RUN /bin/sh -c 'python3 -m venv env && . env/bin/activate'
-RUN /bin/sh -c 'nosetests'
+
+RUN python3 -m pip install coverage
+
+RUN /bin/sh -c 'nosetests --with-coverage'
 
 

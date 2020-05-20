@@ -36,6 +36,9 @@ class EscenicXMLIFeedParserTest(unittest.TestCase):
             self.nitf = f.read()
             self.item = EscenicXMLIFeedParser().parse(etree.fromstring(self.nitf), provider)
 
+    def test_paywall(self):
+        pass
+
     def test_parse_media(self):
         expected = {
             'featuremedia': {
@@ -61,6 +64,15 @@ class EscenicXMLIFeedParserTest(unittest.TestCase):
 
     def test_parse_byline(self):
         self.assertEqual(self.item.get('byline'), None)
+
+    def test_is_paid_content(self):
+        expected = {
+            'name': 'paid content',
+            'parent': 'paid content',
+            'qcode': 'paid_content',
+            'scheme': 'paid_content',
+        }
+        self.assertEqual(self.item.get('subject')[0], expected)
 
     def test_parse_news_identifier(self):
         self.assertEqual(self.item.get('guid'), 'urn:newsml:49:20200325:228775113:1')
