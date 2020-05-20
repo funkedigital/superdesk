@@ -33,7 +33,22 @@ if init_data.exists():
 
 INSTALLED_APPS.extend([
     #'analytics',
+
+    'superdesk.io',
+    'superdesk.io.feeding_services',
+    'superdesk.io.feed_parsers',
+    'superdesk.io.subjectcodes',
+    'superdesk.io.iptc',
+    'superdesk.publish',
+
+    'apps.io',
+    'apps.io.feeding_services',
+    'apps.publish',
     'apps.languages',
+    'apps.publish.formatters',
+    'apps.languages',
+
+    'fd.publish.formatters',
     'fd.io.feed_parsers',
     'fd.io.feeding_services'
 ])
