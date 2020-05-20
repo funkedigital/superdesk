@@ -17,9 +17,14 @@ from pytz import utc
 from superdesk.etree import etree
 from fd.io.feed_parsers.escenic_xmli import EscenicXMLIFeedParser
 from superdesk.io.subjectcodes import init_app as init_subjects
+from superdesk import get_resource_service
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 
-class BaseXMLITestCase(unittest.TestCase):
+class EscenicXMLIFeedParserTest(unittest.TestCase):
     def setUp(self):
         app = flask.Flask(__name__)
         app.api_prefix = '/api'
@@ -31,15 +36,43 @@ class BaseXMLITestCase(unittest.TestCase):
             self.nitf = f.read()
             self.item = EscenicXMLIFeedParser().parse(etree.fromstring(self.nitf), provider)
 
-class ReutersTestCase(BaseXMLITestCase):
-    def test_content(self):
-        self.assertEqual(self.item.get('headline'), "Dieb schlägt Autoscheibe ein – und klaut Klopapier")
-        self.assertEqual(self.item.get('guid'), 'urn:newsml:49:20200325:228775113:1')
-        self.assertEqual(self.item.get('url'), 'https://www.waz.de/panorama/autoknacker-schlaegt-scheibe-ein-und-klaut-klopapier-id228775113.html')
-        self.assertEqual(self.item.get('firstcreated').isoformat(), '2020-03-25T16:59:15')
-        self.assertTrue(self.item.get('body_html').startswith('\n<p class="intro">\n'))
+    def test_parse_media(self):
+        expected = {
+            'featuremedia': {
+                'renditions': {
+                    'baseImage': {
+                        'width': '1080', 'mimetype': 'image/jpeg', 'height': '462',
+                        'href': 'https://img.waz.de/img/panorama/crop228775111/282185123-w1080-cv21_9-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg'
+                    },
+                    'viewImage': {
+                        'width': '1080', 'mimetype': 'image/jpeg', 'height': '462',
+                        'href': 'https://img.waz.de/img/panorama/crop228775111/282185123-w1080-cv21_9-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg'
+                    }
+                },
+                'type': 'picture',
+                'headline': 'Dieb schlägt Autoscheibe ein – und klaut Klopapier',
+                'guid': 'tag:img.waz.de:img:panorama:crop228775111:282185123-w1080-cv21_9-q85:5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg',
+                'creditline': 'imago stockpeople',
+                'description_text': 'Ein Dieb hat in Kiel eine Autoscheibe eingeschlagen, um Bohrschrauber und Toilettenpapier mitgehen zu lassen. (Symbolbild)'
+            }
+        }
 
-    def test_coreitemvalues(self):
-        self.assertEqual(self.item.get('newsitemtype'), 'News Article')
+        self.assertEqual(self.item.get('associations'), expected)
+
+    def test_parse_byline(self):
+        self.assertEqual(self.item.get('byline'), None)
+
+    def test_parse_news_identifier(self):
+        self.assertEqual(self.item.get('guid'), 'urn:newsml:49:20200325:228775113:1')
         self.assertEqual(self.item.get('version'), '1')
-        self.assertEqual(self.item.get('versioncreated'), datetime.datetime(2020, 3, 25, 16, 59, 12))
+        self.assertEqual(self.item.get('source_id'), '228775113')
+        self.assertEqual(self.item.get('data'), '20200325')
+
+    def test_parse_newslines(self):
+        self.assertEqual(self.item.get('headline'), 'Dieb schlägt Autoscheibe ein – und klaut Klopapier')
+        self.assertEqual(self.item.get('slugline'), 'Polizei')
+        self.assertEqual(self.item.get('copyrightline'), '(C) Funke Mediengruppe 2020')
+
+    def test_parse_metadata(self):
+        self.assertEqual(self.item.get('copyrightline'), '(C) Funke Mediengruppe 2020')
+        self.assertEqual(self.item.get('metadatatype'), 'FUNKE')
