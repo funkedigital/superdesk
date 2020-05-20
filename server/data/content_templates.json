@@ -1,0 +1,163 @@
+[
+  {
+    "_id": "5d19fc703092d23fcec90c97",
+    "data": {
+      "type": "text",
+      "abstract": "",
+      "language": "de",
+      "headline": "",
+      "format": "HTML",
+      "flags": {
+        "marked_for_legal": false,
+        "marked_for_sms": false,
+        "marked_for_not_publication": false,
+        "marked_archived_only": false
+      },
+      "profile": "5cd9ac14a7bd87627c5dffdc",
+      "body_html": "",
+      "pubstatus": "usable",
+      "byline": ""
+    },
+    "is_public": true,
+    "template_type": "create",
+    "next_run": null,
+    "user": "5cdab6d2ec36e30ccc7255f0",
+    "template_name": "news article mp",
+    "template_desks": [],
+    "schedule": {
+      "cron_list": []
+    }
+  },
+  {
+    "_id": "5cd99da6a7bd87627c5dffbd",
+    "template_name": "news article rwp",
+    "template_type": "create",
+    "data": {
+      "headline": "",
+      "format": "HTML",
+      "language": "en",
+      "pubstatus": "usable",
+      "body_html": "",
+      "flags": {
+        "marked_for_not_publication": false,
+        "marked_for_sms": false,
+        "marked_for_legal": false,
+        "marked_archived_only": false
+      },
+      "profile": "5cd9ca7fa7bd87627c5e00e6",
+      "type": "text"
+    },
+    "is_public": true,
+    "template_desks": [],
+    "schedule": {
+      "cron_list": []
+    },
+    "next_run": null
+  },
+  {
+    "template_name": "VERTICALS EVERGREEN",
+    "is_public": true,
+    "template_type": "create",
+    "template_desks": [
+      "5d0b88d910e7ed66382aa4a6"
+    ],
+    "data": {
+      "profile": "5d48392332827c0ea7f5e5a6",
+      "type": "text",
+      "headline": "",
+      "body_html": "",
+      "pubstatus": "usable",
+      "subject": [
+        {
+          "scheme": "seo_metadata",
+          "qcode": "advertising",
+          "name": "advertising",
+          "parent": "advertising"
+        }
+      ],
+      "flags": {
+        "marked_for_not_publication": false,
+        "marked_for_legal": false,
+        "marked_archived_only": false,
+        "marked_for_sms": false
+      },
+      "format": "HTML"
+    }
+  },
+  {
+    "_id": "5d19f1323092d23fcec90bac",
+    "data": {
+      "flags": {
+        "marked_for_not_publication": false,
+        "marked_archived_only": false,
+        "marked_for_legal": false,
+        "marked_for_sms": false
+      },
+      "target_subscribers": [
+        {
+          "scheme": null,
+          "_id": "5cd9aeefa7bd87627c5e0030",
+          "name": "Publisher"
+        }
+      ],
+      "profile": "5cd99da6a7bd87627c5dffbb",
+      "pubstatus": "usable",
+      "format": "HTML",
+      "headline": "",
+      "abstract": "",
+      "type": "text",
+      "body_html": ""
+    },
+    "is_public": true,
+    "template_type": "create",
+    "schedule_desk": null,
+    "next_run": null,
+    "schedule": {
+      "is_active": false,
+      "time_zone": "Europe/Berlin",
+      "cron_list": [],
+      "day_of_week": []
+    },
+    "template_desks": [
+      "5d0b88d910e7ed66382aa4a6"
+    ],
+    "schedule_stage": null,
+    "template_name": "verticals news article"
+  },
+  {
+    "_id": "5d49287ec86e6f6b15679558",
+    "is_public": true,
+    "template_name": "verticals advertorial",
+    "user": "5cdab6d2ec36e30ccc7255f0",
+    "data": {
+      "target_subscribers": [
+        {
+          "scheme": null,
+          "_id": "5cd9aeefa7bd87627c5e0030",
+          "name": "Publisher"
+        }
+      ],
+      "type": "text",
+      "headline": "",
+      "language": "de",
+      "pubstatus": "usable",
+      "flags": {
+        "marked_for_sms": false,
+        "marked_for_legal": false,
+        "marked_archived_only": false,
+        "marked_for_not_publication": false
+      },
+      "body_html": "",
+      "profile": "5d49287ec86e6f6b15679556",
+      "format": "HTML"
+    },
+    "template_type": "create",
+    "template_desks": [
+      "5d0b88d910e7ed66382aa4a6"
+    ],
+    "next_run": null,
+    "schedule": {
+      "cron_list": []
+    }
+  }
+]
