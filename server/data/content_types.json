@@ -983,6 +983,22 @@
       },
       "byline": null,
       "seo_canonical_url": null,
+      "seo_metadata": {
+        "order": 13,
+        "required": false,
+        "section": "header"
+      },
+      "publishing_options": {
+        "order": 14,
+        "required": false,
+        "section": "header"
+      },
+      "paid_content": {
+        "order": 15,
+        "required": false,
+        "section": "header",
+        "sdWidth": "full"
+      },
       "gallery": {
         "showCrops": true,
         "section": "content",

@@ -3071,5 +3071,30 @@
       "all": 1
     },
     "display_name": "options"
+  },
+  {
+    "_id": "paid_content",
+    "unique_field": "qcode",
+    "_deleted": false,
+    "selection_type": "single selection",
+    "field_type": null,
+    "type": "manageable",
+    "items": [
+      {
+        "qcode": "paid_content",
+        "name": "paid content",
+        "parent": "paid content",
+        "is_active": true
+      }
+    ],
+    "schema": {
+      "qcode": {},
+      "parent": {},
+      "name": {}
+    },
+    "service": {
+      "all": 1
+    },
+    "display_name": "paid content options"
   }
 ]
