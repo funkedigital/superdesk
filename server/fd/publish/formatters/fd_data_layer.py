@@ -81,5 +81,5 @@ def get_data_layer(article):
             # if article has been corrected deliver the corrections count and previous title
             if article.get('family_id') and article.get('headline'):
                 articles_correction_count(data_layer, article.get('family_id'), article.get('headline'))
-
+    logger.info(data_layer)
     return data_layer

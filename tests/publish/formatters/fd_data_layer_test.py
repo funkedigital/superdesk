@@ -12119,7 +12119,7 @@ class MockServiceMultipleCorrections():
         ]
 
 
-class ContentTypesTestCase(TestCase):
+class DataLayerTestCase(TestCase):
     base_article = {
         "_id": "urn:newsml:superdesk.cloud.funkedigital.de:2020-05-15T09:33:43.392673:d4cd3e0d-f994-42e5-bdbd-44b1582035a6",
         "type": "text",

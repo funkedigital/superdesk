@@ -26,10 +26,10 @@ class FDNINJSFormatter(NewsroomNinjsFormatter):
         if article.get('unique_name'):
             ninjs['extra']['uniqueName'] = article.get('unique_name').replace('#', '')
 
-        if article.get('body_html'):
-            # get the data layer infos
-            data_layer = get_data_layer(article)
-            if data_layer:
-                ninjs['extra']['dataLayer'] = data_layer
+        # if article.get('body_html'):
+        #     # get the data layer infos
+        #     data_layer = get_data_layer(article)
+        #     if data_layer:
+        #         ninjs['extra']['dataLayer'] = data_layer
 
         return ninjs

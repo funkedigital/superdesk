@@ -48,6 +48,7 @@ INSTALLED_APPS.extend([
     'apps.publish.formatters',
     'apps.languages',
 
+    'fd.io',
     'fd.publish.formatters',
     'fd.io.feed_parsers',
     'fd.io.feeding_services'
@@ -70,7 +71,7 @@ WS_PORT = env('WSPORT', '5100')
 
 LOG_CONFIG_FILE = env('LOG_CONFIG_FILE', 'logging_config.yml')
 
-REDIS_URL = env('REDIS_URL', 'redis://localhost:6379')
+REDIS_URL = env('REDIS_URL', 'redis://redis:6379')
 if env('REDIS_PORT'):
     REDIS_URL = env('REDIS_PORT').replace('tcp:', 'redis:')
 BROKER_URL = env('CELERY_BROKER_URL', REDIS_URL)
