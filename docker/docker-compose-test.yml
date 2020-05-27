@@ -1,43 +1,48 @@
 version: '2'
 services:
   mongodb:
-    image: mongo:3.4
-    container_name: mongodb
+    extends:
+      file: common-test.yml
+      service: mongodb
     ports:
       - "27017:27017"
     #volumes:
     #  - /home/ubuntu/mongo_data:/data
 
   redis:
-    image: redis:5.0
-    container_name: redis
+    extends:
+      file: common-test.yml
+      service: redis
     ports:
       - "6379:6379"
 
   elastic:
-    image: elasticsearch:2
-    container_name: elastic
-    environment:
-      - discovery.type=single-node
+    extends:
+      file: common-test.yml
+      service: elastic
     ports:
       - "9200:9200"
 
+  postfix:
+    extends:
+      file: common-test.yml
+      service: postfix
 
   superdesk:
-    build:
-      context: ../
-      dockerfile: Dockerfile-test
+    extends:
+      file: common-test.yml
+      service: superdesk
     links:
       - mongodb
       - redis
       - elastic
+      - postfix
     environment:
       - SUPERDESK_RELOAD=True
       - SUPERDESK_URL=http://localhost:5000/api
       - SUPERDESK_WS_URL=ws://localhost:5100
       - SUPERDESK_CLIENT_URL=http://localhost:9000
       - REDIS_URL=redis://redis:6379/1
-      - MONGO_HOST=mongodb
     ports:
       - "5000:5000"
       - "5100:5100"
