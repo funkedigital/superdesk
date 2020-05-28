@@ -64,5 +64,8 @@ CMD /opt/superdesk/start-client.sh
 COPY .git/HEAD /opt/superdesk/.git/
 COPY .git/refs/ /opt/superdesk/.git/refs/
 
+
+COPY ./server /opt/superdesk
+
 CMD ls
 
