@@ -50,7 +50,7 @@ ENV CONTENTAPI_MONGO_URI mongodb://mongodb/superdesk_ca
 
 
 # test server
-COPY ./server /opt/superdesk
+COPY server /opt/superdesk
 WORKDIR /opt/superdesk
 RUN python3 -m pip install --upgrade pip setuptools wheel
 RUN python3 -m pip install -U -r dev-requirements.txt
