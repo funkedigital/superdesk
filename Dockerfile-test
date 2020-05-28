@@ -47,6 +47,9 @@ ENV PYTHONUNBUFFERED 1
 ENV C_FORCE_ROOT "False"
 ENV CELERYBEAT_SCHEDULE_FILENAME /tmp/celerybeatschedule.db
 
+ENV MONGO_URI mongodb://mongodb/superdesk
+ENV MONGO_HOST mongodb
+
 # install server
 COPY ./server /opt/superdesk
 RUN python3 -m pip install --upgrade pip setuptools wheel
