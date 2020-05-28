@@ -51,5 +51,5 @@ services:
       - "35729:35729"
     volumes:
 
-      - ../server:/opt/superdesk/
+      - ../server:/opt/superdesk/server
 
