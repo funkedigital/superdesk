@@ -50,10 +50,6 @@ services:
       - "9000:9000"
       - "35729:35729"
     volumes:
-      - ../server:/opt/superdesk/
-      - ../client:/opt/superdesk/client/
-      - ../client-core:/opt/superdesk/client-core/
-      - ./Procfile-dev:/opt/superdesk/Procfile
-      - ./start-dev.sh:/opt/superdesk/start.sh
+
       - ../server:/opt/superdesk/
 
