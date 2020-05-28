@@ -51,5 +51,3 @@ services:
       - "35729:35729"
     volumes:
       - ../server:/opt/superdesk/
-      - ../client-core:/opt/superdesk/client-core/
-      - ./Procfile-dev:/opt/superdesk/Procfile
