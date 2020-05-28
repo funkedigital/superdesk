@@ -57,6 +57,6 @@ RUN python3 -m pip install -U -r requirements.txt
 COPY .git/HEAD /opt/superdesk/.git/
 COPY .git/refs/ /opt/superdesk/.git/refs/
 
-CMD python3 -m venv env && . env/bin/activate && nosetests
-
+#CMD python3 -m venv env && . env/bin/activate && nosetests
+CMD ls
 
