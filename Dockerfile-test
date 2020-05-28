@@ -65,7 +65,7 @@ COPY .git/HEAD /opt/superdesk/.git/
 COPY .git/refs/ /opt/superdesk/.git/refs/
 
 
-COPY ./server /opt/superdesk
+COPY ./server /opt/superdesk/server
 
 CMD ls
 
