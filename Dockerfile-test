@@ -51,7 +51,7 @@ ENV CELERYBEAT_SCHEDULE_FILENAME /tmp/celerybeatschedule.db
 # install server
 COPY ./server /opt/superdesk
 RUN python3 -m pip install --upgrade pip setuptools wheel
-#RUN python3 -m pip install -U -r dev-requirements.txt
+#RUN python3 -m pip install -U -r test-requirements.txt
 
 COPY ./server /opt/superdesk/server
 RUN chmod u+x /opt/superdesk/start.sh
