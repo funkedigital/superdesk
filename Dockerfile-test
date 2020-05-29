@@ -29,7 +29,7 @@ ENV TZ Europe/Berlin
 WORKDIR /opt/superdesk/
 COPY ./docker/nginx.conf /etc/nginx/nginx.conf
 COPY ./docker/superdesk_vhost.conf /etc/nginx/sites-enabled/superdesk.conf
-COPY ./docker/start.sh /opt/superdesk/start.sh
+COPY ./docker/start-test.sh /opt/superdesk/start.sh
 COPY ./docker/start-client.sh /opt/superdesk/start-client.sh
 
 # client ports
@@ -47,8 +47,6 @@ ENV PYTHONUNBUFFERED 1
 ENV C_FORCE_ROOT "False"
 ENV CELERYBEAT_SCHEDULE_FILENAME /tmp/celerybeatschedule.db
 
-ENV MONGO_URI mongodb://mongodb/superdesk
-ENV MONGO_HOST mongodb
 
 # install server
 COPY ./server /opt/superdesk
@@ -56,6 +54,5 @@ RUN python3 -m pip install --upgrade pip setuptools wheel
 RUN python3 -m pip install -U -r dev-requirements.txt
 
 COPY ./server /opt/superdesk/server
-
-CMD python3 -m venv env && . env/bin/activate && nosetests
-
+RUN chmod u+x /opt/superdesk/start.sh
+CMD /opt/superdesk/start.sh
