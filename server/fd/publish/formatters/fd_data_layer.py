@@ -64,22 +64,22 @@ def articles_correction_count(data_layer, family_id, base_headline):
 
 def get_data_layer(article):
     """Get the data layer infos"""
-
-    data_layer = {}
-    if article:
-        # add content type
-        content_type = get_content_type(article)
-        if content_type:
-            data_layer['contentType'] = content_type
-
-            # TODO - add word count
-            data_layer['wordcount'] = 0
-
-            # add internal links count
-            if article.get('body_html'):
-                count_internal_links(data_layer, article.get('body_html'))
-            # if article has been corrected deliver the corrections count and previous title
-            if article.get('family_id') and article.get('headline'):
-                articles_correction_count(data_layer, article.get('family_id'), article.get('headline'))
-    logger.info(data_layer)
-    return data_layer
+    return {}
+#     data_layer = {}
+#     if article:
+#         # add content type
+#         content_type = get_content_type(article)
+#         if content_type:
+#             data_layer['contentType'] = content_type
+#
+#             # TODO - add word count
+#             data_layer['wordcount'] = 0
+#
+#             # add internal links count
+#             if article.get('body_html'):
+#                 count_internal_links(data_layer, article.get('body_html'))
+#             # if article has been corrected deliver the corrections count and previous title
+#             if article.get('family_id') and article.get('headline'):
+#                 articles_correction_count(data_layer, article.get('family_id'), article.get('headline'))
+#     logger.info(data_layer)
+#     return data_layer
