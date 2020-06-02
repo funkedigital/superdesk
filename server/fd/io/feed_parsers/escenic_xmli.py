@@ -41,11 +41,12 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         items = {}
         try:
             self.parse_newslines(items, xml)
-            self.parse_news_management(items, xml)
             self.parse_media(items, xml)
             self.parse_news_identifier(items, xml)
             self.parse_metadata(items, xml)
             self.parse_byline(items, xml)
+            self.parse_news_management(items, xml)
+
             items['body_html'] = etree.tostring(
                 xml.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content'),
                 encoding='unicode').replace('<body.content>', '').replace('</body.content>', '')
@@ -60,7 +61,6 @@ class EscenicXMLIFeedParser(XMLFeedParser):
     def parse_media(self, items, tree):
         parsed_media = self.media_parser(
             tree.findall('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content/media/'))
-        logger.info(items)
         items['associations'] = {
             'featuremedia': {
                 'type': 'picture',
@@ -103,11 +103,10 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsManagement'))
         if parsed_el.get('NewsItemType') != None:
             items['newsitemtype'] = parsed_el['NewsItemType']['FormalName']
-        if parsed_el.get('ThisRevisionCreated') != None:
-            # items['versioncreated'] = self.datetime('2016-10-21T16:25:32-05:00')
-            logger.info(items)
-        # if parsed_el.get('FirstCreated') != None:
-        #     items['firstcreated'] = self.datetime(parsed_el['FirstCreated'])
+        # if parsed_el.get('ThisRevisionCreated') != None:
+        #     items['versioncreated'] = self.datetime(parsed_el['ThisRevisionCreated'])
+        if parsed_el.get('FirstCreated') != None:
+            items['firstcreated'] = self.datetime(parsed_el['FirstCreated'])
         if parsed_el.get('Status') != None:
             items['pubstatus'] = (parsed_el['Status']['FormalName']).lower()
 
@@ -115,8 +114,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/NewsLines'))
         items['headline'] = parsed_el.get('HeadLine', '')
         items['slugline'] = parsed_el.get('SlugLine', '')
-
-        # items['copyrightline'] = parsed_el.get('CopyrightLine', '')
+        items['copyrightline'] = parsed_el.get('CopyrightLine', '')
 
     def parse_metadata(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/Metadata'))
