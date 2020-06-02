@@ -45,7 +45,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
             self.parse_media(items, xml)
             self.parse_news_identifier(items, xml)
             self.parse_metadata(items, xml)
-            # self.parse_byline(items, xml) buggy
+            self.parse_byline(items, xml)
             items['body_html'] = etree.tostring(
                 xml.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content'),
                 encoding='unicode').replace('<body.content>', '').replace('</body.content>', '')
@@ -69,7 +69,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                 'creditline': parsed_media[0]['copyright'],
                 'description_text': parsed_media[0]['alternate-text'],
                 # 'firstcreated': items['versioncreated'],
-                'versioncreated': items['versioncreated'],
+                # 'versioncreated': items['versioncreated'],
                 'renditions': {
                     'baseImage': {
                         'href': parsed_media[0]['source'],
@@ -104,8 +104,8 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         if parsed_el.get('NewsItemType') != None:
             items['newsitemtype'] = parsed_el['NewsItemType']['FormalName']
         if parsed_el.get('ThisRevisionCreated') != None:
-            items['versioncreated'] = self.datetime('2016-10-21T16:25:32-05:00')
-            logger.info(items['versioncreated'])
+            # items['versioncreated'] = self.datetime('2016-10-21T16:25:32-05:00')
+            logger.info(items)
         # if parsed_el.get('FirstCreated') != None:
         #     items['firstcreated'] = self.datetime(parsed_el['FirstCreated'])
         if parsed_el.get('Status') != None:
