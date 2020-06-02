@@ -63,7 +63,7 @@ class EscenicXMLIFeedParserTest(unittest.TestCase):
         self.assertEqual(self.item.get('associations'), expected)
 
     def test_parse_byline(self):
-        self.assertEqual(self.item.get('byline'), None)
+        self.assertEqual(self.item.get('byline'), '')
 
     def test_is_paid_content(self):
         expected = {
@@ -83,6 +83,7 @@ class EscenicXMLIFeedParserTest(unittest.TestCase):
     def test_parse_newslines(self):
         self.assertEqual(self.item.get('headline'), 'Dieb schlägt Autoscheibe ein – und klaut Klopapier')
         self.assertEqual(self.item.get('slugline'), 'Polizei')
+        logger.info(self.item)
         self.assertEqual(self.item.get('copyrightline'), '(C) Funke Mediengruppe 2020')
 
     def test_parse_metadata(self):
