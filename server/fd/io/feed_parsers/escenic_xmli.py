@@ -129,7 +129,6 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                 self.set_dateline(items, text=self.datetime(
                     i.get('Value', '')))  # TODO clarify format, maybe use also Location for city
             elif i.get('FormalName', '') == 'isPaidContent' and i.get('Value', '') == 'true':
-                logger.info('wiw')
                 sub.append({
                     'name': 'paid content',
                     'parent': 'paid content',
