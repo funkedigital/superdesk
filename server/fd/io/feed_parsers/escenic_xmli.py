@@ -41,14 +41,15 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         items = {}
         try:
             self.parse_newslines(items, xml)
+            self.parse_news_management(items, xml)
             self.parse_media(items, xml)
             self.parse_news_identifier(items, xml)
-            # self.parse_news_management(items, xml) buggy
             self.parse_metadata(items, xml)
             # self.parse_byline(items, xml) buggy
             items['body_html'] = etree.tostring(
                 xml.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content'),
                 encoding='unicode').replace('<body.content>', '').replace('</body.content>', '')
+
             return items
         except Exception as ex:
             raise ParserError.newsmlTwoParserError(ex, provider)
@@ -59,16 +60,16 @@ class EscenicXMLIFeedParser(XMLFeedParser):
     def parse_media(self, items, tree):
         parsed_media = self.media_parser(
             tree.findall('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content/media/'))
-
+        logger.info(items)
         items['associations'] = {
             'featuremedia': {
                 'type': 'picture',
                 'guid': generate_tag_from_url(parsed_media[0]['source']),
-                'headline': items['headline'] ,
+                'headline': items['headline'],
                 'creditline': parsed_media[0]['copyright'],
                 'description_text': parsed_media[0]['alternate-text'],
                 # 'firstcreated': items['versioncreated'],
-                # 'versioncreated': items['versioncreated'],
+                'versioncreated': items['versioncreated'],
                 'renditions': {
                     'baseImage': {
                         'href': parsed_media[0]['source'],
@@ -103,9 +104,10 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         if parsed_el.get('NewsItemType') != None:
             items['newsitemtype'] = parsed_el['NewsItemType']['FormalName']
         if parsed_el.get('ThisRevisionCreated') != None:
-            items['versioncreated'] = self.datetime(parsed_el['ThisRevisionCreated'])
-        if parsed_el.get('FirstCreated') != None:
-            items['firstcreated'] = self.datetime(parsed_el['FirstCreated'])
+            items['versioncreated'] = self.datetime('2016-10-21T16:25:32-05:00')
+            logger.info(items['versioncreated'])
+        # if parsed_el.get('FirstCreated') != None:
+        #     items['firstcreated'] = self.datetime(parsed_el['FirstCreated'])
         if parsed_el.get('Status') != None:
             items['pubstatus'] = (parsed_el['Status']['FormalName']).lower()
 
@@ -113,7 +115,8 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/NewsLines'))
         items['headline'] = parsed_el.get('HeadLine', '')
         items['slugline'] = parsed_el.get('SlugLine', '')
-        items['copyrightline'] = parsed_el.get('CopyrightLine', '')
+
+        # items['copyrightline'] = parsed_el.get('CopyrightLine', '')
 
     def parse_metadata(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/Metadata'))
@@ -126,6 +129,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                 self.set_dateline(items, text=self.datetime(
                     i.get('Value', '')))  # TODO clarify format, maybe use also Location for city
             elif i.get('FormalName', '') == 'isPaidContent' and i.get('Value', '') == 'true':
+                logger.info('wiw')
                 sub.append({
                     'name': 'paid content',
                     'parent': 'paid content',
@@ -149,16 +153,18 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         return items
 
     def parse_elements(self, tree):
-        items = {}
+        parsed = {}
         for item in tree:
             if item.text is None:
                 # read the attribute for the items
                 if item.tag != 'HeadLine':
-                    items[item.tag] = item.attrib
+                    parsed[item.tag] = item.attrib
             else:
                 # read the value for the items
-                items[item.tag] = item.text
-        return items
+                parsed[item.tag] = item.text
+        # remove empty objects
+        parsed = {k: '' if not v else v for k, v in parsed.items()}
+        return parsed
 
     def datetime(self, string):
         # Escenic datetime format from CE(S)T
