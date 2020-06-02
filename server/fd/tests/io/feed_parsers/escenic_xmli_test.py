@@ -83,7 +83,6 @@ class EscenicXMLIFeedParserTest(unittest.TestCase):
     def test_parse_newslines(self):
         self.assertEqual(self.item.get('headline'), 'Dieb schlägt Autoscheibe ein – und klaut Klopapier')
         self.assertEqual(self.item.get('slugline'), 'Polizei')
-        logger.info(self.item)
         self.assertEqual(self.item.get('copyrightline'), '(C) Funke Mediengruppe 2020')
 
     def test_parse_metadata(self):
