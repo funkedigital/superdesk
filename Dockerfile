@@ -56,9 +56,9 @@ CMD /opt/superdesk/start.sh
 
 # install client
 COPY ./client /opt/superdesk/client/
-RUN npm install -g npm grunt-cli
-RUN cd ./client && npm install && grunt build
-CMD /opt/superdesk/start-client.sh
+#RUN npm install -g npm grunt-cli
+#RUN cd ./client && npm install && grunt build
+#CMD /opt/superdesk/start-client.sh
 
 # copy git revision informations (used in "about" screen)
 COPY .git/HEAD /opt/superdesk/.git/

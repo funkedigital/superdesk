@@ -21,6 +21,7 @@ loggers:
     level: DEBUG
   worker:
     handlers: [console]
-    level: WARN
+    level: DEBUG
   root:
     handlers: [console]
+    level: DEBUG
