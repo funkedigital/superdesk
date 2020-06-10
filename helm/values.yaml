@@ -16,7 +16,7 @@ elasticsearchSuperdesk:
   name: elastic-deployment
   component: elastic
   image: elasticsearch
-  tag: 2
+  tag: 2.4-alpine
   serviceName: elastic
 
 memcached:
@@ -33,6 +33,7 @@ mongodb:
   tag: 3.4
   serviceName: mongodb
   pvcSize: 100Gi
+  volumeName: mongodb-storage
 
 nginx:
   name: nginx-deployment
@@ -48,6 +49,7 @@ postgres:
   tag: latest
   serviceName: postgres
   pvcSize: 50Gi
+  volumeName: postgres-storage
 
 publisher:
   name: php
@@ -57,6 +59,7 @@ publisher:
   serviceName: php
   superdeskHost: "superdesk-stage.cloud.funkedigital.de"
   pvcSize: 1Ti
+  volumeName: publisher-storage
 
 rabbitmq:
   name: rabbitmq-deployment
@@ -68,7 +71,7 @@ rabbitmq:
 redis:
   name: redis-deployment
   component: redis
-  image: redis
+  image: redis:alpine
   tag: 5.0
   serviceName: redis
 
@@ -80,7 +83,6 @@ superdesk:
   serviceName: superdesk-service-ip
   baseUrl: "superdesk-stage.cloud.funkedigital.de"
   swpHost: "publisher-stage.cloud.funkedigital.de"
-  pvcSize: 1Ti
 
 supervisor:
   name: supervisor-deployment

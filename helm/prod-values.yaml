@@ -33,6 +33,7 @@ mongodb:
   tag: 3.4
   serviceName: mongodb
   pvcSize: 50Gi
+  volumeName: mongodb-storage
 
 nginx:
   name: nginx-deployment
@@ -48,6 +49,7 @@ postgres:
   tag: latest
   serviceName: postgres
   pvcSize: 20Gi
+  volumeName: postgres-storage
 
 publisher:
   name: php
@@ -57,6 +59,7 @@ publisher:
   serviceName: php
   superdeskHost: "superdesk.cloud.funkedigital.de"
   pvcSize: 120Gi
+  volumeName: publisher-storage
 
 rabbitmq:
   name: rabbitmq-deployment
@@ -80,7 +83,6 @@ superdesk:
   serviceName: superdesk-service-ip
   baseUrl: "superdesk.cloud.funkedigital.de"
   swpHost: "publisher.cloud.funkedigital.de"
-  pvcSize: 100Gi
 
 supervisor:
   name: supervisor-deployment
