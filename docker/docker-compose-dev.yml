@@ -50,3 +50,4 @@ superdesk:
     - ../client-core:/opt/superdesk/client-core/
     - ./Procfile-dev:/opt/superdesk/Procfile
     - ./start-dev.sh:/opt/superdesk/start.sh
+    - ./start-client.sh:/opt/superdesk/start-client.sh

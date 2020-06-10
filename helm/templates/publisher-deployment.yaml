@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.publisher.name }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 3
   selector:
     matchLabels:
       component: {{ .Values.publisher.component }}
@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         component: {{ .Values.publisher.component }}
+      annotations:
+        backup.velero.io/backup-volumes: {{ .Values.publisher.volumeName }}
     spec:
       affinity:
         nodeAffinity:
@@ -32,7 +34,7 @@ spec:
                 values:
                 - database
       volumes:
-        - name: publisher-storage
+        - name: {{ .Values.publisher.volumeName }}
           persistentVolumeClaim:
             claimName: publisher-persistent-volume-claim
       containers:
@@ -49,19 +51,19 @@ spec:
             - containerPort: 9000
           volumeMounts:
             - mountPath: /var/www/publisher/public/bundles/_themes
-              name: publisher-storage
+              name: {{ .Values.publisher.volumeName }}
             - mountPath: /var/www/publisher/public/uploads
-              name: publisher-storage
+              name: {{ .Values.publisher.volumeName }}
             - mountPath: /var/www/publisher/templates
-              name: publisher-storage
+              name: {{ .Values.publisher.volumeName }}
             - mountPath: /var/www/publisher/app/themes
-              name: publisher-storage
+              name: {{ .Values.publisher.volumeName }}
             - mountPath: /var/www/publisher/app/meta
-              name: publisher-storage
+              name: {{ .Values.publisher.volumeName }}
             - mountPath: /var/www/publisher/var/cache/dev
-              name: publisher-storage
+              name: {{ .Values.publisher.volumeName }}
             - mountPath: /var/www/publisher/var/log
-              name: publisher-storage
+              name: {{ .Values.publisher.volumeName }}
           env:
             - name: DATABASE_URL
               value: "pgsql://postgres:postgres@postgres/publications"

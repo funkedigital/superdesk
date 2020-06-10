@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.supervisor.name }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 3
   selector:
     matchLabels:
       component: {{ .Values.supervisor.component }}
@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         component: {{ .Values.supervisor.component }}
+      annotations:
+        backup.velero.io/backup-volumes: {{ .Values.publisher.volumeName }}
     spec:
       affinity:
         nodeAffinity:
@@ -32,7 +34,7 @@ spec:
                 values:
                 - database
       volumes:
-        - name: publisher-storage
+        - name: {{ .Values.publisher.volumeName }}
           persistentVolumeClaim:
             claimName: publisher-persistent-volume-claim
       containers:
@@ -52,9 +54,9 @@ spec:
               protocol: TCP
           volumeMounts:
             - mountPath: /var/www/publisher/app/logs
-              name: publisher-storage
+              name: {{ .Values.publisher.volumeName }}
             - mountPath: /var/www/publisher/public/uploads
-              name: publisher-storage
+              name: {{ .Values.publisher.volumeName }}
           env:
             - name: APP_DEBUG
               value: {{ .Values.appDebug | quote }}
@@ -71,7 +73,7 @@ spec:
             - name: ELASTICA_HOST
               value: elasticsearch
             - name: ELASTICA_INDEX_NAME
-              value: swp_index
+              value: swp_index-docker
             - name: ELASTICA_PORT
               value: "9200"
             - name: FS_MAIN_ADAPTER

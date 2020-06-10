@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         component: {{ .Values.mongodb.component }}
+      annotations:
+        backup.velero.io/backup-volumes: {{ .Values.mongodb.volumeName }}
     spec:
       affinity:
         nodeAffinity:
@@ -32,7 +34,7 @@ spec:
                 values:
                 - database
       volumes:
-        - name: mongodb-storage
+        - name: {{ .Values.mongodb.volumeName }}
           persistentVolumeClaim:
             claimName: mongodb-persistent-volume-claim
       containers:
@@ -48,7 +50,7 @@ spec:
           ports:
             - containerPort: 27017
           volumeMounts:
-            - name: mongodb-storage
+            - name: {{ .Values.mongodb.volumeName }}
               mountPath: /data/db
               subPath: mongodb
           env:

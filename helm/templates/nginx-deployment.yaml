@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.nginx.name }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 3
   selector:
     matchLabels:
       component: {{ .Values.nginx.component }}
@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         component: {{ .Values.nginx.component }}
+      annotations:
+        backup.velero.io/backup-volumes: {{ .Values.publisher.volumeName }}
     spec:
       affinity:
         nodeAffinity:
@@ -32,7 +34,7 @@ spec:
                 values:
                 - database
       volumes:
-        - name: publisher-storage
+        - name: {{ .Values.publisher.volumeName }}
           persistentVolumeClaim:
             claimName: publisher-persistent-volume-claim
       containers:
@@ -50,7 +52,7 @@ spec:
             - containerPort: 8080
           volumeMounts:
             - mountPath: /var/www/publisher/public/uploads
-              name: publisher-storage
+              name: {{ .Values.publisher.volumeName }}
           env:
             - name: TZ
               value: {{ .Values.timezone | quote }}

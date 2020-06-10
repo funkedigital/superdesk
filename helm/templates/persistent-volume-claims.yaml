@@ -34,16 +34,3 @@ spec:
   resources:
     requests:
       storage: {{ .Values.publisher.pvcSize }}
-
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: superdesk-persistent-volume-claim
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: {{ .Values.superdesk.pvcSize }}

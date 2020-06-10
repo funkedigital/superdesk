@@ -31,10 +31,6 @@ spec:
                 operator: NotIn
                 values:
                 - database
-      volumes:
-        - name: superdesk-storage
-          persistentVolumeClaim:
-            claimName: superdesk-persistent-volume-claim
       containers:
         - name: client
           image: "{{ .Values.superdesk.image }}:{{ .Values.superdesk.tag }}"

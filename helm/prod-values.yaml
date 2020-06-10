@@ -16,7 +16,7 @@ elasticsearchSuperdesk:
   name: elastic-deployment
   component: elastic
   image: elasticsearch
-  tag: 2
+  tag: 2.4-alpine
   serviceName: elastic
 
 memcached:
@@ -33,6 +33,7 @@ mongodb:
   tag: 3.4
   serviceName: mongodb
   pvcSize: 50Gi
+  volumeName: mongodb-storage
 
 nginx:
   name: nginx-deployment
@@ -48,6 +49,7 @@ postgres:
   tag: latest
   serviceName: postgres
   pvcSize: 20Gi
+  volumeName: postgres-storage
 
 publisher:
   name: php
@@ -57,6 +59,7 @@ publisher:
   serviceName: php
   superdeskHost: "superdesk.cloud.funkedigital.de"
   pvcSize: 120Gi
+  volumeName: publisher-storage
 
 rabbitmq:
   name: rabbitmq-deployment
@@ -68,7 +71,7 @@ rabbitmq:
 redis:
   name: redis-deployment
   component: redis
-  image: redis
+  image: redis:alpine
   tag: 5.0
   serviceName: redis
 
@@ -105,7 +108,6 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
-    nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/body-size: "1024m"
     nginx.ingress.kubernetes.io/proxy-body-size: "1024m"
     nginx.org/client-max-body-size: "1024m"
@@ -143,7 +145,11 @@ ingress:
         - path: /
           backend:
             serviceName: publisher
-            servicePort: proxy-cache
+            servicePort: 80
+        - path: /ws
+          backend:
+            serviceName: supervisor
+            servicePort: 8080
     - host: origin.wmn.de
       paths:
         - path: /

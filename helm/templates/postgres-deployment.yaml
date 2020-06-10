@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         component: {{ .Values.postgres.component }}
+      annotations:
+        backup.velero.io/backup-volumes: {{ .Values.postgres.volumeName }}
     spec:
       affinity:
         nodeAffinity:
@@ -32,7 +34,7 @@ spec:
                 values:
                 - database
       volumes:
-        - name: postgres-storage
+        - name: {{ .Values.postgres.volumeName }}
           persistentVolumeClaim:
             claimName: postgres-persistent-volume-claim
       containers:
@@ -48,7 +50,7 @@ spec:
           ports:
             - containerPort: 5432
           volumeMounts:
-            - name: postgres-storage
+            - name: {{ .Values.postgres.volumeName }}
               mountPath: /var/lib/postgresql/data
               subPath: postgres
           env:
