@@ -47,7 +47,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: {{ .Values.publisher.pvcSize }}
+      storage: {{ .Values.elasticsearchSuperdesk.pvcSize }}
 
 ---
 
@@ -60,4 +60,4 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: {{ .Values.publisher.pvcSize }}
+      storage: {{ .Values.elasticsearchPublisher.pvcSize }}
