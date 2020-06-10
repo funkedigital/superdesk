@@ -1,5 +1,9 @@
 gunicorn==19.7.1
 honcho==1.0.1
 newrelic>=2.66,<2.67
+xmldict>=0.4.1
+lxml==4.5.0
+requests>=2.23.0
+xmltodict
 
--e git+git://github.com/funkedigital/superdesk-core.git@release/1.33.1-prod#egg=superdesk-core
+-e git+git://github.com/funkedigital/superdesk-core.git@release/1.33.1#egg=superdesk-core

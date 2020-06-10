@@ -82,7 +82,8 @@ superdesk:
   tag: latest
   serviceName: superdesk-service-ip
   baseUrl: "superdesk.cloud.funkedigital.de"
-  swpHost: "publisher.cloud.funkedigital.de"
+  swpHost: "publisher-stage.cloud.funkedigital.de"
+  pvcSize: 100Gi
 
 supervisor:
   name: supervisor-deployment
@@ -154,7 +155,7 @@ ingress:
         - path: /
           backend:
             serviceName: publisher
-            servicePort: 80
+            servicePort: proxy-cache
   tls:
     - hosts:
         - www.wmn.de

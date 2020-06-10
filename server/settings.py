@@ -33,7 +33,25 @@ if init_data.exists():
 
 INSTALLED_APPS.extend([
     #'analytics',
+
+    'superdesk.io',
+    'superdesk.io.feeding_services',
+    'superdesk.io.feed_parsers',
+    'superdesk.io.subjectcodes',
+    'superdesk.io.iptc',
+    'superdesk.publish',
+
+    'apps.io',
+    'apps.io.feeding_services',
+    'apps.publish',
     'apps.languages',
+    'apps.publish.formatters',
+    'apps.languages',
+
+    'fd.io',
+    'fd.publish.formatters',
+    'fd.io.feed_parsers',
+    'fd.io.feeding_services'
 ])
 
 RENDITIONS = {
@@ -53,7 +71,7 @@ WS_PORT = env('WSPORT', '5100')
 
 LOG_CONFIG_FILE = env('LOG_CONFIG_FILE', 'logging_config.yml')
 
-REDIS_URL = env('REDIS_URL', 'redis://localhost:6379')
+REDIS_URL = env('REDIS_URL', 'redis://redis:6379')
 if env('REDIS_PORT'):
     REDIS_URL = env('REDIS_PORT').replace('tcp:', 'redis:')
 BROKER_URL = env('CELERY_BROKER_URL', REDIS_URL)

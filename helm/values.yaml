@@ -1,8 +1,8 @@
 replicaCount: 1
 proto: https
 stage: stage
-appEnv: dev
-appDebug: 1
+appEnv: prod
+appDebug: 0
 timezone: Europe/Berlin
 
 elasticsearchPublisher:
