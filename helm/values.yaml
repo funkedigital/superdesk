@@ -11,7 +11,6 @@ elasticsearchPublisher:
   image: elasticsearch
   tag: 5.6
   serviceName: elasticsearch
-  pvcSize: 4Gi
   volumeName: es-publisher-storage
 
 elasticsearchSuperdesk:
@@ -20,7 +19,6 @@ elasticsearchSuperdesk:
   image: elasticsearch
   tag: 2.4-alpine
   serviceName: elastic
-  pvcSize: 4Gi
   volumeName: es-superdesk-storage
 
 memcached:
@@ -78,6 +76,7 @@ redis:
   image: redis:alpine
   tag: 5.0
   serviceName: redis
+  volumeName: redis-data
 
 superdesk:
   name: superdesk-deployment
