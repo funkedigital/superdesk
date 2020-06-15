@@ -6,7 +6,7 @@ lxml==4.5.0
 requests>=2.23.0
 xmltodict
 
--e git+git://github.com/superdesk/superdesk-core.git@release/1.31#egg=superdesk-core
+-e git+git://github.com/superdesk/superdesk-core.git@1.31#egg=superdesk-core
 
 
 flake8
