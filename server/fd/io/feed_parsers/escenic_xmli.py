@@ -10,6 +10,7 @@
 
 import datetime
 import logging
+import lxml.html
 
 from flask import current_app as app
 from superdesk.errors import ParserError
@@ -46,10 +47,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
             self.parse_metadata(items, xml)
             self.parse_byline(items, xml)
             self.parse_news_management(items, xml)
-
-            items['body_html'] = etree.tostring(
-                xml.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content'),
-                encoding='unicode').replace('<body.content>', '').replace('</body.content>', '')
+            self.parse_body_html(items, xml)
 
             return items
         except Exception as ex:
@@ -57,6 +55,27 @@ class EscenicXMLIFeedParser(XMLFeedParser):
 
     # TODO check internal links like /12345656 (escenic id) and look for <NewsItemId>229126224</NewsItemId> in source_id
     # relative links to category pages /sport/football and absolute links remain untouched
+
+    def parse_media(self, xml):
+        root = lxml.html.fromstring(xml)
+        for action, el in etree.iterwalk(root):
+            if el.tag == 'media':
+                for br in el.xpath('.'):
+                    self.transform_media_tag(br)
+                    br.tail = 'CHANGE THIS' + br.tail
+                    br.drop_tree()
+        return etree.tostring(root)
+    
+    def parse_body_html(self, items, tree):
+        """ parses the elements of the body """
+        body_xml = etree.tostring(
+            tree.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content'),
+            encoding='unicode').replace('<body.content>', '').replace('</body.content>', '')
+
+        # transform the media elements
+        #body_xml = self.parse_media(body_xml)
+
+        items['body_html'] = body_xml
 
     def parse_media(self, items, tree):
         parsed_media = self.media_parser(
