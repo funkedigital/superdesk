@@ -55,6 +55,9 @@ class EscenicXMLIFeedParser(XMLFeedParser):
 
     # TODO check internal links like /12345656 (escenic id) and look for <NewsItemId>229126224</NewsItemId> in source_id
     # relative links to category pages /sport/football and absolute links remain untouched
+    
+    def transform_media_tag(self, elem):
+        pass
 
     def parse_media(self, xml):
         root = lxml.html.fromstring(xml)
