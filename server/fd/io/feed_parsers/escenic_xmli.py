@@ -11,6 +11,7 @@
 import datetime
 import logging
 import lxml.html
+import html
 
 from flask import current_app as app
 from superdesk.errors import ParserError
@@ -39,10 +40,10 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         return xml.tag == 'NewsML'
 
     def parse(self, xml, provider=None):
-        items = {}
+        items = {'associations': {}}
         try:
             self.parse_newslines(items, xml)
-            self.parse_media(items, xml)
+            self.parse_feature_media(items, xml)
             self.parse_news_identifier(items, xml)
             self.parse_metadata(items, xml)
             self.parse_byline(items, xml)
@@ -53,34 +54,75 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         except Exception as ex:
             raise ParserError.newsmlTwoParserError(ex, provider)
 
-    # TODO check internal links like /12345656 (escenic id) and look for <NewsItemId>229126224</NewsItemId> in source_id
-    # relative links to category pages /sport/football and absolute links remain untouched
-    
-    def transform_media_tag(self, elem):
-        pass
+    def import_media_tag(self, elem, associations, counter):
+        """ import the media tags """
+        # process inline images
+        atts = {}
+        if elem.get('class') == 'body' and elem.get('media-type') == 'image':
+            for x in elem:
+                # TODO - there could be media tags after each other, for now import the biggest width image
+                if x.tag == 'media-reference' and x.get('width') == '1080':
+                    atts['source'] = x.get('source')
+                    atts['width'] = x.get('width')
+                    atts['height'] = x.get('height')
+                    if x.tag == 'media-caption':
+                        atts['media-caption'] = x.text
 
-    def parse_media(self, xml):
+                        # import image to mongo
+                        associations['inline' + str(counter)] = {
+                            'type': 'picture',
+                            'guid': generate_tag_from_url(
+                                atts['source']),
+                            'headline': 'BS mF',
+                            'creditline': 'BS news',
+                            'description_text': 'whateveraaa',
+                            'renditions': {
+                                'baseImage': {
+                                    'href': atts['source'],
+                                    'width': atts['width'],
+                                    'height': atts['height'],
+                                    'mimetype': 'image/jpeg',
+                                },
+                                'viewImage': {
+                                    'href': atts['source'],
+                                    'width': atts['width'],
+                                    'height': atts['height'],
+                                    'mimetype': 'image/jpeg',
+                                }
+                            },
+                        }
+
+                    return "<!-- EMBED START Image {id: " + 'inline' + str(counter) + "} --><figure><img src=" + atts.get('source') + " alt=" + atts.get('media-caption', '') + "><figcaption>" + atts.get('media-caption', '') + "<\/figcaption><\/figure><!-- EMBED END Image {id: " + 'inline' + str(counter) + "} -->"
+                else:
+                    return ""
+        else:
+            return ""
+
+    def parse_media(self, items, xml):
         root = lxml.html.fromstring(xml)
+        inline_img = 0
         for action, el in etree.iterwalk(root):
             if el.tag == 'media':
                 for br in el.xpath('.'):
-                    self.transform_media_tag(br)
-                    br.tail = 'CHANGE THIS' + br.tail
+                    inline_img += 1
+                    elem = self.import_media_tag(br, items['associations'], inline_img)
+                    br.tail = elem + br.tail
                     br.drop_tree()
         return etree.tostring(root)
-    
+
     def parse_body_html(self, items, tree):
         """ parses the elements of the body """
+
         body_xml = etree.tostring(
             tree.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content'),
             encoding='unicode').replace('<body.content>', '').replace('</body.content>', '')
 
         # transform the media elements
-        #body_xml = self.parse_media(body_xml)
+        body_xml = self.parse_media(items, body_xml)
+        # logger.info(html.unescape(body_xml.decode("utf-8")))
+        items['body_html'] = html.unescape(body_xml.decode("utf-8"))
 
-        items['body_html'] = body_xml
-
-    def parse_media(self, items, tree):
+    def parse_feature_media(self, items, tree):
         parsed_media = self.media_parser(
             tree.findall('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content/media/'))
         items['associations'] = {
