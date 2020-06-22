@@ -54,6 +54,35 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         except Exception as ex:
             raise ParserError.newsmlTwoParserError(ex, provider)
 
+    def import_images(self, associations, name, attributes):
+        """ import images to mongo """
+        # if len(name) == 0 or len(attributes) == 0 or len(associations) == 0:
+        #     pass
+        # else:
+        associations[name] = {
+            'type': 'picture',
+            'guid': generate_tag_from_url(
+                attributes.get('source', '')),
+            'headline': '',
+            'creditline': '',
+            'description_text': '',
+            'renditions': {
+                'baseImage': {
+                    'href': attributes.get('source', ''),
+                    'width': attributes.get('width', ''),
+                    'height': attributes.get('height', ''),
+                    'mimetype': 'image/jpeg',
+                },
+                'viewImage': {
+                    'href': attributes.get('source', ''),
+                    'width': attributes.get('width', ''),
+                    'height': attributes.get('height', ''),
+                    'mimetype': 'image/jpeg',
+                }
+            },
+        }
+
+
     def import_media_tag(self, elem, associations, counter):
         """ import the media tags """
         # process inline images
@@ -67,31 +96,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                     atts['height'] = x.get('height')
                     if x.tag == 'media-caption':
                         atts['media-caption'] = x.text
-
-                        # import image to mongo
-                        associations['inline' + str(counter)] = {
-                            'type': 'picture',
-                            'guid': generate_tag_from_url(
-                                atts['source']),
-                            'headline': 'BS mF',
-                            'creditline': 'BS news',
-                            'description_text': 'whateveraaa',
-                            'renditions': {
-                                'baseImage': {
-                                    'href': atts['source'],
-                                    'width': atts['width'],
-                                    'height': atts['height'],
-                                    'mimetype': 'image/jpeg',
-                                },
-                                'viewImage': {
-                                    'href': atts['source'],
-                                    'width': atts['width'],
-                                    'height': atts['height'],
-                                    'mimetype': 'image/jpeg',
-                                }
-                            },
-                        }
-
+                        self.import_images(associations, 'inline' + str(counter), atts)
                     return "<!-- EMBED START Image {id: " + 'inline' + str(counter) + "} --><figure><img src=" + atts.get('source') + " alt=" + atts.get('media-caption', '') + "><figcaption>" + atts.get('media-caption', '') + "<\/figcaption><\/figure><!-- EMBED END Image {id: " + 'inline' + str(counter) + "} -->"
                 else:
                     return ""
@@ -119,7 +124,6 @@ class EscenicXMLIFeedParser(XMLFeedParser):
 
         # transform the media elements
         body_xml = self.parse_media(items, body_xml)
-        # logger.info(html.unescape(body_xml.decode("utf-8")))
         items['body_html'] = html.unescape(body_xml.decode("utf-8"))
 
     def parse_feature_media(self, items, tree):
@@ -131,40 +135,13 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         fallback_image = parsed_media[0]
 
         parsed_media.reverse()  # normally the teaser image is the last element
-        for media in parsed_media:
-            if media['class'] == 'teaser' and media['media-type'] == 'image':
-                feature_media = media
-                break
-
-        if feature_media is None:
+        feature_media = [parsed_media[-1]]
+        if len(feature_media) == 0:
             feature_media = fallback_image
 
         # TODO do we need/have the caption?
-        items['associations'] = {
-            'featuremedia': {
-                'type': 'picture',
-                'guid': generate_tag_from_url(feature_media[0]['source']),
-                'headline': items['headline'],
-                'creditline': feature_media[0]['copyright'],
-                'description_text': feature_media[0]['alternate-text'],
-                # 'firstcreated': items['versioncreated'],
-                # 'versioncreated': items['versioncreated'],
-                'renditions': {
-                    'baseImage': {
-                        'href': feature_media[0]['source'],
-                        'width': feature_media[0]['width'],
-                        'height': feature_media[0]['height'],
-                        'mimetype': 'image/jpeg',
-                    },
-                    'viewImage': {
-                        'href': feature_media[0]['source'],
-                        'width': feature_media[0]['width'],
-                        'height': feature_media[0]['height'],
-                        'mimetype': 'image/jpeg',
-                    }
-                },
-            },
-        }
+
+        self.import_images(items['associations'], 'featuremedia', feature_media[0])
 
     def parse_byline(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.head'))
