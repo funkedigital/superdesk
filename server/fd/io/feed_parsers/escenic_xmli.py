@@ -10,6 +10,8 @@
 
 import datetime
 import logging
+import lxml.html
+import html
 
 from flask import current_app as app
 from superdesk.errors import ParserError
@@ -20,7 +22,7 @@ from superdesk.metadata.item import ITEM_TYPE, CONTENT_TYPE, GUID_FIELD
 from superdesk.metadata.utils import is_normal_package
 from superdesk.utc import utc
 from lxml import etree
-
+from superdesk.io.feeding_services.rss import RSSFeedingService, generate_tag_from_url
 
 logger = logging.getLogger(__name__)
 
@@ -38,31 +40,131 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         return xml.tag == 'NewsML'
 
     def parse(self, xml, provider=None):
-        items = {}
+        items = {'associations': {}}
         try:
-            self.parse_media(items, xml)
-            self.parse_news_identifier(items, xml)
             self.parse_newslines(items, xml)
-            self.parse_news_management(items, xml)
+            self.parse_feature_media(items, xml)
+            self.parse_news_identifier(items, xml)
             self.parse_metadata(items, xml)
             self.parse_byline(items, xml)
-            items['body_html'] = etree.tostring(
-                xml.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content'),
-                encoding='unicode').replace('<body.content>', '').replace('</body.content>', '')
+            self.parse_news_management(items, xml)
+            self.parse_body_html(items, xml)
 
             return items
         except Exception as ex:
             raise ParserError.newsmlTwoParserError(ex, provider)
 
+    def import_media_tag(self, elem, associations, counter):
+        """ import the media tags """
+        # process inline images
+        atts = {}
+        if elem.get('class') == 'body' and elem.get('media-type') == 'image':
+            for x in elem:
+                # TODO - there could be media tags after each other, for now import the biggest width image
+                if x.tag == 'media-reference' and x.get('width') == '1080':
+                    atts['source'] = x.get('source')
+                    atts['width'] = x.get('width')
+                    atts['height'] = x.get('height')
+                    if x.tag == 'media-caption':
+                        atts['media-caption'] = x.text
 
-    # TODO check internal links like /12345656 (escenic id) and look for <NewsItemId>229126224</NewsItemId> in source_id
-    # relative links to category pages /sport/football and absolute links remain untouched
+                        # import image to mongo
+                        associations['inline' + str(counter)] = {
+                            'type': 'picture',
+                            'guid': generate_tag_from_url(
+                                atts['source']),
+                            'headline': 'BS mF',
+                            'creditline': 'BS news',
+                            'description_text': 'whateveraaa',
+                            'renditions': {
+                                'baseImage': {
+                                    'href': atts['source'],
+                                    'width': atts['width'],
+                                    'height': atts['height'],
+                                    'mimetype': 'image/jpeg',
+                                },
+                                'viewImage': {
+                                    'href': atts['source'],
+                                    'width': atts['width'],
+                                    'height': atts['height'],
+                                    'mimetype': 'image/jpeg',
+                                }
+                            },
+                        }
 
-    def parse_media(self, items, tree):
+                    return "<!-- EMBED START Image {id: " + 'inline' + str(counter) + "} --><figure><img src=" + atts.get('source') + " alt=" + atts.get('media-caption', '') + "><figcaption>" + atts.get('media-caption', '') + "<\/figcaption><\/figure><!-- EMBED END Image {id: " + 'inline' + str(counter) + "} -->"
+                else:
+                    return ""
+        else:
+            return ""
+
+    def parse_media(self, items, xml):
+        root = lxml.html.fromstring(xml)
+        inline_img = 0
+        for action, el in etree.iterwalk(root):
+            if el.tag == 'media':
+                for br in el.xpath('.'):
+                    inline_img += 1
+                    elem = self.import_media_tag(br, items['associations'], inline_img)
+                    br.tail = elem + br.tail
+                    br.drop_tree()
+        return etree.tostring(root)
+
+    def parse_body_html(self, items, tree):
+        """ parses the elements of the body """
+
+        body_xml = etree.tostring(
+            tree.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content'),
+            encoding='unicode').replace('<body.content>', '').replace('</body.content>', '')
+
+        # transform the media elements
+        body_xml = self.parse_media(items, body_xml)
+        # logger.info(html.unescape(body_xml.decode("utf-8")))
+        items['body_html'] = html.unescape(body_xml.decode("utf-8"))
+
+    def parse_feature_media(self, items, tree):
         parsed_media = self.media_parser(
             tree.findall('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content/media/'))
-        # TODO add featuremedia from the landscape image in landscape format (width > height)
-        # using superdesk.media.renditions.update_renditions? like in /superdesk-core/superdesk/io/feed_parsers/wordpress_wxr.py
+
+        # keep one image, if no teaser image found (maybe when video as teaser)
+        # TODO clarify that case
+        fallback_image = parsed_media[0]
+
+        parsed_media.reverse()  # normally the teaser image is the last element
+        for media in parsed_media:
+            if media['class'] == 'teaser' and media['media-type'] == 'image':
+                feature_media = media
+                break
+
+        if feature_media is None:
+            feature_media = fallback_image
+
+        # TODO do we need/have the caption?
+        items['associations'] = {
+            'featuremedia': {
+                'type': 'picture',
+                'guid': generate_tag_from_url(feature_media[0]['source']),
+                'headline': items['headline'],
+                'creditline': feature_media[0]['copyright'],
+                'description_text': feature_media[0]['alternate-text'],
+                # 'firstcreated': items['versioncreated'],
+                # 'versioncreated': items['versioncreated'],
+                'renditions': {
+                    'baseImage': {
+                        'href': feature_media[0]['source'],
+                        'width': feature_media[0]['width'],
+                        'height': feature_media[0]['height'],
+                        'mimetype': 'image/jpeg',
+                    },
+                    'viewImage': {
+                        'href': feature_media[0]['source'],
+                        'width': feature_media[0]['width'],
+                        'height': feature_media[0]['height'],
+                        'mimetype': 'image/jpeg',
+                    }
+                },
+            },
+        }
 
     def parse_byline(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.head'))
@@ -73,15 +175,15 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         items['guid'] = parsed_el['PublicIdentifier']
         items['version'] = parsed_el['RevisionId']
         # items['ingest_provider_sequence'] = parsed_el['ProviderId'] set by superdesk.io.ingest.IngestService.set_ingest_provider_sequence if None
-        items['source_id'] = parsed_el['NewsItemId'] # for internal link lookup
+        items['source_id'] = parsed_el['NewsItemId']  # for internal link lookup
         items['data'] = parsed_el['DateId']
 
     def parse_news_management(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsManagement'))
         if parsed_el.get('NewsItemType') != None:
             items['newsitemtype'] = parsed_el['NewsItemType']['FormalName']
-        if parsed_el.get('ThisRevisionCreated') != None:
-            items['versioncreated'] = self.datetime(parsed_el['ThisRevisionCreated'])
+        # if parsed_el.get('ThisRevisionCreated') != None:
+        #     items['versioncreated'] = self.datetime(parsed_el['ThisRevisionCreated'])
         if parsed_el.get('FirstCreated') != None:
             items['firstcreated'] = self.datetime(parsed_el['FirstCreated'])
         if parsed_el.get('Status') != None:
@@ -97,11 +199,25 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/Metadata'))
         items['metadatatype'] = parsed_el['MetadataType']['FormalName']
         propertites = tree.findall('NewsItem/NewsComponent/Metadata/Property')
+        sub = []
+
         for i in propertites:
             if i.get('FormalName', '') == 'DateLine':
-                self.set_dateline(items, text=self.datetime(i.get('Value', ''))) # TODO clarify format, maybe use also Location for city
+                self.set_dateline(items, text=self.datetime(
+                    i.get('Value', '')))  # TODO clarify format, maybe use also Location for city
+            elif i.get('FormalName', '') == 'isPaidContent' and i.get('Value', '') == 'true':
+                sub.append({
+                    'name': 'paid content',
+                    'parent': 'paid content',
+                    'qcode': 'paid_content',
+                    'scheme': 'paid_content',
+                })
+
             elif i.get('FormalName', '') != '':
                 items[(i.get('FormalName')).lower()] = i.get('Value', '')
+
+        if len(sub) != 0:
+            items['subject'] = sub
 
     def media_parser(self, tree):
         items = []
@@ -113,20 +229,23 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         return items
 
     def parse_elements(self, tree):
-        items = {}
+        parsed = {}
         for item in tree:
             if item.text is None:
                 # read the attribute for the items
                 if item.tag != 'HeadLine':
-                    items[item.tag] = item.attrib
+                    parsed[item.tag] = item.attrib
             else:
                 # read the value for the items
-                items[item.tag] = item.text
-        return items
+                parsed[item.tag] = item.text
+        # remove empty objects
+        parsed = {k: '' if not v else v for k, v in parsed.items()}
+        return parsed
 
     def datetime(self, string):
         # Escenic datetime format from CE(S)T
         local_dt = datetime.datetime.strptime(string, '%Y%m%dT%H%M%S%z')
         return local_dt
+
 
 register_feed_parser(EscenicXMLIFeedParser.NAME, EscenicXMLIFeedParser())
