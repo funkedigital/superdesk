@@ -131,12 +131,8 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         fallback_image = parsed_media[0]
 
         parsed_media.reverse()  # normally the teaser image is the last element
-        for media in parsed_media:
-            if media['class'] == 'teaser' and media['media-type'] == 'image':
-                feature_media = media
-                break
-
-        if feature_media is None:
+        feature_media = [parsed_media[-1]]
+        if len(feature_media) == 0:
             feature_media = fallback_image
 
         # TODO do we need/have the caption?
