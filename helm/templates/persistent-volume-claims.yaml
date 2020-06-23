@@ -64,6 +64,7 @@ spec:
   resources:
     requests:
       storage: 4Gi
+  storageClassName: {{ .Values.storageClassName }}
 
 ---
 
