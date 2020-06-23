@@ -47,7 +47,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: {{ .Values.elasticsearchSuperdesk.pvcSize }}
+      storage: 4Gi
 
 ---
 
@@ -60,4 +60,16 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: {{ .Values.elasticsearchPublisher.pvcSize }}
+      storage: 4Gi
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-data
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi
