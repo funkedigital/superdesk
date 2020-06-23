@@ -7,7 +7,8 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: {{ .Values.postgres.pvcSize }}
+      storage: 20Gi
+  storageClassName: {{ .Values.storageClassName }}
 
 ---
 
@@ -20,7 +21,8 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: {{ .Values.mongodb.pvcSize }}
+      storage: 50Gi
+  storageClassName: {{ .Values.storageClassName }}
 
 ---
 
@@ -33,8 +35,8 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: {{ .Values.publisher.pvcSize }}
-
+      storage: 120Gi
+  storageClassName: {{ .Values.storageClassName }}
 
 ---
 
@@ -47,7 +49,8 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: {{ .Values.elasticsearchSuperdesk.pvcSize }}
+      storage: 4Gi
+  storageClassName: {{ .Values.storageClassName }}
 
 ---
 
@@ -60,4 +63,5 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: {{ .Values.elasticsearchPublisher.pvcSize }}
+      storage: 4Gi
+  storageClassName: {{ .Values.storageClassName }}

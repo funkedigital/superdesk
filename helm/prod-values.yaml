@@ -4,6 +4,7 @@ stage: prod
 appEnv: prod
 appDebug: 0
 timezone: Europe/Berlin
+storageClassName: nfs-superdesk
 
 elasticsearchPublisher:
   name: elasticsearch
@@ -11,7 +12,6 @@ elasticsearchPublisher:
   image: elasticsearch
   tag: 5.6
   serviceName: elasticsearch
-  pvcSize: 4Gi
   volumeName: es-publisher-storage
 
 elasticsearchSuperdesk:
@@ -20,7 +20,6 @@ elasticsearchSuperdesk:
   image: elasticsearch
   tag: 2.4-alpine
   serviceName: elastic
-  pvcSize: 4Gi
   volumeName: es-superdesk-storage
 
 memcached:
@@ -36,7 +35,6 @@ mongodb:
   image: mongo
   tag: 3.4
   serviceName: mongodb
-  pvcSize: 50Gi
   volumeName: mongodb-storage
 
 nginx:
@@ -52,7 +50,6 @@ postgres:
   image: postgres
   tag: latest
   serviceName: postgres
-  pvcSize: 20Gi
   volumeName: postgres-storage
 
 publisher:
@@ -62,7 +59,6 @@ publisher:
   tag: latest
   serviceName: php
   superdeskHost: "superdesk.cloud.funkedigital.de"
-  pvcSize: 120Gi
   volumeName: publisher-storage
 
 rabbitmq:
@@ -87,7 +83,6 @@ superdesk:
   serviceName: superdesk-service-ip
   baseUrl: "superdesk.cloud.funkedigital.de"
   swpHost: "publisher-stage.cloud.funkedigital.de"
-  pvcSize: 100Gi
 
 supervisor:
   name: supervisor-deployment
