@@ -29,15 +29,14 @@ class ResendAll(superdesk.Command):
         logger.info('Starting testing resend all command')
         self.etag = etag
         try:
-            self.fix_items_images()
+            self.start_resending()
         except:
             logger.exception('Failed to apply resend articles...')
             return 1
 
-    def fix_items_images(self):
-        """Fix the items images
+    def start_resending(self):
+        """find and resend all the articles
         """
-        logger.info('Fixing expired content.')
         for items in self.get_all_articles():
             for item in items:
                 self.resend_items(item)
