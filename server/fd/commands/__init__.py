@@ -8,5 +8,14 @@
 # AUTHORS and LICENSE files distributed with this source code, or
 # at https://www.sourcefabric.org/superdesk/license
 
+from .resend_all import ResendAll  # noqa
+from superdesk.celery_app import celery
+from superdesk.default_settings import celery_queue
+from datetime import timedelta
+import logging
 
-from .commands import *  # noqa
+logger = logging.getLogger(__name__)
+
+
+def init_app(app):
+    pass
