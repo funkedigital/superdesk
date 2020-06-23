@@ -64,4 +64,17 @@ spec:
   resources:
     requests:
       storage: 4Gi
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-data
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi
   storageClassName: {{ .Values.storageClassName }}

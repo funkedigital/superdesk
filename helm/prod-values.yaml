@@ -74,6 +74,7 @@ redis:
   image: redis:alpine
   tag: 5.0
   serviceName: redis
+  volumeName: redis-data
 
 superdesk:
   name: superdesk-deployment

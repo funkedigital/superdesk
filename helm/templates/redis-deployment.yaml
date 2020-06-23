@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         component: {{ .Values.redis.component }}
+      annotations:
+        backup.velero.io/backup-volumes: {{ .Values.redis.volumeName }}
     spec:
       affinity:
         nodeAffinity:
@@ -31,9 +33,12 @@ spec:
                 operator: NotIn
                 values:
                 - database
+      volumes:
+        - name: {{ .Values.redis.volumeName }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.redis.volumeName }}
       containers:
         - name: redis
-          #image: "{{ .Values.redis.image }}:{{ .Values.redis.tag }}"
           image: "{{ .Values.redis.image }}"
           resources:
             limits:
@@ -44,6 +49,9 @@ spec:
               memory: 8Gi
           ports:
             - containerPort: 6379
+          volumeMounts:
+          - mountPath: /data
+            name: {{ .Values.redis.volumeName }}
           env:
             - name: TZ
               value: {{ .Values.timezone | quote }}
