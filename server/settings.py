@@ -40,6 +40,7 @@ INSTALLED_APPS.extend([
     'superdesk.io.subjectcodes',
     'superdesk.io.iptc',
     'superdesk.publish',
+    'superdesk.commands',
 
     'apps.io',
     'apps.io.feeding_services',
@@ -49,6 +50,7 @@ INSTALLED_APPS.extend([
     'apps.languages',
 
     'fd.io',
+    'fd.commands',
     'fd.publish.formatters',
     'fd.io.feed_parsers',
     'fd.io.feeding_services'
