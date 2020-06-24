@@ -67,6 +67,7 @@ rabbitmq:
   image: rabbitmq
   tag: management
   serviceName: rabbitmq
+  volumeName: rabbitmq-data
 
 redis:
   name: redis-deployment

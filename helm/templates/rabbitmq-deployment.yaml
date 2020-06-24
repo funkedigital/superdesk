@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         component: {{ .Values.rabbitmq.component }}
+      annotations:
+        backup.velero.io/backup-volumes: {{ .Values.rabbitmq.volumeName }}
     spec:
       affinity:
         nodeAffinity:
@@ -31,6 +33,10 @@ spec:
                 operator: NotIn
                 values:
                 - database
+      volumes:
+        - name: {{ .Values.rabbitmq.volumeName }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.rabbitmq.volumeName }}
       containers:
         - name: rabbitmq
           image: "{{ .Values.rabbitmq.image }}:{{ .Values.rabbitmq.tag }}"
@@ -44,6 +50,9 @@ spec:
           ports:
             - containerPort: 5672
             - containerPort: 15672
+          volumeMounts:
+            - mountPath: /var/lib/rabbitmq
+              name: {{ .Values.rabbitmq.volumeName }}
           env:
             - name: TZ
               value: {{ .Values.timezone | quote }}

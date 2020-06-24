@@ -79,3 +79,17 @@ spec:
     requests:
       storage: 100Mi
   storageClassName: {{ .Values.storageClassName }}
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rabbitmq-data
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 4Gi
+  storageClassName: {{ .Values.storageClassName }}
