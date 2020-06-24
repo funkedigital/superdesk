@@ -20,17 +20,7 @@ spec:
             nodeSelectorTerms:
             - matchExpressions:
               - key: instance/type
-                operator: NotIn
-                values:
-                - lb
-            - matchExpressions:
-              - key: instance/type
-                operator: NotIn
-                values:
-                - storage
-            - matchExpressions:
-              - key: instance/type
-                operator: NotIn
+                operator: In
                 values:
                 - database
       volumes:
