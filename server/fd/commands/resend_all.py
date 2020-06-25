@@ -9,6 +9,7 @@
 # at https://www.sourcefabric.org/superdesk/license
 import logging
 import json
+import csv
 import superdesk
 from flask import current_app as app
 from superdesk import get_resource_service
@@ -22,21 +23,28 @@ logger = logging.getLogger(__name__)
 
 class ResendAll(superdesk.Command):
     option_list = [
-        superdesk.Option('--etag', '-et', dest='etag', required=True)
+        superdesk.Option('--etag', '-et', dest='etag', required=True),
+        superdesk.Option('--list', '-f', dest='file', required=False),
     ]
 
-    def run(self, etag):
+    def run(self, etag, file):
         logger.info('Starting testing resend all command')
         self.etag = etag
+        self.file = file
+        self.ids = []
         try:
-            self.start_resending()
+            with open(self.file, mode='r') as csv_file:
+                self.ids = sum(list(csv.reader(csv_file)), [])
+
+            self.fix_items_images()
         except:
             logger.exception('Failed to apply resend articles...')
             return 1
 
-    def start_resending(self):
-        """find and resend all the articles
+    def fix_items_images(self):
+        """Fix the items images
         """
+        logger.info('Fixing expired content.')
         for items in self.get_all_articles():
             for item in items:
                 self.resend_items(item)
@@ -46,7 +54,9 @@ class ResendAll(superdesk.Command):
         query = {
             ITEM_STATE: {'$in': [
                 CONTENT_STATE.PUBLISHED,
-                CONTENT_STATE.CORRECTED
+                CONTENT_STATE.CORRECTED,
+                CONTENT_STATE.KILLED,
+                CONTENT_STATE.RECALLED
             ]}
         }
 
@@ -66,7 +76,9 @@ class ResendAll(superdesk.Command):
         logger.info(self.etag)
         self.service = EnqueueService()
         subscribers = [s for s in app.data.find_all('subscribers') if s['_etag'] == self.etag]
-        self.service.resend(item, subscribers)
+
+        if item['guid'] in self.ids:
+            self.service.resend(item, subscribers)
 
 
 superdesk.command('app:resend_all', ResendAll())
