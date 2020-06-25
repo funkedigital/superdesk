@@ -54,9 +54,7 @@ class ResendAll(superdesk.Command):
         query = {
             ITEM_STATE: {'$in': [
                 CONTENT_STATE.PUBLISHED,
-                CONTENT_STATE.CORRECTED,
-                CONTENT_STATE.KILLED,
-                CONTENT_STATE.RECALLED
+                CONTENT_STATE.CORRECTED
             ]}
         }
 
