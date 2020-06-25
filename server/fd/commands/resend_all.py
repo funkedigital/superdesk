@@ -59,7 +59,6 @@ class ResendAll(superdesk.Command):
         }
 
         req = ParsedRequest()
-        req.sort = '[("unique_id", 1)]'
         req.where = json.dumps(query)
         cursor = get_resource_service(ARCHIVE).get_from_mongo(req=req, lookup=None)
         items = list(cursor)
