@@ -63,9 +63,9 @@ class EscenicXMLIFeedParser(XMLFeedParser):
             'type': 'picture',
             'guid': generate_tag_from_url(
                 attributes.get('source', '')),
-            'headline': '',
-            'creditline': '',
-            'description_text': '',
+            'headline': attributes.get('headline', ''),
+            'creditline': attributes.get('copyright', ''),
+            'description_text': attributes.get('alternate-text', ''),
             'renditions': {
                 'baseImage': {
                     'href': attributes.get('source', ''),
