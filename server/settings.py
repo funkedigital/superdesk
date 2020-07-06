@@ -50,7 +50,6 @@ INSTALLED_APPS.extend([
     'apps.languages',
 
     'fd.io',
-    #'fd.rep'
     'fd.commands',
     'fd.publish.formatters',
     'fd.io.feed_parsers',
