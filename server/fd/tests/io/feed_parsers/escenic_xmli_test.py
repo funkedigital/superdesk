@@ -41,24 +41,28 @@ class EscenicXMLIFeedParserTest(unittest.TestCase):
 
     def test_parse_media(self):
         expected = {
-            'featuremedia': {
-                'renditions': {
-                    'baseImage': {
-                        'width': '1080', 'mimetype': 'image/jpeg', 'height': '462',
-                        'href': 'https://img.waz.de/img/panorama/crop228775111/282185123-w1080-cv21_9-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg'
+                "featuremedia":{
+                    "renditions":{
+                        "baseImage":{
+                            "width":"1080",
+                            "height":"462",
+                            "href":"https://img.waz.de/img/panorama/crop228775111/282185123-w1080-cv21_9-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg",
+                            "mimetype":"image/jpeg"
+                        },
+                        "viewImage":{
+                            "width":"1080",
+                            "height":"462",
+                            "href":"https://img.waz.de/img/panorama/crop228775111/282185123-w1080-cv21_9-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg",
+                            "mimetype":"image/jpeg"
+                        }
                     },
-                    'viewImage': {
-                        'width': '1080', 'mimetype': 'image/jpeg', 'height': '462',
-                        'href': 'https://img.waz.de/img/panorama/crop228775111/282185123-w1080-cv21_9-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg'
-                    }
-                },
-                'type': 'picture',
-                'headline': 'Dieb schlägt Autoscheibe ein – und klaut Klopapier',
-                'guid': 'tag:img.waz.de:img:panorama:crop228775111:282185123-w1080-cv21_9-q85:5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg',
-                'creditline': 'imago stockpeople',
-                'description_text': 'Ein Dieb hat in Kiel eine Autoscheibe eingeschlagen, um Bohrschrauber und Toilettenpapier mitgehen zu lassen. (Symbolbild)'
-            }
-        }
+                    "guid":"tag:img.waz.de:img:panorama:crop228775111:282185123-w1080-cv21_9-q85:5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg",
+                    "headline":"",
+                    "description_text":"",
+                    "creditline":"",
+                    "type":"picture"
+                  }
+                }
 
         self.assertEqual(self.item.get('associations'), expected)
 
