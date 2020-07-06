@@ -15,7 +15,7 @@ class FDNINJSFormatter(NewsroomNinjsFormatter):
 
     def _transform_to_ninjs(self, article, subscriber, recursive=True):
         ninjs = super()._transform_to_ninjs(article, subscriber, recursive)
-
+        logger.info('formatting the ninjs')
         if 'extra' in ninjs and 'subject' in ninjs:
             subjects = article.get('subject', [])
             for x in subjects:
