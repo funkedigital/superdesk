@@ -1,0 +1,154 @@
+[
+    {
+      "_id": "5d0b88d910e7ed66382aa4a6",
+      "content_expiry": null,
+      "description": "The new vertical for young women.",
+      "name": "WMN",
+      "incoming_stage": "5d0b88d910e7ed66382aa4a5",
+      "preserve_published_content": false,
+      "desk_type": "production",
+      "desk_metadata": {},
+      "working_stage": "5d0b88d910e7ed66382aa4a4",
+      "source": "wmn",
+      "default_content_template": "5d19f1323092d23fcec90bac",
+      "default_content_profile": "5cd99da6a7bd87627c5dffbb",
+      "members": [
+        {
+          "user": "5d2440e03092d23fcec9103c"
+        },
+        {
+          "user": "5d7628d78e101d43f99575f7"
+        },
+        {
+          "user": "5cd98121a7bd87627c5dff99"
+        },
+        {
+          "user": "5cd982a9a7bd87627c5dff9e"
+        },
+        {
+          "user": "5d7f3ab2fe1699951587cfb8"
+        },
+        {
+          "user": "5cd9aa3da7bd87627c5dffd4"
+        },
+        {
+          "user": "5d4848c40ce79a4a205085c9"
+        },
+        {
+          "user": "5de6645f62ac4693584ca1b5"
+        },
+        {
+          "user": "5d2440b83092d23fcec91038"
+        },
+        {
+          "user": "5de7b11af3b04e652047a909"
+        },
+        {
+          "user": "5cd959635b7d107ad01d7ff5"
+        },
+        {
+          "user": "5cdab6d2ec36e30ccc7255f0"
+        },
+        {
+          "user": "5e831ef6d6dc81519c49f65e"
+        },
+        {
+          "user": "5da97e8c3987ff073597af15"
+        },
+        {
+          "user": "5d8cb90b6d7185ecb0d3e23b"
+        },
+        {
+          "user": "5d8cb9349941ebe6c7570353"
+        },
+        {
+          "user": "5d8cc9f20f8ec4490c21e426"
+        },
+        {
+          "user": "5d4d5091c86e6f6b15679662"
+        },
+        {
+          "user": "5e96b12601161d7a9276d33e"
+        },
+        {
+          "user": "5cd9a924a7bd87627c5dffcc"
+        },
+        {
+          "user": "5cd9644fa7bd87627c5dff76"
+        },
+        {
+          "user": "5de66361f3b04e652047a715"
+        },
+        {
+          "user": "5d4848e3c86e6f6b15679551"
+        }
+      ],
+      "content_profiles": {},
+      "monitoring_default_view": "swimlane",
+      "monitoring_settings": [
+        {
+          "_id": "5d0b88d910e7ed66382aa4a4",
+          "type": "stage",
+          "max_items": 25
+        },
+        {
+          "_id": "5d0b88d910e7ed66382aa4a6:output",
+          "type": "deskOutput",
+          "max_items": 25
+        },
+        {
+          "_id": "5d0b88d910e7ed66382aa4a6:scheduled",
+          "type": "scheduledDeskOutput",
+          "max_items": 10
+        }
+      ],
+      "preferred_cv_items": {
+        "crop_sizes": [
+          {
+            "width": 960,
+            "height": 540,
+            "scheme": null,
+            "name": "16-9-m"
+          }
+        ]
+      }
+    },
+  
+    {
+      "_id" : "5f042d5263ac432ad456d9e5",
+      "content_expiry" : null,
+      "name" : "WAZ",
+      "description" : "waz importer test",
+      "source" : "waz",
+      "desk_type" : "production",
+      "monitoring_default_view" : "swimlane",
+      "default_content_profile" : "5cd99da6a7bd87627c5dffbb",
+      "preserve_published_content" : false,
+      "_etag" : "49901189c9f742148c61d6d5c09f9abe6e1c4e9b",
+      "working_stage" : "5f042d5263ac432ad456d9e3",
+      "incoming_stage" : "5f042d5263ac432ad456d9e4",
+      "members" : [
+        {
+          "user" : "5ddec97f3987ff073597d965"
+        },
+        {
+          "user" : "5ddfbb9ba8564cb2df39df23"
+        },
+        {
+          "user" : "5e9d4f09d6951c9eaa8e4cac"
+        },
+        {
+          "user" : "5cd98121a7bd87627c5dff99"
+        },
+        {
+          "user" : "5cd959635b7d107ad01d7ff5"
+        },
+        {
+          "user" : "5d4d5091c86e6f6b15679662"
+        },
+        {
+          "user" : "5cd9a924a7bd87627c5dffcc"
+        }
+      ]
+    }
+  ]
