@@ -12,6 +12,9 @@ class FDNINJSFormatter(NewsroomNinjsFormatter):
 
     def __init__(self):
         self.format_type = 'fd ninjs'
+        self.can_preview = False
+        self.can_export = False
+        self.internal_renditions = ['original', 'viewImage', 'baseImage']
 
     def _transform_to_ninjs(self, article, subscriber, recursive=True):
         ninjs = super()._transform_to_ninjs(article, subscriber, recursive)
