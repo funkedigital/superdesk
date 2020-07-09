@@ -62,6 +62,8 @@ spec:
               name: {{ .Values.publisher.volumeName }}
             - mountPath: /var/www/publisher/var/cache/dev
               name: {{ .Values.publisher.volumeName }}
+            - mountPath: /var/www/publisher/var/cache/prod
+              name: {{ .Values.publisher.volumeName }}
             - mountPath: /var/www/publisher/var/log
               name: {{ .Values.publisher.volumeName }}
           env:
@@ -94,6 +96,8 @@ spec:
               value: "swp_index-docker"
             - name: FS_MAIN_ADAPTER
               value: "local_adapter"
+            - name: MESSENGER_TRANSPORT_DSN
+              value: amqp://guest:guest@rabbitmq:5672/%2f/messages
             - name: SESSION_MEMCACHED_HOST
               value: "memcached"
             - name: SUPERDESK_SERVERS
