@@ -62,6 +62,8 @@ spec:
               name: {{ .Values.publisher.volumeName }}
             - mountPath: /var/www/publisher/var/cache/dev
               name: {{ .Values.publisher.volumeName }}
+            - mountPath: /var/www/publisher/var/cache/prod
+              name: {{ .Values.publisher.volumeName }}
             - mountPath: /var/www/publisher/var/log
               name: {{ .Values.publisher.volumeName }}
           env:
