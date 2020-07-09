@@ -94,6 +94,8 @@ spec:
               value: "swp_index-docker"
             - name: FS_MAIN_ADAPTER
               value: "local_adapter"
+            - name: MESSENGER_TRANSPORT_DSN
+              value: amqp://guest:guest@rabbitmq:5672/%2f/messages
             - name: SESSION_MEMCACHED_HOST
               value: "memcached"
             - name: SUPERDESK_SERVERS
