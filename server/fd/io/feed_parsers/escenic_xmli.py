@@ -63,9 +63,9 @@ class EscenicXMLIFeedParser(XMLFeedParser):
             'type': 'picture',
             'guid': generate_tag_from_url(
                 attributes.get('source', '')),
-            'headline': attributes.get('headline', ''),
-            'creditline': attributes.get('copyright', ''),
-            'description_text': attributes.get('alternate-text', ''),
+            'headline': attributes.get('headline', 'picture'),
+            'creditline': attributes.get('copyright', 'picture'),
+            'description_text': attributes.get('alternate-text', 'picture'),
             'renditions': {
                 'baseImage': {
                     'href': attributes.get('source', ''),
@@ -168,9 +168,9 @@ class EscenicXMLIFeedParser(XMLFeedParser):
 
     def parse_newslines(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/NewsLines'))
-        items['headline'] = parsed_el.get('HeadLine', '')
-        items['slugline'] = parsed_el.get('SlugLine', '')
-        items['copyrightline'] = parsed_el.get('CopyrightLine', '')
+        items['headline'] = parsed_el.get('HeadLine', 'picture')
+        items['slugline'] = parsed_el.get('SlugLine', 'picture')
+        items['copyrightline'] = parsed_el.get('CopyrightLine', 'picture')
 
     def parse_metadata(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/Metadata'))
