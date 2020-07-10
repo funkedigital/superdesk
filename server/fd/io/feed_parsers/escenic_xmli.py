@@ -145,7 +145,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
 
     def parse_byline(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.head'))
-        items['byline'] = parsed_el.get('byline', '')
+        items['byline'] = parsed_el.get('byline', 'byline default')
 
     def parse_news_identifier(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/Identification/NewsIdentifier'))
