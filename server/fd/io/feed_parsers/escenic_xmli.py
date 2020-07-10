@@ -43,7 +43,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         items = {'associations': {}}
         try:
             self.parse_newslines(items, xml)
-            #self.parse_feature_media(items, xml)
+            self.parse_feature_media(items, xml)
             self.parse_news_identifier(items, xml)
             self.parse_metadata(items, xml)
             self.parse_byline(items, xml)
