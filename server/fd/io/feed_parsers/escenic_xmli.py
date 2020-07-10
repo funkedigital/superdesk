@@ -125,6 +125,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         # transform the media elements
         body_xml = self.parse_media(items, body_xml)
         items['body_html'] = html.unescape(body_xml.decode("utf-8"))
+        items['pubstatus'] = 'usable'
 
     def parse_feature_media(self, items, tree):
         parsed_media = self.media_parser(
