@@ -68,7 +68,7 @@ class EscenicXMLIFeedingService(HTTPFeedingServiceBase):
             if u != '':
                 url = u.replace('.html', '.xmli')
                 print(url)
-                req = requests.get(url)
+                req = requests.get(url, auth=('nrw', 'Nrw!'))
                 if req.status_code == 200:
                     xml_elements = etree.fromstring(req.content)
                     xmliparser = EscenicXMLIFeedParser()
