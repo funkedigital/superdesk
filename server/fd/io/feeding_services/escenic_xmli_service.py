@@ -68,11 +68,11 @@ class EscenicXMLIFeedingService(HTTPFeedingServiceBase):
             if u != '':
                 url = u.replace('.html', '.xmli')
                 print(url)
-                ii = requests.get(url)
-                xml_elements = etree.fromstring(ii.content)
-                print(xml_elements)
-                xmliparser = EscenicXMLIFeedParser()
-                items.append(xmliparser.parse(xml_elements, self.provider))
+                req = requests.get(url)
+                if req.status_code == 200:
+                    xml_elements = etree.fromstring(ii.content)
+                    xmliparser = EscenicXMLIFeedParser()
+                    items.append(xmliparser.parse(xml_elements, self.provider))
 
         return items
 
