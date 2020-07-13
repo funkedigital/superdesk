@@ -70,7 +70,7 @@ class EscenicXMLIFeedingService(HTTPFeedingServiceBase):
                 print(url)
                 req = requests.get(url)
                 if req.status_code == 200:
-                    xml_elements = etree.fromstring(ii.content)
+                    xml_elements = etree.fromstring(req.content)
                     xmliparser = EscenicXMLIFeedParser()
                     items.append(xmliparser.parse(xml_elements, self.provider))
 
