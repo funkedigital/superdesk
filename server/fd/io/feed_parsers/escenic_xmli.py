@@ -12,6 +12,7 @@ import datetime
 import logging
 import lxml.html
 import html
+import requests
 
 from flask import current_app as app
 from superdesk.errors import ParserError
@@ -90,8 +91,8 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         atts = {}
         if elem.get('class') == 'body' and elem.get('media-type') == 'image':
             for x in elem:
-                # TODO - there could be media tags after each other, for now import the biggest width image
-                if x.tag == 'media-reference' and x.get('width') == '1080':
+                sc = requests.get(x.get('source'))
+                if x.tag == 'media-reference' and x.get('width') == '1080' and sc.status_code == 200:
                     atts['source'] = x.get('source')
                     atts['width'] = x.get('width')
                     atts['height'] = x.get('height')
