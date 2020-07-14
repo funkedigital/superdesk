@@ -1,0 +1,308 @@
+<NewsML>
+    <NewsEnvelope>
+        <DateAndTime>20200602T114204+0200</DateAndTime>
+    </NewsEnvelope>
+    <NewsItem>
+        <Identification>
+            <NewsIdentifier>
+                <ProviderId>https://www.waz.de/</ProviderId>
+                <DateId>20200406</DateId>
+                <NewsItemId>228857473</NewsItemId>
+                <RevisionId PreviousRevision="0" Update="N">1</RevisionId>
+                <PublicIdentifier>urn:newsml:49:20200406:228857473:1</PublicIdentifier>
+            </NewsIdentifier>
+        </Identification>
+        <NewsManagement>
+            <NewsItemType FormalName="News Article"/>
+            <FirstCreated>20200406T134241+0200</FirstCreated>
+            <ThisRevisionCreated>20200406T134322+0200</ThisRevisionCreated>
+            <Status FormalName=""/>
+        </NewsManagement>
+        <NewsComponent>
+            <Role FormalName="Text"/>
+            <NewsLines>
+                <HeadLine>NRW-Obfuscation-Artikel</HeadLine>
+                <SlugLine></SlugLine>
+                <CopyrightLine>(C) Funke Mediengruppe 2020</CopyrightLine>
+            </NewsLines>
+            <RightsMetadata>
+                <UsageRights>
+                    <StartDate>20200406T134322+0200</StartDate>
+                    <EndDate>29990101T020000+0200</EndDate>
+                </UsageRights>
+            </RightsMetadata>
+            <Metadata>
+                <MetadataType FormalName="FUNKE"/>
+                <Property FormalName="DateLine" Value="20200406T134322+0200"/>
+                <Property FormalName="URL" Value="https://www.waz.de/test/nrw-obfuscation-artikel-id228857473.html"/>
+                <Property FormalName="Author" Value="Autor Name"/>
+                <Property FormalName="Escenic_Source" Value="ece-auto-gen"/>
+                <Property FormalName="Escenic_SourceId" Value="87340386-883a-4bc6-9847-e1ea0483c1dc"/>
+                <Property FormalName="Channel" Value="TEST"/>
+                <Property FormalName="Location" Value="Lorem."/>
+                <Property FormalName="SeoHeadline" Value="NRW-Obfuscation-Artikel "/>
+                <Property FormalName="isPaidContent" Value="true"/>
+            </Metadata>
+            <ContentItem>
+                <MediaType FormalName="ComplexData"/>
+                <MimeType FormalName="text/vnd.IPTC.NITF"/>
+                <DataContent>
+                    <nitf>
+                        <head>
+                            <title>NRW-Obfuscation-Artikel</title>
+                            <meta content="https://www.waz.de/" name="origin"/>
+                            <meta content="Funke Mediengruppe" name="copyright"/>
+                            <meta content="Escenic5" name="generator"/>
+                            <docdata>
+                                <doc-id regsrc="https://www.waz.de/" id="228857473"/>
+                                <date.issue norm="20200406T134322+0200"/>
+                            </docdata>
+                        </head>
+                        <body>
+                            <body.head>
+                                <hedline>
+                                    <hl1>NRW-Obfuscation-Artikel</hl1>
+                                    <hl2 class="kicker"></hl2>
+                                    <hl2 class="deck">Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition
+                                        geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als unbeachtetes und.
+                                    </hl2>
+                                    <hl2 class="iPad_kicker"></hl2>
+                                </hedline>
+                                <byline>Autor Name</byline>
+                                <abstract>
+                                    <p>Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen, dennoch
+                                        nicht unsichtbar, präsentiere ich mich als unbeachtetes und.
+                                    </p>
+                                </abstract>
+                            </body.head>
+                            <body.content>
+                                <p class="intro">Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen,
+                                    dennoch nicht unsichtbar, präsentiere ich mich als unbeachtetes und.
+                                </p>
+                                <p>
+                                    <strong>VIDEOS:</strong>
+                                </p>
+                                <p>ipsum - Ceterum censeo: Mit <strong>Hervorhebung</strong>Blindheit per Definition
+                                    geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als unbeachtetes und
+                                    ungeliebteLorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen,
+                                    dennoch nicht unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes
+                                    Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>Kaltura:</p>
+                                <p>ipsum - Ceterum censeo: Mit <strong>Hervorhebung</strong>Blindheit per Definition
+                                    geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als unbeachtetes und
+                                    ungeliebteLorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen,
+                                    dennoch nicht unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes
+                                    Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>YouTube:</p>
+                                <p>ipsum - Ceterum censeo: Mit <strong>Hervorhebung</strong>Blindheit per Definition
+                                    geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als unbeachtetes und
+                                    ungeliebteLorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen,
+                                    dennoch nicht unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes
+                                    Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>Playlist:
+                                    <media class="body" id="escenic-video_playlist-216934897"
+                                           media-type="video_playlist">
+                                        <media-reference class="video"
+                                                         alternate-text="Krebspatient sorgt für emotionalen Moment bei Dunja Hayali"
+                                                         display-option="kaltura" brightcove-ref-id="q70UPpVw4acB"/>
+                                        <media-caption>
+                                            Krebspatient sorgt für emotionalen Moment bei Dunja Hayali
+                                        </media-caption>
+                                    </media>
+
+
+                                </p>
+                                <p>ipsum - Ceterum censeo: Mit <strong>Hervorhebung</strong>Blindheit per Definition
+                                    geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als unbeachtetes und
+                                    ungeliebteLorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen,
+                                    dennoch nicht unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes
+                                    Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>
+                                    <strong>INFOBOXEN:</strong>
+                                </p>
+                                <p>Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen, dennoch nicht
+                                    unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes Stiefkind
+                                    zeitgenössischer Literatur. Lorem ipsum - Ceterum censeo: Mit Blindheit per
+                                    Definition geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als
+                                    unbeachtetes und ungeliebtes Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>Links: test</p>
+                                <p>Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen, dennoch nicht
+                                    unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes Stiefkind
+                                    zeitgenössischer Literatur. Lorem ipsum - Ceterum censeo: Mit Blindheit per
+                                    Definition geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als
+                                    unbeachtetes und ungeliebtes Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>Rechts: test</p>
+                                <p>Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen, dennoch nicht
+                                    unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes Stiefkind
+                                    zeitgenössischer Literatur. Lorem ipsum - Ceterum censeo: Mit Blindheit per
+                                    Definition geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als
+                                    unbeachtetes und ungeliebtes Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>
+                                    <strong>BILDERGALERIE:</strong>
+                                </p>
+                                <p>Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen, dennoch nicht
+                                    unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes Stiefkind
+                                    zeitgenössischer Literatur. Lorem ipsum - Ceterum censeo: Mit Blindheit per
+                                    Definition geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als
+                                    unbeachtetes und ungeliebtes Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>
+                                    <strong>TEXTGALERIE:</strong>
+                                </p>
+                                <p>Shoutbox:</p>
+                                <p>Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen, dennoch nicht
+                                    unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes Stiefkind
+                                    zeitgenössischer Literatur. Lorem ipsum - Ceterum censeo: Mit Blindheit per
+                                    Definition geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als
+                                    unbeachtetes und ungeliebtes Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>Hintergrund:</p>
+                                <p>Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen, dennoch nicht
+                                    unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes Stiefkind
+                                    zeitgenössischer Literatur. Lorem ipsum - Ceterum censeo: Mit Blindheit per
+                                    Definition geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als
+                                    unbeachtetes und ungeliebtes Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>Volle Breite:</p>
+                                <p>Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen, dennoch nicht
+                                    unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes Stiefkind
+                                    zeitgenössischer Literatur. Lorem ipsum - Ceterum censeo: Mit Blindheit per
+                                    Definition geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als
+                                    unbeachtetes und ungeliebtes Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>
+                                    <strong>UMFRAGE:</strong>
+                                </p>
+                                <p>Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen, dennoch nicht
+                                    unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes Stiefkind
+                                    zeitgenössischer Literatur. Lorem ipsum - Ceterum censeo: Mit Blindheit per
+                                    Definition geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als
+                                    unbeachtetes und ungeliebtes Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>
+                                    <strong>SOCIAL-MEDIA-ARTIKEL:</strong>
+                                </p>
+                                <p>Twitter:</p>
+                                <p>Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen, dennoch nicht
+                                    unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes Stiefkind
+                                    zeitgenössischer Literatur. Lorem ipsum - Ceterum censeo: Mit Blindheit per
+                                    Definition geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als
+                                    unbeachtetes und ungeliebtes Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>Instagram:</p>
+                                <p>Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen, dennoch nicht
+                                    unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes Stiefkind
+                                    zeitgenössischer Literatur. Lorem ipsum - Ceterum censeo: Mit Blindheit per
+                                    Definition geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als
+                                    unbeachtetes und ungeliebtes Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>Facebook:</p>
+                                <p>Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen, dennoch nicht
+                                    unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes Stiefkind
+                                    zeitgenössischer Literatur. Lorem ipsum - Ceterum censeo: Mit Blindheit per
+                                    Definition geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als
+                                    unbeachtetes und ungeliebtes Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>
+                                    <strong>XHTML-ARTIKEL:</strong>
+                                </p>
+                                <p>Interaktiv:</p>
+                                <p>Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen, dennoch nicht
+                                    unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes Stiefkind
+                                    zeitgenössischer Literatur. Lorem ipsum - Ceterum censeo: Mit Blindheit per
+                                    Definition geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als
+                                    unbeachtetes und ungeliebtes Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>Opinary:</p>
+                                <p>Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen, dennoch nicht
+                                    unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes Stiefkind
+                                    zeitgenössischer Literatur. Lorem ipsum - Ceterum censeo: Mit Blindheit per
+                                    Definition geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als
+                                    unbeachtetes und ungeliebtes Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>Google-Map:</p>
+                                <p>Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen, dennoch nicht
+                                    unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes Stiefkind
+                                    zeitgenössischer Literatur. Lorem ipsum - Ceterum censeo: Mit Blindheit per
+                                    Definition geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als
+                                    unbeachtetes und ungeliebtes Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>DPA-Blog:</p>
+                                <p>Lorem ipsum - Ceterum censeo: Mit Blindheit per Definition geschlagen, dennoch nicht
+                                    unsichtbar, präsentiere ich mich als unbeachtetes und ungeliebtes Stiefkind
+                                    zeitgenössischer Literatur. Lorem ipsum - Ceterum censeo: Mit Blindheit per
+                                    Definition geschlagen, dennoch nicht unsichtbar, präsentiere ich mich als
+                                    unbeachtetes und ungeliebtes Stiefkind zeitgenössischer Literatur.
+                                </p>
+                                <p>
+                                    <strong>TEXTFORMATIERUNGEN:</strong>
+                                </p>
+                                <ul>
+                                    <li>Aufzählung</li>
+                                    <li>Aufzählung</li>
+                                    <li>Aufzählung</li>
+                                </ul>
+                                <p>
+                                    <strong>BOLD</strong>
+                                    <em>KURSIV</em>
+                                    <u>UNTERSTRICHEN</u>
+                                </p>
+                                <p></p>
+                                <p></p>
+                                <p></p>
+                                <media class="teaser" id="escenic-image-228202215" media-type="image">
+                                    <media-reference
+                                            source="https://img.waz.de/img/politik/crop228202215/8701853303-w1080-cv21_9-q85/cccaa9e4-3c39-11ea-bfea-fd3ad34ab42e.jpg"
+                                            width="1080" height="462"
+                                            alternate-text="MELBOURNE, AUSTRALIA - JANUARY 21: Frances Tiafoe of the United States plays a forehand smash during his Me"
+                                            copyright="Getty Images"/>
+                                    <media-reference
+                                            source="https://img.waz.de/img/politik/crop228202215/2617512099-w940-cv1_1-q85/cccaa9e4-3c39-11ea-bfea-fd3ad34ab42e.jpg"
+                                            width="940" height="940"
+                                            alternate-text="MELBOURNE, AUSTRALIA - JANUARY 21: Frances Tiafoe of the United States plays a forehand smash during his Me"
+                                            copyright="Getty Images"/>
+                                    <media-caption>
+                                        MELBOURNE, AUSTRALIA - JANUARY 21: Frances Tiafoe of the United States plays a
+                                        forehand smash during his Me
+                                    </media-caption>
+                                </media>
+                                <media class="teaser" id="escenic-image-228202211" media-type="image">
+                                    <media-reference
+                                            source="https://img.waz.de/img/politik/crop228202211/6291853721-w1080-cv21_9-q85/d97098c0-3c39-11ea-bfea-fd3ad34ab42e.jpg"
+                                            width="1080" height="462" alternate-text="" copyright="Getty Images"/>
+                                    <media-reference
+                                            source="https://img.waz.de/img/politik/crop228202211/9747511681-w940-cv1_1-q85/d97098c0-3c39-11ea-bfea-fd3ad34ab42e.jpg"
+                                            width="940" height="940" alternate-text="" copyright="Getty Images"/>
+                                    <media-caption>
+                                    </media-caption>
+                                </media>
+                                <media class="teaser" id="escenic-image-228202213" media-type="image">
+                                    <media-reference
+                                            source="https://img.waz.de/img/politik/crop228202213/6981856679-w1080-cv21_9-q85/dff27812-3c39-11ea-bfea-fd3ad34ab42e.jpg"
+                                            width="1080" height="462" alternate-text="" copyright="Getty Images"/>
+                                    <media-reference
+                                            source="https://img.waz.de/img/politik/crop228202213/9807518723-w940-cv1_1-q85/dff27812-3c39-11ea-bfea-fd3ad34ab42e.jpg"
+                                            width="940" height="940" alternate-text="" copyright="Getty Images"/>
+                                    <media-caption>
+                                    </media-caption>
+                                </media>
+                                <block class="related-links">
+                                    <ul>
+                                    </ul>
+                                </block>
+                            </body.content>
+                        </body>
+                    </nitf>
+                </DataContent>
+            </ContentItem>
+        </NewsComponent>
+    </NewsItem>
+</NewsML>
+
