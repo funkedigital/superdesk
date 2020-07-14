@@ -98,7 +98,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                     if x.tag == 'media-caption':
                         atts['media-caption'] = x.text
                         self.import_images(associations, 'inline' + str(counter), atts)
-                    return "<!-- EMBED START Image {id: " + 'inline' + str(counter) + "} --><figure><img src=" + atts.get('source') + " alt=" + atts.get('media-caption', '') + "><figcaption>" + atts.get('media-caption', '') + "<\/figcaption><\/figure><!-- EMBED END Image {id: " + 'inline' + str(counter) + "} -->"
+                    return "<!-- EMBED START Image {id: " + 'inline' + str(counter) + "} --><figure><img src=" + atts.get('source') + " alt=" + atts.get('media-caption', '') + "><figcaption>" + atts.get('media-caption', '') + "</figcaption></figure><!-- EMBED END Image {id: " + 'inline' + str(counter) + "} -->"
                 else:
                     return ""
         else:
