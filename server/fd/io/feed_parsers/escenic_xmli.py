@@ -68,6 +68,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
             'alt_text': attributes.get('todo', 'alt text'),
             'creditline': attributes.get('copyright', 'picture'),
             'description_text': attributes.get('alternate-text', 'picture'),
+            'mimetype': 'image/jpeg',
             'renditions': {
                 'baseImage': {
                     'href': attributes.get('source', ''),
