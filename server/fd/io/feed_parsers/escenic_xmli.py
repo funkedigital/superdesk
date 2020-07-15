@@ -175,7 +175,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
     def parse_newslines(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/NewsLines'))
         items['headline'] = parsed_el.get('HeadLine', 'picture')
-        items['slugline'] = parsed_el.get('SlugLine', 'picture')
+        items['slugline'] = parsed_el.get('HeadLine', 'picture')
         items['copyrightline'] = parsed_el.get('CopyrightLine', 'picture')
 
     def parse_metadata(self, items, tree):
