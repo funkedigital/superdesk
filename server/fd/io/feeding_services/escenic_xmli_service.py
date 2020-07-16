@@ -73,7 +73,6 @@ class EscenicXMLIFeedingService(HTTPFeedingServiceBase):
                     xml_elements = etree.fromstring(req.content)
                     xmliparser = EscenicXMLIFeedParser()
                     items.append(xmliparser.parse(xml_elements, self.provider))
-
         return items
 
 
