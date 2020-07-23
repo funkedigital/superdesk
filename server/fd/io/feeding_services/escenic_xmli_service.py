@@ -63,7 +63,7 @@ class EscenicXMLIFeedingService(HTTPFeedingServiceBase):
         data = xmltodict.parse(response.content)
         items = []
         urls = data['urlset']['url']
-        for i in urls[:2]:
+        for i in urls[:500]:
             u = i.get('loc', '')
             if u != '':
                 url = u.replace('.html', '.xmli')
