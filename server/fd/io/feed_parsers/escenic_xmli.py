@@ -129,7 +129,6 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         body_xml = self.parse_media(items, body_xml)
         items['body_html'] = html.unescape(body_xml.decode("utf-8"))
         items['pubstatus'] = 'usable'
-        items['extra'] = {}
 
     def parse_feature_media(self, items, tree):
         parsed_media = self.media_parser(
@@ -180,6 +179,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         items['copyrightline'] = parsed_el.get('CopyrightLine', 'picture')
 
     def parse_metadata(self, items, tree):
+        items['extra'] = {}
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/Metadata'))
         items['metadatatype'] = parsed_el['MetadataType']['FormalName']
         propertites = tree.findall('NewsItem/NewsComponent/Metadata/Property')
@@ -196,6 +196,9 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                     'qcode': 'paid_content',
                     'scheme': 'paid_content',
                 })
+
+            elif i.get('FormalName', '') == 'Channel':
+                items['extra'].update( {'waz_channel' : i.get('Value', '')} )
 
             elif i.get('FormalName', '') != '':
                 items[(i.get('FormalName')).lower()] = i.get('Value', '')
