@@ -63,3 +63,7 @@ CMD /opt/superdesk/start-client.sh
 # copy git revision informations (used in "about" screen)
 COPY .git/HEAD /opt/superdesk/.git/
 COPY .git/refs/ /opt/superdesk/.git/refs/
+
+# fix for mongodb+srv urls
+RUN pip install dnspython
+
