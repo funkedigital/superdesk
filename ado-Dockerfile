@@ -1,0 +1,16 @@
+FROM python:3-alpine
+
+ENV CELERYBEAT_SCHEDULE_FILENAME /tmp/celerybeatschedule.db
+
+# prerequirements
+RUN apk add --no-cache libgcc libstdc++ binutils gmp isl libgomp libatomic libgphobos mpfr4 mpc1 gcc nghttp2-libs libcurl pcre2 git libjpeg-turbo pkgconf libjpeg-turbo-dev jpeg-dev linux-headers libffi-dev zlib-dev xz-dev libxml2 libxml2-dev libgpg-error libxslt libxslt-dev musl-dev openssl-dev \
+ && pip install dnspython
+
+WORKDIR /opt/superdesk/
+
+# install server
+COPY ./server /opt/superdesk
+RUN python -m pip install --upgrade pip setuptools wheel
+RUN python -m pip install -U -r requirements.txt
+
+
