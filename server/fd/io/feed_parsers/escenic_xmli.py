@@ -152,13 +152,12 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         #fallback_image = parsed_media[0]
 
         parsed_media.reverse()  # normally the teaser image is the last element
-        feature_media = [parsed_media[-1]]
-        #if len(feature_media) == 0:
-        #    feature_media = fallback_image
+        try:
+            feature_media = [parsed_media[-1]]
+            self.import_images(items['associations'], 'featuremedia', feature_media[0])
+        except IndexError:
+            pass
 
-        # TODO do we need/have the caption?
-
-        self.import_images(items['associations'], 'featuremedia', feature_media[0])
 
     def parse_byline(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.head'))
