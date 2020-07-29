@@ -44,7 +44,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         items = {'associations': {}}
         try:
             self.parse_newslines(items, xml)
-            #self.parse_feature_media(items, xml)
+            self.parse_feature_media(items, xml)
             self.parse_news_identifier(items, xml)
             self.parse_metadata(items, xml)
             self.parse_byline(items, xml)
@@ -77,6 +77,18 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                     'mimetype': 'image/jpeg',
                 },
                 'viewImage': {
+                    'href': attributes.get('source', ''),
+                    'width': attributes.get('width', ''),
+                    'height': attributes.get('height', ''),
+                    'mimetype': 'image/jpeg',
+                },
+                'thumbnail': {
+                    'href': attributes.get('source', ''),
+                    'width': attributes.get('width', ''),
+                    'height': attributes.get('height', ''),
+                    'mimetype': 'image/jpeg',
+                },
+                'original': {
                     'href': attributes.get('source', ''),
                     'width': attributes.get('width', ''),
                     'height': attributes.get('height', ''),
@@ -136,16 +148,16 @@ class EscenicXMLIFeedParser(XMLFeedParser):
 
         # keep one image, if no teaser image found (maybe when video as teaser)
         # TODO clarify that case
-        fallback_image = parsed_media[0]
+        
+        #fallback_image = parsed_media[0]
 
         parsed_media.reverse()  # normally the teaser image is the last element
-        feature_media = [parsed_media[-1]]
-        if len(feature_media) == 0:
-            feature_media = fallback_image
+        try:
+            feature_media = [parsed_media[-1]]
+            self.import_images(items['associations'], 'featuremedia', feature_media[0])
+        except IndexError:
+            pass
 
-        # TODO do we need/have the caption?
-
-        self.import_images(items['associations'], 'featuremedia', feature_media[0])
 
     def parse_byline(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.head'))
