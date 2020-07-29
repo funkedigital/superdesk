@@ -44,7 +44,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         items = {'associations': {}}
         try:
             self.parse_newslines(items, xml)
-            #self.parse_feature_media(items, xml)
+            self.parse_feature_media(items, xml)
             self.parse_news_identifier(items, xml)
             self.parse_metadata(items, xml)
             self.parse_byline(items, xml)
@@ -77,6 +77,18 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                     'mimetype': 'image/jpeg',
                 },
                 'viewImage': {
+                    'href': attributes.get('source', ''),
+                    'width': attributes.get('width', ''),
+                    'height': attributes.get('height', ''),
+                    'mimetype': 'image/jpeg',
+                },
+                'thumbnail': {
+                    'href': attributes.get('source', ''),
+                    'width': attributes.get('width', ''),
+                    'height': attributes.get('height', ''),
+                    'mimetype': 'image/jpeg',
+                },
+                'original': {
                     'href': attributes.get('source', ''),
                     'width': attributes.get('width', ''),
                     'height': attributes.get('height', ''),
