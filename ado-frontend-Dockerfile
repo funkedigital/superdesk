@@ -15,8 +15,8 @@ FROM nginx:alpine
 COPY --from=builder /client/dist/ /usr/share/nginx/html/
 ENV SUPERDESK_URL https://superdesk-wr-superdesk-stage.cloud.funkedigital.de/api
 ENV SUPERDESK_WS_URL wss://superdesk-wr-superdesk-stage.cloud.funkedigital.de/ws
-ENV PUBLISHER_URL https://publisher-wr-superdesk-stage.wmn.de
-ENV PUBLISHER_WS_URL wss://publisher-wr-superdesk-stage.wmn.de/ws
+ENV PUBLISHER_URL publisher-wr-superdesk-stage.wmn.de
+ENV PUBLISHER_WS_URL publisher-wr-superdesk-stage.wmn.de
 ENV IFRAMELY_KEY ''
 
 RUN sed -i \
