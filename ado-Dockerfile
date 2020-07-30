@@ -1,5 +1,9 @@
 FROM python:3-alpine
 
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+ENV TZ Europe/Berlin
 ENV CELERYBEAT_SCHEDULE_FILENAME /tmp/celerybeatschedule.db
 
 # prerequirements
@@ -12,4 +16,6 @@ WORKDIR /opt/superdesk/
 COPY ./server /opt/superdesk
 RUN python -m pip install --upgrade pip setuptools wheel
 RUN python -m pip install -U -r requirements.txt
-
+RUN apk add --no-cache tzdata \
+ && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime \
+ && echo "Europe/Berlin" > /etc/timezone
