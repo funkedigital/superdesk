@@ -13,4 +13,52 @@ RUN npm install \
 
 FROM nginx:alpine
 COPY --from=builder /client/dist/ /usr/share/nginx/html/
+ENV SUPERDESK_URL https://superdesk-wr-superdesk-stage.cloud.funkedigital.de/api
+ENV SUPERDESK_WS_URL wss://superdesk-wr-superdesk-stage.cloud.funkedigital.de/ws
+ENV PUBLISHER_URL https://publisher-wr-superdesk-stage.wmn.de
+ENV PUBLISHER_WS_URL wss://publisher-wr-superdesk-stage.wmn.de/ws
+ENV IFRAMELY_KEY ''
+
+RUN sed -i \
+ -e "s/http:\/\/localhost:5000\/api/$(echo $SUPERDESK_URL | sed 's/\//\\\//g')/g" \
+ -e "s/ws:\/\/localhost:5100/$(echo $SUPERDESK_WS_URL | sed 's/\//\\\//g')/g" \
+ -e "s/ws:\/\/0.0.0.0:5100/$(echo $SUPERDESK_WS_URL | sed 's/\//\\\//g')/g" \
+ -e 's/iframely:{key:""}/iframely:{key:"'$IFRAMELY_KEY'"}/g' \
+ /usr/share/nginx/html/app*.js
+
+RUN echo " \
+window.superdeskConfig={ \
+    apps: ['superdesk-publisher'], \
+    publisher: { \
+        protocol: 'https', \
+        tenant: '', \
+        domain: '$PUBLISHER_URL', \
+        wsDomain: '$PUBLISHER_WS_URL', \
+        wsPath: '/ws', \
+        wsPort: '', \
+        base: 'api/v2' \
+    }, \
+    defaultTimezone: 'Europe/Berlin' \
+}; \
+" > /usr/share/nginx/html/config.js
+
+RUN echo ' \
+<!doctype html>\
+<html class="no-js">\
+    <head>\
+    <meta charset="utf-8">\
+    <title>Superdesk</title>\
+    <meta name="description" content="">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">\
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">\
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />\
+    </head>\
+    <body ng-class="config.bodyClass">\
+    <div sd-superdesk-view></div>\
+    <script src="config.js"></script>\
+    <script src="app.bundle.js"></script>\
+    </body>\
+</html>\
+' > /usr/share/nginx/html/index.html
+
 RUN chown -R nginx:www-data /usr/share/nginx/html/
