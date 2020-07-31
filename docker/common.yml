@@ -7,7 +7,7 @@ redis:
   container_name: redis
 
 elastic:
-  image: elasticsearch:2
+  image: elasticsearch:7.7.1
   container_name: elastic
   environment:
     - discovery.type=single-node

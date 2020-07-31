@@ -30,7 +30,10 @@ WORKDIR /opt/superdesk/
 COPY ./docker/nginx.conf /etc/nginx/nginx.conf
 COPY ./docker/superdesk_vhost.conf /etc/nginx/sites-enabled/superdesk.conf
 COPY ./docker/start.sh /opt/superdesk/start.sh
+<<<<<<< HEAD
 COPY ./docker/start-client.sh /opt/superdesk/start-client.sh
+=======
+>>>>>>> 7b0f21cf37dc928080d5d394b85f8db0163ea6c4
 
 # client ports
 EXPOSE 9000
@@ -46,6 +49,18 @@ EXPOSE 5400
 ENV PYTHONUNBUFFERED 1
 ENV C_FORCE_ROOT "False"
 ENV CELERYBEAT_SCHEDULE_FILENAME /tmp/celerybeatschedule.db
+ENV TZ Europe/London
+
+RUN python3 -m pip install --upgrade pip setuptools wheel
+RUN npm install -g n npm grunt-cli && n lts
+
+# install server dependencies
+COPY ./server/requirements.txt /tmp/requirements.txt
+RUN cd /tmp && python3 -m pip install -U -r /tmp/requirements.txt
+
+# install client dependencies
+COPY ./client/package.json ./client/
+RUN cd ./client && npm install
 
 # install server
 COPY ./server /opt/superdesk

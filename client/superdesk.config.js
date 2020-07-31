@@ -42,7 +42,6 @@ module.exports = function(grunt) {
             editorHighlights: true
         },
         workspace: {
-            analytics: true
         },
     };
 };
