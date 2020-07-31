@@ -30,10 +30,7 @@ WORKDIR /opt/superdesk/
 COPY ./docker/nginx.conf /etc/nginx/nginx.conf
 COPY ./docker/superdesk_vhost.conf /etc/nginx/sites-enabled/superdesk.conf
 COPY ./docker/start.sh /opt/superdesk/start.sh
-<<<<<<< HEAD
 COPY ./docker/start-client.sh /opt/superdesk/start-client.sh
-=======
->>>>>>> 7b0f21cf37dc928080d5d394b85f8db0163ea6c4
 
 # client ports
 EXPOSE 9000
