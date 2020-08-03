@@ -11,14 +11,14 @@ ENV PUBLISHER_URL publisher-wr-superdesk-stage.wmn.de
 RUN apk add --no-cache libgcc libstdc++ binutils gmp isl libgomp libmagic libatomic libgphobos mpfr4 mpc1 gcc nghttp2-libs libcurl pcre2 git libjpeg-turbo pkgconf libjpeg-turbo-dev jpeg-dev linux-headers libffi-dev zlib-dev xz-dev libxml2 libxml2-dev libgpg-error libxslt libxslt-dev musl-dev openssl-dev tzdata \
  && pip install dnspython \
  && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime \
- && echo "Europe/Berlin" > /etc/timezone \
+ && echo "Europe/Berlin" > /etc/timezone
 
 WORKDIR /opt/superdesk/
 
 # install server
 COPY ./server /opt/superdesk
 RUN python -m pip install --upgrade pip setuptools wheel \
- && python -m pip install -U -r requirements.txt \
- && RUN sed -i \
+ && python -m pip install -U -r requirements.txt
+RUN sed -i \
  -e "s/publisher-stage.cloud.funkedigital.de/$PUBLISHER_URL/g" \
- server/data/subscribers.json
+ data/subscribers.json
