@@ -1,0 +1,40 @@
+[{
+    "_id": "5cd9aeefa7bd87627c5e0030",
+    "is_active": true,
+    "email": "m.rhein@funkedigital.de",
+    "global_filters": {},
+    "_etag": "c91da609567a2796982410dfbc7a0967147b2e7c",
+    "async": true,
+    "products": [
+        "5d0795cf10e7ed66382aa281"
+    ],
+    
+    "name": "Publisher",
+    "is_targetable": true,
+    
+    "subscriber_type": "all",
+    "api_products": [
+        "5d0795cf10e7ed66382aa281"
+    ],
+    "sequence_num_settings": {
+      "min": 1,
+      "max": 999999
+    },
+    "destinations": [
+      {
+        "name": "publisher-stage.cloud.funkedigital.de",
+        "delivery_type": "http_push",
+        "config": {
+          "secret_token": "xi6toogh3mee7Ohd4aepashi9roquaip",
+          "resource_url": "https://publisher-stage.cloud.funkedigital.de/api/v2/content/push"
+        },
+        "format": "ninjs"
+      }
+    ],
+    "critical_errors": {
+      "10000": true,
+      "11000": true,
+      "13000": true,
+      "14000": true
+    }
+  }]
