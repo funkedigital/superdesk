@@ -11,6 +11,8 @@ redis:
   extends:
     file: common.yml
     service: redis
+  ports:
+    - "6379:6379"
 
 elastic:
   extends:
@@ -19,25 +21,23 @@ elastic:
   ports:
     - "9200:9200"
 
-postfix:
-  extends:
-    file: common.yml
-    service: postfix
-
 superdesk:
   extends:
     file: common.yml
     service: superdesk
   links:
-    - mongodb
-    - redis
-    - elastic
-    - postfix
+   - mongodb
+   - redis
+   - elastic
   environment:
-    - SUPERDESK_RELOAD=True
-    - SUPERDESK_URL=http://localhost:5000/api
-    - SUPERDESK_WS_URL=ws://localhost:5100
-    - SUPERDESK_CLIENT_URL=http://localhost:9000
+   - SUPERDESK_RELOAD=True
+   - SUPERDESK_URL=http://localhost:5000/api
+   - SUPERDESK_WS_URL=ws://localhost:5050
+   - SUPERDESK_CLIENT_URL=http://localhost:9000
+   - MONGO_URI=mongodb://mongodb/superdesk
+   - PUBLICAPI_MONGO_URI=mongodb://mongodb/superdesk_pa
+   - LEGAL_ARCHIVE_URI=mongodb://mongodb/superdesk_la
+   - ARCHIVED_URI=mongodb://mongodb/superdesk_ar
   ports:
     - "5000:5000"
     - "5100:5100"

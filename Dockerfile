@@ -46,6 +46,18 @@ EXPOSE 5400
 ENV PYTHONUNBUFFERED 1
 ENV C_FORCE_ROOT "False"
 ENV CELERYBEAT_SCHEDULE_FILENAME /tmp/celerybeatschedule.db
+ENV TZ Europe/London
+
+RUN python3 -m pip install --upgrade pip setuptools wheel
+RUN npm install -g n npm grunt-cli && n lts
+
+# install server dependencies
+COPY ./server/requirements.txt /tmp/requirements.txt
+RUN cd /tmp && python3 -m pip install -U -r /tmp/requirements.txt
+
+# install client dependencies
+COPY ./client/package.json ./client/
+RUN cd ./client && npm install
 
 # install server
 COPY ./server /opt/superdesk
@@ -59,6 +71,8 @@ COPY ./client /opt/superdesk/client/
 RUN npm install -g npm grunt-cli
 RUN cd ./client && npm install && grunt build
 CMD /opt/superdesk/start-client.sh
+
+RUN cd ./client && grunt build
 
 # copy git revision informations (used in "about" screen)
 COPY .git/HEAD /opt/superdesk/.git/

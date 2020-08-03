@@ -2,6 +2,7 @@
     "name": "superdesk",
     "license": "GPL-3.0",
     "dependencies": {
+         "superdesk-analytics": "tomaskikutis/superdesk-analytics#next",
         "superdesk-core": "superdesk/superdesk-client-core#hotfix/1.33.3",
         "superdesk-publisher": "funkedigital/superdesk-publisher#stage-env"
     }
