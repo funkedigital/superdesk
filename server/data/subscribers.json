@@ -25,7 +25,7 @@
         "name": "publisher-stage.cloud.funkedigital.de",
         "delivery_type": "http_push",
         "config": {
-          "secret_token": "xi6toogh3mee7Ohd4aepashi9roquaip",
+          "secret_token": "Ai2woh2che0faa6feeg0giD8thohLaiz",
           "resource_url": "https://publisher-stage.cloud.funkedigital.de/api/v2/content/push"
         },
         "format": "ninjs"
