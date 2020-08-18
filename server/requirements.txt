@@ -7,4 +7,4 @@ requests>=2.23.0
 xmltodict
 
 -e git+git://github.com/superdesk/superdesk-analytics.git@master#egg=superdesk-analytics
--e git+git://github.com/funkedigital/superdesk-core.git@release/1.33#egg=superdesk-core
+-e git+git://github.com/funkedigital/superdesk-core.git@v1.33.5#egg=superdesk-core
