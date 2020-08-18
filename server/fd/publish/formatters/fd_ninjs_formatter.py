@@ -26,7 +26,7 @@ class FDNINJSFormatter(NewsroomNinjsFormatter):
         #        if option:
         #            ninjs['extra'][option] = True
 
-        if article.get('unique_name'):
+        if 'extra' in ninjs and article.get('unique_name'):
             ninjs['extra']['uniqueName'] = article.get('unique_name').replace('#', '')
 
         # if article.get('body_html'):
