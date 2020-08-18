@@ -19,15 +19,17 @@ class FDNINJSFormatter(NewsroomNinjsFormatter):
     def _transform_to_ninjs(self, article, subscriber, recursive=True):
         ninjs = super()._transform_to_ninjs(article, subscriber, recursive)
         logger.info('formatting the ninjs')
-        #if 'extra' in ninjs and 'subject' in ninjs:
-        #    subjects = article.get('subject', [])
-        #    for x in subjects:
-        #        option = x.get('qcode')
-        #        if option:
-        #            ninjs['extra'][option] = True
-
-        if 'extra' in ninjs and article.get('unique_name'):
-            ninjs['extra']['uniqueName'] = article.get('unique_name').replace('#', '')
+        
+        if 'extra' in ninjs:
+            if 'subject' in ninjs:
+                subjects = article.get('subject', [])
+                for x in subjects:
+                    option = x.get('qcode')
+                    if option:
+                        ninjs['extra'][option] = True
+                    
+            if article.get('unique_name'):
+                ninjs['extra']['uniqueName'] = article.get('unique_name').replace('#', '')
 
         # if article.get('body_html'):
         #     # get the data layer infos
