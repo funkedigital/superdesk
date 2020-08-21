@@ -1,0 +1,17 @@
+[{
+    "_id": "5d0795cf10e7ed66382aa281",
+    "name": "WMN",
+    "codes": "WMN",
+    "product_type": "both",
+    "content_filter": {
+      "filter_type": "permitting"
+    }
+     },{
+    "_id": "5f06db5fbe2e804c8189732a",
+    "content_filter": {
+      "filter_type": "permitting"
+    },
+    "product_type": "both",
+    "name": "WAZ",
+    "codes": "waz"
+  }]
