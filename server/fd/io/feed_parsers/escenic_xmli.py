@@ -48,6 +48,8 @@ class EscenicXMLIFeedParser(XMLFeedParser):
             self.parse_news_identifier(items, xml)
             self.parse_metadata(items, xml)
             self.parse_byline(items, xml)
+            self.parse_slugline(items, xml)
+            self.parse_abstract(items, xml)
             self.parse_news_management(items, xml)
             self.parse_body_html(items, xml)
 
@@ -162,6 +164,21 @@ class EscenicXMLIFeedParser(XMLFeedParser):
     def parse_byline(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.head'))
         items['byline'] = parsed_el.get('byline', 'byline default')
+
+    def parse_abstract(self, items, tree):
+        parsed_el = tree.findall('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.head/hedline/hl2')
+        for x in parsed_el:
+            if x.get('class') == 'deck':
+                items['abstract'] = x.text
+
+    def parse_slugline(self, items, tree):
+        parsed_el = tree.findall('NewsItem/NewsComponent/Metadata/Property')
+        for x in parsed_el:
+            if x.get('FormalName', '') == 'URL':
+                slug = x.get('Value', '').split("/")[-1].rsplit('.', 1)[0]
+                items['slugline'] = slug
+                items['unique_name'] = '#' + slug.partition("-id")[-1] 
+                items['unique_id'] = int(slug.partition("-id")[-1])
 
     def parse_news_identifier(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/Identification/NewsIdentifier'))
