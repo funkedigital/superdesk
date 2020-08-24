@@ -155,8 +155,9 @@ class EscenicXMLIFeedParser(XMLFeedParser):
 
         parsed_media.reverse()  # normally the teaser image is the last element
         try:
-            feature_media = [parsed_media[-1]]
-            self.import_images(items['associations'], 'featuremedia', feature_media[0])
+            feature_media = [parsed_media[0]]
+            if feature_media:
+                self.import_images(items['associations'], 'featuremedia', feature_media[0])
         except IndexError:
             pass
 
