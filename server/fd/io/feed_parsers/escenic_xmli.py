@@ -177,8 +177,8 @@ class EscenicXMLIFeedParser(XMLFeedParser):
             if x.get('FormalName', '') == 'URL':
                 slug = x.get('Value', '').split("/")[-1].rsplit('.', 1)[0]
                 items['slugline'] = slug
-                items['unique_name'] = '#' + slug.partition("-id")[-1] 
-                items['unique_id'] = int(slug.partition("-id")[-1])
+                items['unique_name'] = '#' + slug.split("-id")[-1] 
+                items['unique_id'] = int(slug.split("-id")[-1])
 
     def parse_news_identifier(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/Identification/NewsIdentifier'))
