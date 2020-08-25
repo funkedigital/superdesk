@@ -105,18 +105,23 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         # process inline images
         atts = {}
         if elem.get('class') == 'body' and elem.get('media-type') == 'image':
-            for x in elem:
-                sc = requests.get(x.get('source'))
-                if x.tag == 'media-reference' and x.get('width') == '1080' and sc.status_code == 200:
-                    atts['source'] = x.get('source')
-                    atts['width'] = x.get('width')
-                    atts['height'] = x.get('height')
-                    if x.tag == 'media-caption':
+            for action, x in etree.iterwalk(elem):
+                if x.get('width') and x.get('width') == '940':
+                    #logger.info(x.tag == 'media-reference')
+                    if x.tag == 'media-reference':
+                        sc = requests.get(x.get('source'))
+                        if sc.status_code == 200:
+                            atts['source'] = x.get('source')
+                            atts['width'] = x.get('width')
+                            atts['height'] = x.get('height')
+                if x.tag == 'media-caption':
+                    if len(atts) > 0:
                         atts['media-caption'] = x.text
-                        self.import_images(associations, 'inline' + str(counter), atts)
-                    return "<!-- EMBED START Image {id: " + 'inline' + str(counter) + "} --><figure><img src='" + atts.get('source') + "' alt='" + atts.get('media-caption', '') + "' /><figcaption>" + atts.get('media-caption', '') + "</figcaption></figure><!-- EMBED END Image {id: " + 'inline' + str(counter) + "} -->"
-                else:
-                    return ""
+            if len(atts) > 0:
+                self.import_images(associations, 'editor_' + str(counter), atts)
+                return '<p>&nbsp;</p><!-- EMBED START Image {id: "editor_'+str(counter)+'"} --><figure>    <img src="' + atts.get('source') + '" alt="' + atts.get('media-caption', '') + '" />    <figcaption>' + atts.get('media-caption', '') + '</figcaption></figure><!-- EMBED END Image {id: "editor_'+ str(counter) +'"} --><p>&nbsp;</p>'             
+            else: 
+                return ""
         else:
             return ""
 
