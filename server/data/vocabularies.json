@@ -3096,5 +3096,27 @@
       "all": 1
     },
     "display_name": "paid content options"
+  },
+  {
+    "_id": "waz_channel",
+    "field_type": "text",
+    "items": [],
+    "type": "manageable",
+    "schema": {
+      "name": {},
+      "qcode": {},
+      "parent": {}
+    },
+    "service": {
+      "all": 1
+    },
+    "display_name": "waz_channel",
+    "_deleted": false,
+    "unique_field": "qcode",
+    "tags": [
+      {
+        "text": "Other"
+      }
+    ]
   }
 ]
