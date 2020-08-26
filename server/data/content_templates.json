@@ -23,7 +23,6 @@
     "next_run": null,
     "user": "5cdab6d2ec36e30ccc7255f0",
     "template_name": "news article waz",
-    "template_desks": [],
     "schedule": {
       "is_active": false,
       "time_zone": "Europe/Berlin",
