@@ -708,12 +708,6 @@
         "required": false,
         "section": "header"
       },
-      "paid_content": {
-        "order": 15,
-        "required": false,
-        "section": "header",
-        "sdWidth": "full"
-      },
       "gallery": {
         "showCrops": true,
         "section": "content",
