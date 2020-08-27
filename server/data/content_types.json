@@ -129,6 +129,12 @@
         "enabled": true,
         "nullable": true
       },
+      "kicker": {
+        "type": "text",
+        "required": false,
+        "enabled": true,
+        "nullable": true
+      },
       "videoembed": null,
       "language": null
     },
@@ -276,6 +282,11 @@
       },
       "waz_channel": {
         "order": 17,
+        "section": "header",
+        "required": false
+      },
+      "kicker": {
+        "order": 18,
         "section": "header",
         "required": false
       },
