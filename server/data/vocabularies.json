@@ -3118,5 +3118,27 @@
         "text": "Other"
       }
     ]
+  },
+  {
+    "_id": "kicker",
+    "field_type": "text",
+    "items": [],
+    "type": "manageable",
+    "schema": {
+      "name": {},
+      "qcode": {},
+      "parent": {}
+    },
+    "service": {
+      "all": 1
+    },
+    "display_name": "kicker",
+    "_deleted": false,
+    "unique_field": "qcode",
+    "tags": [
+      {
+        "text": "Other"
+      }
+    ]
   }
 ]
