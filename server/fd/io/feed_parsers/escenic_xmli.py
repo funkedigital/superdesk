@@ -52,7 +52,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                     'uri': None,
                     'parent': None,
                     'name': 'author test',
-                    'role': None,
+                    'role': 'writer',
                     'jobtitle': None,
                     'avatar_url': 'https://i0.wp.com/softwareengineeringdaily.com/wp-content/uploads/2020/08/Tune.png'
                 }]
