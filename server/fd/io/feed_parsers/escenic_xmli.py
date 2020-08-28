@@ -45,21 +45,6 @@ class EscenicXMLIFeedParser(XMLFeedParser):
          
         try:
 
-            
-
-
-            author = [{
-                  #  'uri': None,
-                   # 'parent': None,
-                    'name': 'author test',
-                    'role': 'writer',
-                    #'jobtitle': None,
-                    'avatar_url': 'https://i0.wp.com/softwareengineeringdaily.com/wp-content/uploads/2020/08/Tune.png'
-                }]
-
-            items['authors'] = author
-
-
             self.parse_newslines(items, xml)
             self.parse_feature_media(items, xml)
             self.parse_news_identifier(items, xml)
@@ -69,8 +54,6 @@ class EscenicXMLIFeedParser(XMLFeedParser):
             self.parse_abstract(items, xml)
             self.parse_news_management(items, xml)
             self.parse_body_html(items, xml)
-
-           
 
             return items
         except Exception as ex:
@@ -203,7 +186,6 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         parsed_el = self.parse_elements(tree.find('NewsItem/Identification/NewsIdentifier'))
         items['guid'] = parsed_el['PublicIdentifier']
         items['version'] = parsed_el['RevisionId']
-        # items['ingest_provider_sequence'] = parsed_el['ProviderId'] set by superdesk.io.ingest.IngestService.set_ingest_provider_sequence if None
         items['source_id'] = parsed_el['NewsItemId']  # for internal link lookup
         items['data'] = parsed_el['DateId']
 
@@ -211,14 +193,8 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsManagement'))
         if parsed_el.get('NewsItemType') != None:
             items['newsitemtype'] = parsed_el['NewsItemType']['FormalName']
-        # if parsed_el.get('ThisRevisionCreated') != None:
-        #     items['versioncreated'] = self.datetime(parsed_el['ThisRevisionCreated'])
         if parsed_el.get('FirstCreated') != None:
             items['firstcreated'] = self.datetime(parsed_el['FirstCreated'])
-        
-        # TODO siehe L. 129
-        #if parsed_el.get('Status') != None:
-        #    items['pubstatus'] = (parsed_el['Status']['FormalName']).lower()
 
     def parse_newslines(self, items, tree):
         parsed_el = self.parse_elements(tree.find('NewsItem/NewsComponent/NewsLines'))
@@ -247,6 +223,18 @@ class EscenicXMLIFeedParser(XMLFeedParser):
 
             elif i.get('FormalName', '') == 'Channel':
                 items['extra'].update( {'waz_channel' : i.get('Value', '')} )
+           
+            elif i.get('FormalName', '') == 'Author':
+                author = [{
+                    #'uri': None,
+                    #'parent': None,
+                    'name': i.get('Value', ''),
+                    'role': 'writer',
+                    #'jobtitle': None,
+                    #'avatar_url': 'https://i0.wp.com/softwareengineeringdaily.com/wp-content/uploads/2020/08/Tune.png'
+                }]
+
+                items['authors'] = author
 
             elif i.get('FormalName', '') == 'SeoHeadline':
                 items['extra'].update( {'seo_title' : i.get('Value', '')} )
