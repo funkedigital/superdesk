@@ -42,8 +42,12 @@ class EscenicXMLIFeedParser(XMLFeedParser):
 
     def parse(self, xml, provider=None):
         items = {'associations': {}}
-
+         
         try:
+
+            
+
+
             author = [{
                     'uri': None,
                     'parent': None,
@@ -54,6 +58,8 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                 }]
 
             items['authors'] = author
+
+
             self.parse_newslines(items, xml)
             self.parse_feature_media(items, xml)
             self.parse_news_identifier(items, xml)
@@ -63,6 +69,8 @@ class EscenicXMLIFeedParser(XMLFeedParser):
             self.parse_abstract(items, xml)
             self.parse_news_management(items, xml)
             self.parse_body_html(items, xml)
+
+           
 
             return items
         except Exception as ex:
