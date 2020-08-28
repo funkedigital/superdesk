@@ -49,11 +49,11 @@ class EscenicXMLIFeedParser(XMLFeedParser):
 
 
             author = [{
-                    'uri': None,
-                    'parent': None,
+                  #  'uri': None,
+                   # 'parent': None,
                     'name': 'author test',
                     'role': 'writer',
-                    'jobtitle': None,
+                    #'jobtitle': None,
                     'avatar_url': 'https://i0.wp.com/softwareengineeringdaily.com/wp-content/uploads/2020/08/Tune.png'
                 }]
 
