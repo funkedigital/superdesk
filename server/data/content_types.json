@@ -117,12 +117,6 @@
         "type": "list"
       },
       "place": null,
-      "seo_description": {
-        "nullable": true,
-        "required": false,
-        "enabled": true,
-        "type": "text"
-      },
       "waz_channel": {
         "type": "text",
         "required": false,
@@ -275,11 +269,6 @@
         "order": 2
       },
       "place": null,
-      "seo_description": {
-        "order": 8,
-        "section": "content",
-        "required": false
-      },
       "waz_channel": {
         "order": 17,
         "section": "header",
