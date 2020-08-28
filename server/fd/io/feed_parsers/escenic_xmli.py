@@ -42,7 +42,18 @@ class EscenicXMLIFeedParser(XMLFeedParser):
 
     def parse(self, xml, provider=None):
         items = {'associations': {}}
+
         try:
+            author = {
+                    'uri': None,
+                    'parent': None,
+                    'name': 'author test',
+                    'role': None,
+                    'jobtitle': None,
+                    'avatar_url': 'https://i0.wp.com/softwareengineeringdaily.com/wp-content/uploads/2020/08/Tune.png'
+                }
+
+            items['authors'] = author
             self.parse_newslines(items, xml)
             self.parse_feature_media(items, xml)
             self.parse_news_identifier(items, xml)
