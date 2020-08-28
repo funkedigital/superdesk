@@ -106,8 +106,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         atts = {}
         if elem.get('class') == 'body' and elem.get('media-type') == 'image':
             for action, x in etree.iterwalk(elem):
-                if x.get('width') and x.get('width') == '940':
-                    #logger.info(x.tag == 'media-reference')
+                if x.get('width') and x.get('width') == '940' and len(x.get('source')) > 0:
                     if x.tag == 'media-reference':
                         sc = requests.get(x.get('source'))
                         if sc.status_code == 200:
@@ -153,15 +152,10 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         parsed_media = self.media_parser(
             tree.findall('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content/media/'))
 
-        # keep one image, if no teaser image found (maybe when video as teaser)
-        # TODO clarify that case
-        
-        #fallback_image = parsed_media[0]
-
         parsed_media.reverse()  # normally the teaser image is the last element
         try:
             feature_media = [parsed_media[0]]
-            if feature_media:
+            if bool(feature_media[0]):
                 self.import_images(items['associations'], 'featuremedia', feature_media[0])
         except IndexError:
             pass
@@ -235,8 +229,16 @@ class EscenicXMLIFeedParser(XMLFeedParser):
             elif i.get('FormalName', '') == 'Channel':
                 items['extra'].update( {'waz_channel' : i.get('Value', '')} )
 
+            elif i.get('FormalName', '') == 'SeoHeadline':
+                items['extra'].update( {'seo_title' : i.get('Value', '')} )
+
             elif i.get('FormalName', '') != '':
                 items[(i.get('FormalName')).lower()] = i.get('Value', '')
+        
+        parsed_el = tree.findall('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.head/hedline/hl2')
+        for x in parsed_el:
+            if x.get('class') == 'kicker' and x.text:
+                items['extra'].update( {'seo_title' : x.text} )
 
         if len(sub) != 0:
             items['subject'] = sub
