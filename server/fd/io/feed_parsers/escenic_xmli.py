@@ -44,14 +44,14 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         items = {'associations': {}}
 
         try:
-            author = {
+            author = [{
                     'uri': None,
                     'parent': None,
                     'name': 'author test',
                     'role': None,
                     'jobtitle': None,
                     'avatar_url': 'https://i0.wp.com/softwareengineeringdaily.com/wp-content/uploads/2020/08/Tune.png'
-                }
+                }]
 
             items['authors'] = author
             self.parse_newslines(items, xml)
