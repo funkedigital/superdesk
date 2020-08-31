@@ -156,9 +156,13 @@ class EscenicXMLIFeedParser(XMLFeedParser):
 
     def parse_feature_media(self, items, tree):
         parsed_media = self.media_parser(
-            tree.findall('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content/media/'))
+            tree.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content/media'))
+        feature_media = parsed_media[0]
 
-        parsed_media.reverse()  # normally the teaser image is the last element
+        for media in parsed_media:
+            if int(media['width']) > int(feature_media['width']):
+                feature_media = media
+        
         try:
             feature_media = [parsed_media[0]]
             if bool(feature_media[0]):
