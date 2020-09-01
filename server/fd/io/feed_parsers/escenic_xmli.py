@@ -239,7 +239,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                     'name': i.get('Value', ''),
                     'role': 'writer',
                     #'jobtitle': None,
-                    #'avatar_url': 'https://i0.wp.com/softwareengineeringdaily.com/wp-content/uploads/2020/08/Tune.png'
+                    'avatar_url': 'https://api.adorable.io/avatars/285/abott@adorable.png'
                 }]
 
                 items['authors'] = author
