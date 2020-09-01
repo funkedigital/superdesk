@@ -62,7 +62,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
     def import_images(self, associations, name, attributes):
         """ import images to mongo """
       
-        href = attributes.get('source', '').replace("https://","https://nrw:Nrw!@")
+        href = attributes.get('source', '')
 
         description = attributes.get('alternate-text', 'picture description')
         if len(description) == 0:
