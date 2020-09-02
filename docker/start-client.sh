@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python3 -m venv env && . env/bin/activate && pip install -Ur dev-requirements.txt && . activate.sh &&
+python3 -m venv env && . env/bin/activate && pip install -Ur dev-requirements.txt --use-feature=2020-resolver && . activate.sh
 
 # find the config filename and replace it by our sd config, based on environment
 cd /opt/superdesk/client &&
