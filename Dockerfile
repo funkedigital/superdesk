@@ -65,5 +65,5 @@ COPY .git/HEAD /opt/superdesk/.git/
 COPY .git/refs/ /opt/superdesk/.git/refs/
 
 # fix for mongodb+srv urls
-RUN pip install dnspython
+#RUN pip install dnspython
 
