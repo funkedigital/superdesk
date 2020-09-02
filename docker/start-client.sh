@@ -1,5 +1,7 @@
 #!/bin/bash
 
+python3 -m venv env && . env/bin/activate && pip install -Ur dev-requirements.txt && . activate.sh &&
+
 # find the config filename and replace it by our sd config, based on environment
 cd /opt/superdesk/client &&
 find ./dist/ -maxdepth 1 -name "config.*.js" -exec cp "/opt/superdesk/client/$SUPERDESK_CLIENT_CONFIG_FILE" {} \;
