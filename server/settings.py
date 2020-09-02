@@ -32,29 +32,7 @@ if init_data.exists():
     INIT_DATA_PATH = init_data
 
 INSTALLED_APPS.extend([
-    #'analytics',
-
-    'superdesk.io',
-    'superdesk.io.feeding_services',
-    'superdesk.io.feed_parsers',
-    'superdesk.io.subjectcodes',
-    'superdesk.io.iptc',
-    'superdesk.publish',
-    'superdesk.commands',
-
-    'apps.io',
-    'apps.io.feeding_services',
-    'apps.publish',
     'apps.languages',
-    'apps.publish.formatters',
-    'apps.languages',
-
-    'fd.io',
-    'fd.rep',
-    'fd.commands',
-    'fd.publish.formatters',
-    'fd.io.feed_parsers',
-    'fd.io.feeding_services'
 ])
 
 RENDITIONS = {
