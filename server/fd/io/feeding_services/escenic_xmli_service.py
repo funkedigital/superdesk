@@ -63,10 +63,10 @@ class EscenicXMLIFeedingService(HTTPFeedingServiceBase):
         data = xmltodict.parse(response.content)
         items = []
         urls = data['urlset']['url']
-        for i in urls[:500]:
+        for i in urls[:15]:
             u = i.get('loc', '')
             if u != '':
-                url = u.replace('.html', '.xmli')
+                url = u.replace('.html', '.xmli?config=rss_superdesk_import_xmli')
                 print(url)
                 req = requests.get(url, auth=('nrw', 'Nrw!'))
                 if req.status_code == 200:
