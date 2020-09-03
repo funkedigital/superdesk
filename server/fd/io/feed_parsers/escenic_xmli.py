@@ -112,7 +112,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         atts = {}
         if elem.get('class') == 'body' and elem.get('media-type') == 'image':
             for action, x in etree.iterwalk(elem):
-                if x.get('width') and x.get('width') == '940' and len(x.get('source')) > 0:
+                if x.get('width') and ( x.get('width') == '940' or x.get('width') == '320' ) and len(x.get('source')) > 0:
                     if x.tag == 'media-reference':
                         sc = requests.get(x.get('source'))
                         if sc.status_code == 200:
@@ -138,8 +138,9 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                 for br in el.xpath('.'):
                     inline_img += 1
                     elem = self.import_media_tag(br, items['associations'], inline_img)
-                    br.tail = elem + br.tail
-                    br.drop_tree()
+                    if len(elem) != 0:
+                        br.tail = elem + br.tail
+                        br.drop_tree()
         return etree.tostring(root)
 
     def parse_body_html(self, items, tree):
@@ -162,9 +163,8 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         for media in parsed_media:
             if int(media['width']) > int(feature_media['width']):
                 feature_media = media
-        
         try:
-            feature_media = [parsed_media[0]]
+            feature_media = [feature_media]
             if bool(feature_media[0]):
                 self.import_images(items['associations'], 'featuremedia', feature_media[0])
         except IndexError:
@@ -253,7 +253,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         parsed_el = tree.findall('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.head/hedline/hl2')
         for x in parsed_el:
             if x.get('class') == 'kicker' and x.text:
-                items['extra'].update( {'seo_title' : x.text} )
+                items['extra'].update( {'kicker' : x.text} )
 
         if len(sub) != 0:
             items['subject'] = sub
