@@ -83,24 +83,28 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                     'width': attributes.get('width', ''),
                     'height': attributes.get('height', ''),
                     'mimetype': 'image/jpeg',
+                    "CropTop": 0
                 },
                 'viewImage': {
                     'href': href,
                     'width': attributes.get('width', ''),
                     'height': attributes.get('height', ''),
                     'mimetype': 'image/jpeg',
+                    "CropTop": 0
                 },
                 'thumbnail': {
                     'href': href,
                     'width': attributes.get('width', ''),
                     'height': attributes.get('height', ''),
                     'mimetype': 'image/jpeg',
+                    "CropTop": 0
                 },
                 'original': {
                     'href': href,
                     'width': attributes.get('width', ''),
                     'height': attributes.get('height', ''),
                     'mimetype': 'image/jpeg',
+                    "CropTop": 0
                 }
             },
         }
@@ -112,7 +116,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         atts = {}
         if elem.get('class') == 'body' and elem.get('media-type') == 'image':
             for action, x in etree.iterwalk(elem):
-                if x.get('width') and ( x.get('width') == '940' or x.get('width') == '320' ) and len(x.get('source')) > 0:
+                if x.get('width') and len(x.get('source')) > 0:
                     if x.tag == 'media-reference':
                         sc = requests.get(x.get('source'))
                         if sc.status_code == 200:
@@ -134,13 +138,13 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         root = lxml.html.fromstring(xml)
         inline_img = 0
         for action, el in etree.iterwalk(root):
-            if el.tag == 'media':
+            # process inline images and remove them from the tree
+            if el.tag == 'media' and el.get('media-type') == 'image' and el.get('class') == 'body':
                 for br in el.xpath('.'):
                     inline_img += 1
                     elem = self.import_media_tag(br, items['associations'], inline_img)
-                    if len(elem) != 0:
-                        br.tail = elem + br.tail
-                        br.drop_tree()
+                    br.tail = elem + br.tail
+                    br.drop_tree()
         return etree.tostring(root)
 
     def parse_body_html(self, items, tree):
@@ -158,17 +162,18 @@ class EscenicXMLIFeedParser(XMLFeedParser):
     def parse_feature_media(self, items, tree):
         parsed_media = self.media_parser(
             tree.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content/media'))
-        feature_media = parsed_media[0]
+        if parsed_media[0]:
+            feature_media = parsed_media[0]
 
-        for media in parsed_media:
-            if int(media['width']) > int(feature_media['width']):
-                feature_media = media
-        try:
-            feature_media = [feature_media]
-            if bool(feature_media[0]):
-                self.import_images(items['associations'], 'featuremedia', feature_media[0])
-        except IndexError:
-            pass
+            for media in parsed_media:
+                if int(media['width']) > int(feature_media['width']):
+                    feature_media = media
+            try:
+                feature_media = [feature_media]
+                if bool(feature_media[0]):
+                    self.import_images(items['associations'], 'featuremedia', feature_media[0])
+            except IndexError:
+                pass
 
 
     def parse_byline(self, items, tree):
@@ -260,11 +265,12 @@ class EscenicXMLIFeedParser(XMLFeedParser):
 
     def media_parser(self, tree):
         items = []
-        for item in tree:
-            if item.text is None:
-                # read the attribute for the items
-                if item.tag != 'HeadLine':
-                    items.append(item.attrib)
+        if tree is not None:
+            for item in tree:
+                if item.text is None:
+                    # read the attribute for the items
+                    if item.tag != 'HeadLine':
+                        items.append(item.attrib)
         return items
 
     def parse_elements(self, tree):
