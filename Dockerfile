@@ -51,6 +51,8 @@ ENV CELERYBEAT_SCHEDULE_FILENAME /tmp/celerybeatschedule.db
 COPY ./server /opt/superdesk
 RUN python3 -m pip install --upgrade pip setuptools wheel
 RUN python3 -m pip install -U -r requirements.txt
+RUN python3 -m pip install kombu -U
+
 
 CMD /opt/superdesk/start.sh
 
@@ -63,3 +65,7 @@ CMD /opt/superdesk/start-client.sh
 # copy git revision informations (used in "about" screen)
 COPY .git/HEAD /opt/superdesk/.git/
 COPY .git/refs/ /opt/superdesk/.git/refs/
+
+# fix for mongodb+srv urls
+RUN pip install dnspython
+

@@ -1,7 +1,8 @@
 #!/bin/bash
-
+cd /opt/superdesk/ &&
+python3 -m venv env && . env/bin/activate && pip install -Ur requirements.txt && . activate.sh
 # find the config filename and replace it by our sd config, based on environment
-cd /opt/superdesk/client &&
+cd /opt/superdesk/client 
 #rm -rf ./dist/ ./node_modules/ &&
 #npm install &&
 #grunt build &&
