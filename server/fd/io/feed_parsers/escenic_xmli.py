@@ -156,7 +156,21 @@ class EscenicXMLIFeedParser(XMLFeedParser):
 
         # transform the media elements
         body_xml = self.parse_media(items, body_xml)
-        items['body_html'] = html.unescape(body_xml.decode("utf-8"))
+        body_html = html.unescape(body_xml.decode("utf-8"))
+        #remove spaces betwen tags
+        body_html = re.sub(">\s*<","><",body_html)
+        # remove p tags after media
+        body_html = body_html.replace('</media></p>', '</media>')
+        #add p tag before the media to wrap the title
+        body_html = body_html.replace('<media class', '</p><media class')
+        body_html= body_html.replace('alternate-text', 'data-alternate-text')
+        body_html = body_html.replace('hl2', 'h2')
+        body_html = body_html.replace('hl3', 'h2')
+        body_html = body_html.replace('hl4', 'h2')
+        body_html = body_html.replace('hl5', 'h2')
+        body_html = body_html.replace('hl6', 'h2')
+
+        items['body_html'] = body_html
         items['pubstatus'] = 'usable'
 
     def parse_feature_media(self, items, tree):
