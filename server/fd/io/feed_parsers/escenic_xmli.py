@@ -13,6 +13,7 @@ import logging
 import lxml.html
 import html
 import requests
+import re
 
 from flask import current_app as app
 from superdesk.errors import ParserError
@@ -61,56 +62,81 @@ class EscenicXMLIFeedParser(XMLFeedParser):
 
     def import_images(self, associations, name, attributes):
         """ import images to mongo """
-      
         href = attributes.get('source', '')
+        sc = requests.get(href)
 
-        description = attributes.get('alternate-text', 'picture description')
-        if len(description) == 0:
-            description = 'picture description'
-            
-        associations[name] = {
-            'type': 'picture',
-            'guid': generate_tag_from_url(
-                attributes.get('source', '')),
-            'headline': attributes.get('headline', 'picture'),
-            'alt_text': attributes.get('todo', 'alt text'),
-            'creditline': attributes.get('copyright', 'picture'),
-            'description_text': description,
-            'mimetype': 'image/jpeg',
-            'renditions': {
-                'baseImage': {
-                    'href': href,
-                    'width': attributes.get('width', ''),
-                    'height': attributes.get('height', ''),
-                    'mimetype': 'image/jpeg',
-                    "CropTop": 0
+        if sc.status_code == 200:
+            description = attributes.get('alternate-text', 'picture description')
+            if len(description) == 0:
+                description = 'picture description'
+                
+            associations[name] = {
+                'type': 'picture',
+                'guid': generate_tag_from_url(
+                    attributes.get('source', '')),
+                'headline': attributes.get('headline', 'picture'),
+                'alt_text': attributes.get('alt-text', 'alt text'),
+                'creditline': attributes.get('copyright', 'picture'),
+                'description_text': description,
+                'mimetype': 'image/jpeg',
+                'renditions': {
+                    'baseImage': {
+                        'href': href,
+                        'width': attributes.get('width', ''),
+                        'height': attributes.get('height', ''),
+                        'mimetype': 'image/jpeg',
+                        "CropTop": 0
+                    },
+                    'viewImage': {
+                        'href': href,
+                        'width': attributes.get('width', ''),
+                        'height': attributes.get('height', ''),
+                        'mimetype': 'image/jpeg',
+                        "CropTop": 0
+                    },
+                    'thumbnail': {
+                        'href': href,
+                        'width': attributes.get('width', ''),
+                        'height': attributes.get('height', ''),
+                        'mimetype': 'image/jpeg',
+                        "CropTop": 0
+                    },
+                    'original': {
+                        'href': href,
+                        'width': attributes.get('width', ''),
+                        'height': attributes.get('height', ''),
+                        'mimetype': 'image/jpeg',
+                        "CropTop": 0
+                    }
                 },
-                'viewImage': {
-                    'href': href,
-                    'width': attributes.get('width', ''),
-                    'height': attributes.get('height', ''),
-                    'mimetype': 'image/jpeg',
-                    "CropTop": 0
-                },
-                'thumbnail': {
-                    'href': href,
-                    'width': attributes.get('width', ''),
-                    'height': attributes.get('height', ''),
-                    'mimetype': 'image/jpeg',
-                    "CropTop": 0
-                },
-                'original': {
-                    'href': href,
-                    'width': attributes.get('width', ''),
-                    'height': attributes.get('height', ''),
-                    'mimetype': 'image/jpeg',
-                    "CropTop": 0
-                }
-            },
-        }
+            }
+
+    def import_gallery(self, elem, name, associations):
+        """ import the media gallery """
+        # process inline images
+        atts = {}
+        counter = 0
+        if elem.get('class') == 'body' and ( elem.get('media-type') == 'image' or elem.get('media-type') == 'gallery'):
+            for action, x in etree.iterwalk(elem):
+                if x.tag == 'media-reference':
+                        counter +=1
+                        sc = requests.get(x.get('source'))
+                        if sc.status_code == 200:
+                            atts['source'] = x.get('source')
+                            atts['width'] = x.get('width')
+                            atts['height'] = x.get('height')
+                            atts['alt-text'] = x.get('alternate-text', 'alt')
+                            atts['copyright'] = x.get('copyright', 'copyright')
+
+                if x.tag == 'media-caption':
+                    if len(atts) > 0:
+                        atts['media-caption'] = x.text
+                
+                if len(atts) > 0:
+                    self.import_images(associations, name + str(counter), atts)
 
 
-    def import_media_tag(self, elem, associations, counter):
+    def import_media_tag(self, name, elem, associations, counter):
         """ import the media tags """
         # process inline images
         atts = {}
@@ -123,6 +149,8 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                             atts['source'] = x.get('source')
                             atts['width'] = x.get('width')
                             atts['height'] = x.get('height')
+                            atts['alt-text'] = x.get('alternate-text', 'alt')
+                            atts['copyright'] = x.get('copyright', 'copyright')
                 if x.tag == 'media-caption':
                     if len(atts) > 0:
                         atts['media-caption'] = x.text
@@ -133,6 +161,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                 return ""
         else:
             return ""
+         
 
     def parse_media(self, items, xml):
         root = lxml.html.fromstring(xml)
@@ -142,8 +171,13 @@ class EscenicXMLIFeedParser(XMLFeedParser):
             if el.tag == 'media' and el.get('media-type') == 'image' and el.get('class') == 'body':
                 for br in el.xpath('.'):
                     inline_img += 1
-                    elem = self.import_media_tag(br, items['associations'], inline_img)
+                    elem = self.import_media_tag('editor_', br, items['associations'], inline_img)
                     br.tail = elem + br.tail
+                    br.drop_tree()
+            if el.tag == 'media' and el.get('media-type') == 'gallery' and el.get('class') == 'body':
+                for br in el.xpath('.'):
+                    elem = self.import_gallery(br, 'gallery--', items['associations'])
+                    #br.tail = elem + br.tail
                     br.drop_tree()
         return etree.tostring(root)
 
@@ -161,7 +195,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         body_html = re.sub(">\s*<","><",body_html)
         # remove p tags after media
         body_html = body_html.replace('</media></p>', '</media>')
-        #add p tag before the media to wrap the title
+        # add p tag before the media to wrap the title
         body_html = body_html.replace('<media class', '</p><media class')
         body_html= body_html.replace('alternate-text', 'data-alternate-text')
         body_html = body_html.replace('hl2', 'h2')
@@ -171,12 +205,13 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         body_html = body_html.replace('hl6', 'h2')
 
         items['body_html'] = body_html
+       
         items['pubstatus'] = 'usable'
 
     def parse_feature_media(self, items, tree):
         parsed_media = self.media_parser(
             tree.find('NewsItem/NewsComponent/ContentItem/DataContent/nitf/body/body.content/media'))
-        if parsed_media[0]:
+        try:
             feature_media = parsed_media[0]
 
             for media in parsed_media:
@@ -188,6 +223,8 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                     self.import_images(items['associations'], 'featuremedia', feature_media[0])
             except IndexError:
                 pass
+        except IndexError:
+            pass
 
 
     def parse_byline(self, items, tree):
