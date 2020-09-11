@@ -85,28 +85,44 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                         'width': attributes.get('width', ''),
                         'height': attributes.get('height', ''),
                         'mimetype': 'image/jpeg',
-                        "CropTop": 0
+                        "CropTop": 0,
+                        "poi": {
+                            "y": 328,
+                            "x": 124
+                        },
                     },
                     'viewImage': {
                         'href': href,
                         'width': attributes.get('width', ''),
                         'height': attributes.get('height', ''),
                         'mimetype': 'image/jpeg',
-                        "CropTop": 0
+                        "CropTop": 0,
+                        "poi": {
+                            "y": 328,
+                            "x": 124
+                        },
                     },
                     'thumbnail': {
                         'href': href,
                         'width': attributes.get('width', ''),
                         'height': attributes.get('height', ''),
                         'mimetype': 'image/jpeg',
-                        "CropTop": 0
+                        "CropTop": 0,
+                        "poi": {
+                            "y": 328,
+                            "x": 124
+                        },
                     },
                     'original': {
                         'href': href,
                         'width': attributes.get('width', ''),
                         'height': attributes.get('height', ''),
                         'mimetype': 'image/jpeg',
-                        "CropTop": 0
+                        "CropTop": 0,
+                        "poi": {
+                            "y": 328,
+                            "x": 124
+                        },
                     }
                 },
             }
@@ -206,8 +222,10 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         body_html = body_html.replace('hl4', 'h2')
         body_html = body_html.replace('hl5', 'h2')
         body_html = body_html.replace('hl6', 'h2')
-        body_html = re.sub("<[^>/][^>]*></[^>]*>","",body_html)
-        body_html = re.sub("<[^>/][^>]*>&nbsp;</[^>]*>","",body_html)
+        body_html = re.sub("<span.*?></span>","",body_html)
+        body_html = re.sub("<p.*?></p>","",body_html)
+        body_html = re.sub("<figcaption.*?></figcaption>","",body_html)
+        body_html = re.sub("<p>&nbsp;</p>","",body_html)
 
         items['body_html'] = body_html
        
