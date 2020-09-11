@@ -176,8 +176,11 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                     br.drop_tree()
             if el.tag == 'media' and el.get('media-type') == 'gallery' and el.get('class') == 'body':
                 for br in el.xpath('.'):
-                    elem = self.import_gallery(br, 'gallery--', items['associations'])
+                    self.import_gallery(br, 'gallery--', items['associations'])
                     #br.tail = elem + br.tail
+                    br.drop_tree()
+            if el.tag == 'media' and el.get('class') == 'teaser':
+                for br in el.xpath('.'):
                     br.drop_tree()
         return etree.tostring(root)
 
@@ -223,8 +226,8 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                     self.import_images(items['associations'], 'featuremedia', feature_media[0])
             except IndexError:
                 pass
-        except IndexError:
-            pass
+        except Exception as e:
+            logger.info(e)
 
 
     def parse_byline(self, items, tree):
