@@ -222,7 +222,11 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         body_html = body_html.replace('hl4', 'h2')
         body_html = body_html.replace('hl5', 'h2')
         body_html = body_html.replace('hl6', 'h2')
-
+        body_html = re.sub("<p>\s*</p>","",body_html)
+        body_html = re.sub("<span>\s*</span>","",body_html)
+        body_html = re.sub("<figcaption>\s*</figcaption>","",body_html)
+        body_html = re.sub("<[^>/][^>]*>&nbsp;</[^>]*>","",body_html)
+        
         items['body_html'] = body_html
        
         items['pubstatus'] = 'usable'
