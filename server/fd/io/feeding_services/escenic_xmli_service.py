@@ -13,12 +13,14 @@ import re
 import xmltodict
 from lxml import etree
 import requests
+import logging
 
 from superdesk.errors import IngestApiError, ParserError
 from superdesk.io.registry import register_feeding_service, register_feeding_service_parser
 from superdesk.io.feeding_services.http_base_service import HTTPFeedingServiceBase
 from fd.io.feed_parsers.escenic_xmli import EscenicXMLIFeedParser
 
+logger = logging.getLogger(__name__)
 
 class EscenicXMLIFeedingService(HTTPFeedingServiceBase):
     """
@@ -53,8 +55,10 @@ class EscenicXMLIFeedingService(HTTPFeedingServiceBase):
 
         try:
             parsed_items = self._fetch_data()
-        except Exception as ex:
-            raise ParserError.parseMessageError(ex, provider, data=parsed_items)
+        #except Exception as ex:
+        #    raise ParserError.parseMessageError(ex, provider, data=parsed_items)
+        except Exception as e:
+            logger.info(e)
         return [parsed_items]
 
     def _fetch_data(self):
@@ -63,7 +67,7 @@ class EscenicXMLIFeedingService(HTTPFeedingServiceBase):
         data = xmltodict.parse(response.content)
         items = []
         urls = data['urlset']['url']
-        for i in urls[:15]:
+        for i in urls[:500]:
             u = i.get('loc', '')
             if u != '':
                 url = u.replace('.html', '.xmli?config=rss_superdesk_import_xmli')
