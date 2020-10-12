@@ -3,6 +3,6 @@
     "license": "GPL-3.0",
     "dependencies": {
         "superdesk-core": "^1.30",
-        "superdesk-publisher": "funkedigital/superdesk-publisher#stage-env"
+        "superdesk-publisher": "superdesk/superdesk-publisher#master"
     }
 }
