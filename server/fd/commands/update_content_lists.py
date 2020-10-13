@@ -49,7 +49,7 @@ class UpdateContentLists(superdesk.Command):
                 url = publisher_domain + '/api/v2/content/lists/' + str(b['id'])
                 payload = {'filters': b['filters']}
                 headers = {'Authorization': 'Basic ' + token}
-                requests.post(url, json=json.dumps(payload), headers=head)
+                requests.patch(url, json=json.dumps(payload), headers=head)
         logger.info('content lists are updated')
         unlock(lock_name)
 
