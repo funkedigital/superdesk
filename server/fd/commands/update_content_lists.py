@@ -43,13 +43,13 @@ class UpdateContentLists(superdesk.Command):
         if not lock(lock_name, expire=610):
             logger.info('{} Updating Content List task is already running')
             return
-         req = requests.get(publisher_domain + '/api/v2/content/lists/?limit=99999', headers={'Authorization': 'Basic ' + token})
-         if req.status_code == 200:
-             for b in req.json()['_embedded']['_items']:
-                 url = publisher_domain + '/api/v2/content/lists/' + str(b['id'])
-                 payload = {'filters': b['filters']}
-                 headers = {'Authorization': 'Basic ' + token}
-                 requests.patch(url, payload, headers)
+        req = requests.get(publisher_domain + '/api/v2/content/lists/?limit=99999', headers={'Authorization': 'Basic ' + token})
+        if req.status_code == 200:
+            for b in req.json()['_embedded']['_items']:
+                url = publisher_domain + '/api/v2/content/lists/' + str(b['id'])
+                payload = {'filters': b['filters']}
+                headers = {'Authorization': 'Basic ' + token}
+                requests.patch(url, payload, headers)
         logger.info('content lists are updated')
         unlock(lock_name)
 
