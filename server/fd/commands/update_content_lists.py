@@ -47,9 +47,9 @@ class UpdateContentLists(superdesk.Command):
         if req.status_code == 200:
             for b in req.json()['_embedded']['_items']:
                 url = publisher_domain + '/api/v2/content/lists/' + str(b['id'])
-                payload = {'filters': b['filters']}
+                payload = {'filters': json.dumps(b['filters'])}
                 headers = {'Authorization': 'Basic ' + token}
-                requests.patch(url, json=json.dumps(payload), headers=head)
+                requests.patch(url, payload, headers=head)
         logger.info('content lists are updated')
         unlock(lock_name)
 
