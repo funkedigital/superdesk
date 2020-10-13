@@ -9,6 +9,7 @@
 # at https://www.sourcefabric.org/superdesk/license
 
 from .resend_all import ResendAll  # noqa
+from .update_content_lists import UpdateContentLists  # noqa
 from superdesk.celery_app import celery
 from superdesk.default_settings import celery_queue
 from datetime import timedelta
@@ -18,4 +19,17 @@ logger = logging.getLogger(__name__)
 
 
 def init_app(app):
-    pass
+    app.config['CELERY_TASK_ROUTES']['fd.commands.updatecl'] = {
+                'queue': celery_queue('expiry'),
+                'routing_key': 'expiry.updatecl'
+            }
+
+    app.config['CELERY_BEAT_SCHEDULE']['planning:updatecl'] = {
+                'task': 'fd.commands.updatecl',
+                'schedule': timedelta(seconds=1)
+            }
+
+
+@celery.task(soft_time_limit=1)
+def updatecl():
+    UpdateContentLists().run()
