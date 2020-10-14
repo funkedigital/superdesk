@@ -61,7 +61,7 @@ class EscenicXMLIFeedParser(XMLFeedParser):
         #except Exception as ex:
         #    raise ParserError.newsmlTwoParserError(ex, provider)
         except Exception as ex:
-            raise ParserError.newsmlTwoParserError(ex, provider)
+            logger.info(e)
             
     def import_images(self, associations, name, attributes):
         """ import images to mongo """
