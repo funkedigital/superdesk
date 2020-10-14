@@ -26,10 +26,10 @@ def init_app(app):
 
     app.config['CELERY_BEAT_SCHEDULE']['planning:updatecl'] = {
                 'task': 'fd.commands.updatecl',
-                'schedule': timedelta(hours=1)
+                'schedule': timedelta(minutes=15)
             }
 
 
-@celery.task(soft_time_limit=10)
+@celery.task(soft_time_limit=600)
 def updatecl():
     UpdateContentLists().run() 
