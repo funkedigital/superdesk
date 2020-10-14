@@ -1,0 +1,108 @@
+<NewsML>
+		<NewsEnvelope>
+			<DateAndTime>20201014T121921+0200</DateAndTime>
+		</NewsEnvelope>
+		<NewsItem>
+	<Identification>
+		<NewsIdentifier>
+			<ProviderId>https://www.waz.de/</ProviderId>
+			<DateId>20201014</DateId>
+			<NewsItemId>230666788</NewsItemId>
+			<RevisionId PreviousRevision="0" Update="N">1</RevisionId>
+			<PublicIdentifier>urn:newsml:49:20201014:230666788:1</PublicIdentifier>
+		</NewsIdentifier>
+	</Identification>
+	<NewsManagement>
+		<NewsItemType FormalName="News Article" />
+		<FirstCreated>20201014T110403+0200</FirstCreated>
+		<ThisRevisionCreated>20201014T121100+0200</ThisRevisionCreated>
+		<Status FormalName="" />
+	</NewsManagement>
+	<NewsComponent>
+		<Role FormalName="Text" />
+		<NewsLines>
+			<HeadLine>Duisburg: So reagieren Gastronomen auf die Sperrstunde</HeadLine>
+			<SlugLine>Gastronomie</SlugLine>
+			<CopyrightLine>(C) Funke Mediengruppe 2020</CopyrightLine>
+		</NewsLines>
+		<RightsMetadata>
+			<UsageRights>
+				<StartDate>20201014T121100+0200</StartDate>
+				<EndDate>29990101T020000+0200</EndDate>
+			</UsageRights>
+		</RightsMetadata>
+		<Metadata>
+			<MetadataType FormalName="FUNKE" />
+			<Property FormalName="DateLine"	Value="20201014T121100+0200" />
+			<Property FormalName="URL" Value="https://www.waz.de/staedte/duisburg/duisburg-so-reagieren-gastronomen-auf-die-sperrstunde-id230666788.html" />
+			<Property FormalName="Author" Value="Fabienne Piepiora und Martin Schroers" />
+			<Property FormalName="Escenic_Source" Value="meth01a" />
+			<Property FormalName="Escenic_SourceId" Value="13a7c91a-0d71-11eb-8036-08e03aada5c5" />
+			<Property FormalName="Channel" Value="Duisburg" />
+			<Property FormalName="Location" Value="Duisburg." />
+			<Property FormalName="SeoHeadline" Value="Duisburg: So reagieren Gastronomen auf die Sperrstunde " />
+			<Property FormalName="isPaidContent" Value="true" />
+		</Metadata>
+		<ContentItem>
+			<MediaType FormalName="ComplexData" />
+			<MimeType FormalName="text/vnd.IPTC.NITF" />
+			<DataContent>
+				<nitf>
+					<head>
+						<title>Duisburg: So reagieren Gastronomen auf die Sperrstunde</title>
+						<meta content="https://www.waz.de/" name="origin" />
+						<meta content="Funke Mediengruppe" name="copyright" />
+						<meta content="Escenic5" name="generator" />
+						<docdata>
+							<doc-id regsrc="https://www.waz.de/" id="230666788"/>
+							<date.issue	norm="20201014T121100+0200" />
+							<key-list>
+									<keyword key="" />
+											</key-list>
+							</docdata>
+					</head>
+					<body>
+						<body.head>
+							<hedline>
+								<hl1>Duisburg: So reagieren Gastronomen auf die Sperrstunde</hl1>
+								<hl2 class="kicker">Gastronomie</hl2>
+								<hl2 class="deck">Kein Bier nach 1 Uhr: Duisburger Wirte müssen wegen der neuen Sperrstunde umdisponieren. Ihre Pläne und die Erfahrungen aus der ersten Nacht</hl2>
+								<hl2 class="iPad_kicker">Gastronomie</hl2>
+							</hedline>
+							<byline>Fabienne Piepiora und Martin Schroers</byline>
+							<abstract><p>Kein Bier nach 1 Uhr: Duisburger Wirte müssen wegen der neuen Sperrstunde umdisponieren. Ihre Pläne und die Erfahrungen aus der ersten Nacht</p></abstract>
+						</body.head>
+						<body.content>
+							<p class="intro">Kein Bier nach 1 Uhr: Duisburger Wirte müssen wegen der neuen Sperrstunde umdisponieren. Ihre Pläne und die Erfahrungen aus der ersten Nacht</p>
+							<p>Gastronomen müssen in <a href="https://www.waz.de/staedte/duisburg/duisburg-corona-infizierte-tests-neuinfektionen-newsblog-id228678429.html" title="www.waz.de">Duisburg ab sofort um 1 Uhr nachts schließen </a>– das sieht ein neuer NRW-Landeserlass vor, der dazu führen soll, dass die Corona-Zahlen wieder sinken. In der ersten Nacht sind dabei laut Polizei keine gravierenden Verstöße aufgefallen. Originär kontrolliert aber der städtische Außendienst des Ordnungsamts die Einhaltung der Sperrstunde.</p>
+<p>Nun mögen böse Zungen behaupten, dass um diese Zeit sowieso nichts mehr mit dem Duisburger Nachtleben los ist. In der Tat gibt es aber ein paar Kneipen, die von der Sperrstunde betroffen sind. Darunter der „<a href="https://www.waz.de/staedte/duisburg/kult-kneipe-faehrmann-in-duisburg-vor-der-wiedereroeffnung-id230559490.html" title="www.waz.de">Fährmann</a>“, der gerade erst Anfang Oktober wieder eröffnet hat.</p>
+<hl2>Gerade wieder eröffneter Fährmann in Duisburg-Neudorf muss nun improvisieren</hl2>
+<p>„Wir haben damit gerechnet, dass wir vielleicht kein Bier mehr nach 23 Uhr ausschenken dürfen, aber dass wir um 1 Uhr komplett schließen müssen...“ Christian Rademaker und seine drei Mitstreiter, die den <a href="https://www.waz.de/staedte/duisburg/kult-kneipe-faehrmann-in-duisburg-vor-der-wiedereroeffnung-id230559490.html" title="www.waz.de">Fährmann aus Leidenschaft wiederbelebt haben</a>, müssen nun improvisieren. In die Studentenkneipe kehren viele zu vorgerückter Stunde ein, um noch einen Absacker zu nehmen. </p>
+<p>
+Duisburg- So lief Tag eins mit verschärften Corona-RegelnKurz nach der Eröffnung kamen die Mitarbeiter nie vor 4 Uhr morgens raus. Nun überlegt Rademaker, ob man vielleicht an den Wochenenden etwas früher öffnen könnte oder gar einen Frühschoppen anbietet. „Wir wussten, dass es schwierig wird, aber das hat uns von der Eröffnung nicht abgehalten.“ Zum Glück haben alle vier noch andere Jobs. Problematisch könnte auch werden, dass nur noch fünf Personen aus verschiedenen Haushalten an einem Tisch sitzen dürfen. </p>
+<p>
+<media class="body" media-type="image">
+													<media-reference source="https://img.waz.de/img/duisburg/origs230666784/2222538067-w1280-h960/9f9d47ee-0d6f-11eb-8036-08e03aada5c5.jpg" width="1280" height="853" />
+													<media-caption>
+                                                            Jörn Höfkens hat vor drei Jahren den „Bürgerhof“ übernommen. Auch wenn die Lage aktuell schwierig ist, hat er den Schritt nicht bereut. </media-caption>
+                                                    </media>
+											Jörn Höfkens, Chef des „<a href="https://www.waz.de/staedte/duisburg/jan-hoefkens-wurde-per-anruf-zum-kneipier-im-buergerhof-id211353555.html" title="www.waz.de">Bürgerhof</a>“ hat den Schritt in die Selbstständigkeit als Gastronom ebenfalls nicht bereut, „auch wenn es momentan nicht ums Verdienen, sondern Überleben geht.“ Der Bürgerhof ist eine beliebte Sportkneipe, in der regelmäßig <a href="https://www.waz.de/staedte/duisburg/weiter-dritte-liga-fans-leiden-in-duisburger-kneipe-mit-msv-id229448732.html" title="www.waz.de">Fußballspiele</a> übertragen werden. Früher ging es da auch mal länger. Allerdings kehre das Personal die Gäste mittlerweile um 1 Uhr heraus, unabhängig von der Corona-Sperrstunde. Viele Raucher standen in der Vergangenheit vor der Tür. Das gab dann Ärger mit den Nachbarn. Um den zu vermeiden, ist nun ohnehin um 1 Uhr Schicht. </p>
+<p>
+Duisburg- Angst der Gastronomen – wen packt die Pleitewelle?Roland Jahn vom <a href="https://www.waz.de/staedte/duisburg/duisburg-im-finkenkrug-schmeckt-nicht-nur-das-bier-id228385011.html" title="www.waz.de">Finkenkrug</a> wird die Sperrstunde am Wochenende merken. Seit der Eröffnung des Fährmann sei das jüngere Publikum zwar wieder vermehrt dort, doch freitags und samstags schauten einige früher am Morgen auf ein Bier vorbei. „Normalerweise sind die Leute am Wochenende nach einem Besuch bei uns ins <a href="https://www.waz.de/staedte/duisburg/corona-pulp-djaezz-und-old-daddy-bangen-um-ihre-existenz-id229376278.html" title="www.waz.de">Pulp oder Old Daddy </a>gegangen. Aber das geht ja nun nicht.“ Der <a href="https://www.waz.de/staedte/duisburg/gastronomie-in-duisburg-vor-pleitewelle-dramatische-lage-id229302634.html" title="www.waz.de">Umsatz am Wochenende</a> werde fehlen. </p>
+<hl2>„Hübi“ hat Trennwände für die Tische selbst gebaut</hl2>
+<p>Zusätzlich hat Jahn in Trennwände investiert, die nun zwischen den Tischen aufgestellt wurden. Zwei Räume sind bereits ausgestattet, der Wintergarten wird in nächster Zeit entsprechend hergerichtet. „Aber was mach ich, wenn drei Pärchen zusammen sitzen wollen. Fünf ist eine doofe Zahl.“</p>
+<p>Dirk Hübertz, Betreiber des „<a href="https://www.waz.de/staedte/duisburg/im-huebi-wird-die-hafenkneipen-tradition-gepflegt-id209718525.html" title="www.waz.de">Hübi</a>“ in Ruhrort, hat sich selbst auf Bettrahmen und Plexiglase Schutzwände für seine Tische gebaut. „Wenn das Wetter gut ist, spielt sich momentan noch viel draußen ab. Da nehmen wir mit, was geht.“ Mit Blick auf die kältere Jahreszeit ist er allerdings froh, dass er nun die Trennwände hat. „Die Leute fühlen sich dann sicherer“, weiß er. </p>
+<p>Die Wirte ahnen: Die schwierigen Monate stehen ihnen noch bevor.</p><media class="teaser" id="escenic-image-230666786" media-type="image">
+	<media-reference source="https://img.waz.de/img/duisburg/origs230666786/1212538474-w1280-h960/93594f24-0dfa-11eb-832f-e12cb3a7ec3d.jpg" width="1280" height="853" alternate-text="Der „Fährmann“ in Duisburg-Neudorf hat gerade erst wiedereröffnet. Nun trifft die Betreiber die neue Sperrstunde." copyright="FUNKE Foto Services"/><media-caption>
+		Der „Fährmann“ in Duisburg-Neudorf hat gerade erst wiedereröffnet. Nun trifft die Betreiber die neue Sperrstunde.</media-caption>
+</media>
+<block class="related-links">
+								</block>
+						</body.content>
+					</body>
+				</nitf>
+			</DataContent>
+		</ContentItem>
+	</NewsComponent>
+</NewsItem></NewsML>
+
