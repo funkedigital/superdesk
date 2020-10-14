@@ -1,5 +1,6 @@
 import html
 import logging
+import re
 
 from fd.publish.formatters.fd_data_layer import get_data_layer
 from superdesk.publish.formatters.ninjs_newsroom_formatter import NewsroomNinjsFormatter
@@ -18,21 +19,17 @@ class FDNINJSFormatter(NewsroomNinjsFormatter):
 
     def _transform_to_ninjs(self, article, subscriber, recursive=True):
         ninjs = super()._transform_to_ninjs(article, subscriber, recursive)
-        logger.info('formatting the ninjs')
-        if 'extra' in ninjs and 'subject' in ninjs:
-            subjects = article.get('subject', [])
-            for x in subjects:
-                option = x.get('qcode')
-                if option:
-                    ninjs['extra'][option] = True
-
-        if article.get('unique_name'):
-            ninjs['extra']['uniqueName'] = article.get('unique_name').replace('#', '')
-
-        # if article.get('body_html'):
-        #     # get the data layer infos
-        #     data_layer = get_data_layer(article)
-        #     if data_layer:
-        #         ninjs['extra']['dataLayer'] = data_layer
+        if 'extra' in ninjs:
+            if 'subject' in ninjs:
+                subjects = article.get('subject', [])
+                for x in subjects:
+                    option = x.get('qcode')
+                    if option:
+                        ninjs['extra'][option] = True
+            if 'slugline' in ninjs:
+                slugline = article.get('slugline')
+                if not slugline[-1].isdigit():
+                    unique_name = article.get('unique_name').replace('#', '')
+                    ninjs['slugline'] = slugline + '-id' + str(unique_name)
 
         return ninjs

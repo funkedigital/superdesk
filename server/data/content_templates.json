@@ -22,37 +22,16 @@
     "template_type": "create",
     "next_run": null,
     "user": "5cdab6d2ec36e30ccc7255f0",
-    "template_name": "news article mp",
-    "template_desks": [],
+    "template_name": "news article waz",
     "schedule": {
-      "cron_list": []
-    }
-  },
-  {
-    "_id": "5cd99da6a7bd87627c5dffbd",
-    "template_name": "news article rwp",
-    "template_type": "create",
-    "data": {
-      "headline": "",
-      "format": "HTML",
-      "language": "en",
-      "pubstatus": "usable",
-      "body_html": "",
-      "flags": {
-        "marked_for_not_publication": false,
-        "marked_for_sms": false,
-        "marked_for_legal": false,
-        "marked_archived_only": false
-      },
-      "profile": "5cd9ca7fa7bd87627c5e00e6",
-      "type": "text"
+      "is_active": false,
+      "time_zone": "Europe/Berlin",
+      "cron_list": [],
+      "day_of_week": []
     },
-    "is_public": true,
-    "template_desks": [],
-    "schedule": {
-      "cron_list": []
-    },
-    "next_run": null
+    "template_desks": [
+      "5f042d5263ac432ad456d9e5"
+    ]
   },
   {
     "template_name": "VERTICALS EVERGREEN",

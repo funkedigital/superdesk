@@ -9,6 +9,7 @@
 # at https://www.sourcefabric.org/superdesk/license
 
 from .resend_all import ResendAll  # noqa
+from .update_content_lists import UpdateContentLists  # noqa
 from superdesk.celery_app import celery
 from superdesk.default_settings import celery_queue
 from datetime import timedelta

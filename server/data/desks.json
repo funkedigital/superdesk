@@ -118,15 +118,15 @@
       "_id" : "5f042d5263ac432ad456d9e5",
       "content_expiry" : null,
       "name" : "WAZ",
-      "description" : "waz importer test",
+      "description" : "waz importer",
       "source" : "waz",
       "desk_type" : "production",
       "monitoring_default_view" : "swimlane",
-      "default_content_profile" : "5cd99da6a7bd87627c5dffbb",
       "preserve_published_content" : false,
-      "_etag" : "49901189c9f742148c61d6d5c09f9abe6e1c4e9b",
       "working_stage" : "5f042d5263ac432ad456d9e3",
       "incoming_stage" : "5f042d5263ac432ad456d9e4",
+      "default_content_template": "5d19fc703092d23fcec90c97",
+      "default_content_profile": "5cd9ac14a7bd87627c5dffdc",
       "members" : [
         {
           "user" : "5ddec97f3987ff073597d965"

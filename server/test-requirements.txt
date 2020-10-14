@@ -1,12 +1,11 @@
 gunicorn==19.7.1
 honcho==1.0.1
 newrelic>=2.66,<2.67
+superdesk-core>=1.30
 xmldict>=0.4.1
-lxml==4.5.0
+lxml<4.2,>=3.8
 requests>=2.23.0
 xmltodict
-
--e git+git://github.com/superdesk/superdesk-core.git@1.31#egg=superdesk-core
 
 
 flake8

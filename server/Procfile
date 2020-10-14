@@ -1,5 +1,6 @@
 rest: python3 app.py
 wamp: python3 -u ws.py
 work: celery -A worker worker
+expiry: celery -A worker -Q expiry  worker
 beat: celery -A worker beat --pid=
 capi: gunicorn -c gunicorn_config.py content_api.wsgi
