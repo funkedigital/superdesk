@@ -60,8 +60,8 @@ class EscenicXMLIFeedParser(XMLFeedParser):
             return items
         #except Exception as ex:
         #    raise ParserError.newsmlTwoParserError(ex, provider)
-        except Exception as e:
-            logger.info(e)
+        except Exception as ex:
+            raise ParserError.newsmlTwoParserError(ex, provider)
             
     def import_images(self, associations, name, attributes):
         """ import images to mongo """
@@ -275,12 +275,12 @@ class EscenicXMLIFeedParser(XMLFeedParser):
                 items['unique_id'] = unique_id
 
                 # check if the article already ingested, if so send corrcetions
-                item = list( 
-                    superdesk.get_resource_service('archive').get(req=None, lookup={
-                        'unique_id': unique_id}))
-                if len(item) > 0:
-                    ingested_guid = item[0]['guid']
-                    items['evolvedfrom'] = ingested_guid
+                # item = list( 
+                #     superdesk.get_resource_service('archive').get(req=None, lookup={
+                #         'unique_id': unique_id}))
+                # if len(item) > 0:
+                #     ingested_guid = item[0]['guid']
+                #     items['evolvedfrom'] = ingested_guid
 
 
     def parse_news_identifier(self, items, tree):
