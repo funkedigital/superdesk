@@ -1,159 +1,108 @@
 <NewsML>
-    <NewsEnvelope>
-        <DateAndTime>20200406T101307+0100</DateAndTime>
-    </NewsEnvelope>
-    <NewsItem>
-        <Identification>
-            <NewsIdentifier>
-                <ProviderId>https://www.waz.de/</ProviderId>
-                <DateId>20200325</DateId>
-                <NewsItemId>228775113</NewsItemId>
-                <RevisionId PreviousRevision="0" Update="N">1</RevisionId>
-                <PublicIdentifier>urn:newsml:49:20200325:228775113:1</PublicIdentifier>
-            </NewsIdentifier>
-        </Identification>
-        <NewsManagement>
-            <NewsItemType FormalName="News Article"/>
-            <FirstCreated>20200325T165915+0100</FirstCreated>
-            <ThisRevisionCreated>20200325T165912+0100</ThisRevisionCreated>
-            <Status FormalName=""/>
-        </NewsManagement>
-        <NewsComponent>
-            <Role FormalName="Text"/>
-            <NewsLines>
-                <HeadLine>Dieb schlägt Autoscheibe ein – und klaut Klopapier</HeadLine>
-                <SlugLine>Polizei</SlugLine>
-                <CopyrightLine>(C) Funke Mediengruppe 2020</CopyrightLine>
-            </NewsLines>
-            <RightsMetadata>
-                <UsageRights>
-                    <StartDate>20200325T165912+0100</StartDate>
-                    <EndDate>29990101T020000+0200</EndDate>
-                </UsageRights>
-            </RightsMetadata>
-            <Metadata>
-                <MetadataType FormalName="FUNKE"/>
-                <Property FormalName="DateLine" Value="20200325T165912+0100"/>
-                <Property FormalName="URL"
-                          Value="https://www.waz.de/panorama/autoknacker-schlaegt-scheibe-ein-und-klaut-klopapier-id228775113.html"/>
-                <Property FormalName="Author" Value=""/>
-                <Property FormalName="Escenic_Source" Value="meth01b"/>
-                <Property FormalName="Escenic_SourceId" Value="50ebbe34-6ead-11ea-8a53-d3fa31c35829"/>
-                <Property FormalName="Channel" Value="Panorama"/>
-                <Property FormalName="Location" Value=""/>
-                <Property FormalName="SeoHeadline" Value="Klopapier gestohlen - Dieb schlägt Autoscheibe in Kiel ein"/>
-                <Property FormalName="isPaidContent" Value="true"/>
-            </Metadata>
-            <ContentItem>
-                <MediaType FormalName="ComplexData"/>
-                <MimeType FormalName="text/vnd.IPTC.NITF"/>
-                <DataContent>
-                    <nitf>
-                        <head>
-                            <title>Dieb schlägt Autoscheibe ein – und klaut Klopapier</title>
-                            <meta content="https://www.waz.de/" name="origin"/>
-                            <meta content="Funke Mediengruppe" name="copyright"/>
-                            <meta content="Escenic5" name="generator"/>
-                            <docdata>
-                                <doc-id regsrc="https://www.waz.de/" id="228775113"/>
-                                <date.issue norm="20200325T165912+0100"/>
-                            </docdata>
-                        </head>
-                        <body>
-                            <body.head>
-                                <hedline>
-                                    <hl1>Dieb schlägt Autoscheibe ein – und klaut Klopapier</hl1>
-                                    <hl2 class="kicker">Polizei</hl2>
-                                    <hl2 class="deck">
-                                        In Kiel hat ein Dieb sechs Pakete Klopapier aus einem Fahrzeug geklaut. Der
-                                        Sachschaden am Auto ist höher als der Wert der Beute.
-                                    </hl2>
-                                    <hl2 class="iPad_kicker">Polizei</hl2>
-                                </hedline>
-                                <byline/>
-                                <abstract>
-                                    <p>
-                                        In Kiel hat ein Dieb sechs Pakete Klopapier aus einem Fahrzeug geklaut. Der
-                                        Sachschaden am Auto ist höher als der Wert der Beute.
-                                    </p>
-                                </abstract>
-                            </body.head>
-                            <body.content>
-                                <p class="intro">
-                                    In Kiel hat ein Dieb sechs Pakete Klopapier aus einem Fahrzeug geklaut. Der
-                                    Sachschaden am Auto ist höher als der Wert der Beute.
-                                </p>
-                                <p>
-                                    <strong>Kiel</strong>
-                                    In Corona-Zeiten wird
-                                    <strong>Klopapier</strong>
-                                    für so manchen offenbar zur attraktiven Beute: Sechs Pakete hat ein
-                                    <strong>Autoknacker</strong>
-                                    in Kiel erbeutet.
-                                </p>
-                                <p>
-                                    Der Unbekannte schlug in der Nacht zu Dienstag nach Polizeiangaben die Scheibe eines
-                                    im Stadtteil Gaarden geparkten Autos ein und erbeutete das
-                                    <strong>Toilettenpapier</strong>
-                                    und zwei Bohrschrauber im Wert von insgesamt
-                                    <strong>80 Euro</strong>
-                                    aus dem Inneren des Fahrzeugs.
-                                </p>
-                                <p>
-                                    Ob das derzeit begehrte Klopapier tatsächlich der Grund für den Aufbruch oder
-                                    Zufallsfund war, konnte die Kieler Polizeidirektion am Mittwoch nicht sicher sagen.
-                                    Der Sachschaden am Fahrzeug beträgt jedenfalls rund 300 Euro.
-                                </p>
-                                <p>
-                                    In der Coronavirus-Krise scheinen viel Deutsche von der Angst ergriffen, kein
-                                    Klopapier zu bekommen. Weil Toilettenpapier zeitweise in zahlreichen Supermärkten
-                                    ausverkauft war, bestellten Käufer zunehmend online.
-                                </p>
-                                <p>
-                                    • In der Bildergalerie lesen Sie von anderen kuriosen Polizeieinsätzen:
-                                </p>
-                                <p></p>
-                                <p>(dpa/les)</p>
-                                <media class="teaser" id="escenic-image-228775111" media-type="image">
-                                    <media-reference
-                                            source="https://img.waz.de/img/panorama/crop228775111/282185123-w1080-cv21_9-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg"
-                                            width="1080" height="462"
-                                            alternate-text="Ein Dieb hat in Kiel eine Autoscheibe eingeschlagen, um Bohrschrauber und Toilettenpapier mitgehen zu lassen. (Symbolbild)"
-                                            copyright="imago stockpeople"/>
-                                    <media-reference
-                                            source="https://img.waz.de/img/panorama/crop228775111/2567511771-w940-cv1_1-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg"
-                                            width="940" height="940"
-                                            alternate-text="Ein Dieb hat in Kiel eine Autoscheibe eingeschlagen, um Bohrschrauber und Toilettenpapier mitgehen zu lassen. (Symbolbild)"
-                                            copyright="imago stockpeople"/>
-                                    <media-caption>
-                                        Ein Dieb hat in Kiel eine Autoscheibe eingeschlagen, um Bohrschrauber und
-                                        Toilettenpapier mitgehen zu lassen. (Symbolbild)
-                                    </media-caption>
-                                </media>
-                                <media class="teaser" id="escenic-image-228775111" media-type="image">
-                                    <media-reference
-                                            source="https://img.waz.de/img/panorama/crop228775111/282185123-w1080-cv21_9-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg"
-                                            width="1080" height="462" alternate-text="" copyright="imago stockpeople"/>
-                                    <media-reference
-                                            source="https://img.waz.de/img/panorama/crop228775111/2567511771-w940-cv1_1-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg"
-                                            width="940" height="940" alternate-text="" copyright="imago stockpeople"/>
-                                    <media-caption></media-caption>
-                                </media>
-                                <media class="teaser" id="escenic-image-228775111" media-type="image">
-                                    <media-reference
-                                            source="https://img.waz.de/img/panorama/crop228775111/282185123-w1080-cv21_9-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg"
-                                            width="1080" height="462" alternate-text="" copyright="imago stockpeople"/>
-                                    <media-reference
-                                            source="https://img.waz.de/img/panorama/crop228775111/2567511771-w940-cv1_1-q85/5889202e-6eb1-11ea-8a53-d3fa31c35829.jpg"
-                                            width="940" height="940" alternate-text="" copyright="imago stockpeople"/>
-                                    <media-caption></media-caption>
-                                </media>
-                                <block class="related-links"></block>
-                            </body.content>
-                        </body>
-                    </nitf>
-                </DataContent>
-            </ContentItem>
-        </NewsComponent>
-    </NewsItem>
-</NewsML>
+		<NewsEnvelope>
+			<DateAndTime>20201014T121921+0200</DateAndTime>
+		</NewsEnvelope>
+		<NewsItem>
+	<Identification>
+		<NewsIdentifier>
+			<ProviderId>https://www.waz.de/</ProviderId>
+			<DateId>20201014</DateId>
+			<NewsItemId>230666788</NewsItemId>
+			<RevisionId PreviousRevision="0" Update="N">1</RevisionId>
+			<PublicIdentifier>urn:newsml:49:20201014:230666788:1</PublicIdentifier>
+		</NewsIdentifier>
+	</Identification>
+	<NewsManagement>
+		<NewsItemType FormalName="News Article" />
+		<FirstCreated>20201014T110403+0200</FirstCreated>
+		<ThisRevisionCreated>20201014T121100+0200</ThisRevisionCreated>
+		<Status FormalName="" />
+	</NewsManagement>
+	<NewsComponent>
+		<Role FormalName="Text" />
+		<NewsLines>
+			<HeadLine>Duisburg: So reagieren Gastronomen auf die Sperrstunde</HeadLine>
+			<SlugLine>Gastronomie</SlugLine>
+			<CopyrightLine>(C) Funke Mediengruppe 2020</CopyrightLine>
+		</NewsLines>
+		<RightsMetadata>
+			<UsageRights>
+				<StartDate>20201014T121100+0200</StartDate>
+				<EndDate>29990101T020000+0200</EndDate>
+			</UsageRights>
+		</RightsMetadata>
+		<Metadata>
+			<MetadataType FormalName="FUNKE" />
+			<Property FormalName="DateLine"	Value="20201014T121100+0200" />
+			<Property FormalName="URL" Value="https://www.waz.de/staedte/duisburg/duisburg-so-reagieren-gastronomen-auf-die-sperrstunde-id230666788.html" />
+			<Property FormalName="Author" Value="Fabienne Piepiora und Martin Schroers" />
+			<Property FormalName="Escenic_Source" Value="meth01a" />
+			<Property FormalName="Escenic_SourceId" Value="13a7c91a-0d71-11eb-8036-08e03aada5c5" />
+			<Property FormalName="Channel" Value="Duisburg" />
+			<Property FormalName="Location" Value="Duisburg." />
+			<Property FormalName="SeoHeadline" Value="Duisburg: So reagieren Gastronomen auf die Sperrstunde " />
+			<Property FormalName="isPaidContent" Value="true" />
+		</Metadata>
+		<ContentItem>
+			<MediaType FormalName="ComplexData" />
+			<MimeType FormalName="text/vnd.IPTC.NITF" />
+			<DataContent>
+				<nitf>
+					<head>
+						<title>Duisburg: So reagieren Gastronomen auf die Sperrstunde</title>
+						<meta content="https://www.waz.de/" name="origin" />
+						<meta content="Funke Mediengruppe" name="copyright" />
+						<meta content="Escenic5" name="generator" />
+						<docdata>
+							<doc-id regsrc="https://www.waz.de/" id="230666788"/>
+							<date.issue	norm="20201014T121100+0200" />
+							<key-list>
+									<keyword key="" />
+											</key-list>
+							</docdata>
+					</head>
+					<body>
+						<body.head>
+							<hedline>
+								<hl1>Duisburg: So reagieren Gastronomen auf die Sperrstunde</hl1>
+								<hl2 class="kicker">Gastronomie</hl2>
+								<hl2 class="deck">Kein Bier nach 1 Uhr: Duisburger Wirte müssen wegen der neuen Sperrstunde umdisponieren. Ihre Pläne und die Erfahrungen aus der ersten Nacht</hl2>
+								<hl2 class="iPad_kicker">Gastronomie</hl2>
+							</hedline>
+							<byline>Fabienne Piepiora und Martin Schroers</byline>
+							<abstract><p>Kein Bier nach 1 Uhr: Duisburger Wirte müssen wegen der neuen Sperrstunde umdisponieren. Ihre Pläne und die Erfahrungen aus der ersten Nacht</p></abstract>
+						</body.head>
+						<body.content>
+							<p class="intro">Kein Bier nach 1 Uhr: Duisburger Wirte müssen wegen der neuen Sperrstunde umdisponieren. Ihre Pläne und die Erfahrungen aus der ersten Nacht</p>
+							<p>Gastronomen müssen in <a href="https://www.waz.de/staedte/duisburg/duisburg-corona-infizierte-tests-neuinfektionen-newsblog-id228678429.html" title="www.waz.de">Duisburg ab sofort um 1 Uhr nachts schließen </a>– das sieht ein neuer NRW-Landeserlass vor, der dazu führen soll, dass die Corona-Zahlen wieder sinken. In der ersten Nacht sind dabei laut Polizei keine gravierenden Verstöße aufgefallen. Originär kontrolliert aber der städtische Außendienst des Ordnungsamts die Einhaltung der Sperrstunde.</p>
+<p>Nun mögen böse Zungen behaupten, dass um diese Zeit sowieso nichts mehr mit dem Duisburger Nachtleben los ist. In der Tat gibt es aber ein paar Kneipen, die von der Sperrstunde betroffen sind. Darunter der „<a href="https://www.waz.de/staedte/duisburg/kult-kneipe-faehrmann-in-duisburg-vor-der-wiedereroeffnung-id230559490.html" title="www.waz.de">Fährmann</a>“, der gerade erst Anfang Oktober wieder eröffnet hat.</p>
+<hl2>Gerade wieder eröffneter Fährmann in Duisburg-Neudorf muss nun improvisieren</hl2>
+<p>„Wir haben damit gerechnet, dass wir vielleicht kein Bier mehr nach 23 Uhr ausschenken dürfen, aber dass wir um 1 Uhr komplett schließen müssen...“ Christian Rademaker und seine drei Mitstreiter, die den <a href="https://www.waz.de/staedte/duisburg/kult-kneipe-faehrmann-in-duisburg-vor-der-wiedereroeffnung-id230559490.html" title="www.waz.de">Fährmann aus Leidenschaft wiederbelebt haben</a>, müssen nun improvisieren. In die Studentenkneipe kehren viele zu vorgerückter Stunde ein, um noch einen Absacker zu nehmen. </p>
+<p>
+Duisburg- So lief Tag eins mit verschärften Corona-RegelnKurz nach der Eröffnung kamen die Mitarbeiter nie vor 4 Uhr morgens raus. Nun überlegt Rademaker, ob man vielleicht an den Wochenenden etwas früher öffnen könnte oder gar einen Frühschoppen anbietet. „Wir wussten, dass es schwierig wird, aber das hat uns von der Eröffnung nicht abgehalten.“ Zum Glück haben alle vier noch andere Jobs. Problematisch könnte auch werden, dass nur noch fünf Personen aus verschiedenen Haushalten an einem Tisch sitzen dürfen. </p>
+<p>
+<media class="body" media-type="image">
+													<media-reference source="https://img.waz.de/img/duisburg/origs230666784/2222538067-w1280-h960/9f9d47ee-0d6f-11eb-8036-08e03aada5c5.jpg" width="1280" height="853" />
+													<media-caption>
+                                                            Jörn Höfkens hat vor drei Jahren den „Bürgerhof“ übernommen. Auch wenn die Lage aktuell schwierig ist, hat er den Schritt nicht bereut. </media-caption>
+                                                    </media>
+											Jörn Höfkens, Chef des „<a href="https://www.waz.de/staedte/duisburg/jan-hoefkens-wurde-per-anruf-zum-kneipier-im-buergerhof-id211353555.html" title="www.waz.de">Bürgerhof</a>“ hat den Schritt in die Selbstständigkeit als Gastronom ebenfalls nicht bereut, „auch wenn es momentan nicht ums Verdienen, sondern Überleben geht.“ Der Bürgerhof ist eine beliebte Sportkneipe, in der regelmäßig <a href="https://www.waz.de/staedte/duisburg/weiter-dritte-liga-fans-leiden-in-duisburger-kneipe-mit-msv-id229448732.html" title="www.waz.de">Fußballspiele</a> übertragen werden. Früher ging es da auch mal länger. Allerdings kehre das Personal die Gäste mittlerweile um 1 Uhr heraus, unabhängig von der Corona-Sperrstunde. Viele Raucher standen in der Vergangenheit vor der Tür. Das gab dann Ärger mit den Nachbarn. Um den zu vermeiden, ist nun ohnehin um 1 Uhr Schicht. </p>
+<p>
+Duisburg- Angst der Gastronomen – wen packt die Pleitewelle?Roland Jahn vom <a href="https://www.waz.de/staedte/duisburg/duisburg-im-finkenkrug-schmeckt-nicht-nur-das-bier-id228385011.html" title="www.waz.de">Finkenkrug</a> wird die Sperrstunde am Wochenende merken. Seit der Eröffnung des Fährmann sei das jüngere Publikum zwar wieder vermehrt dort, doch freitags und samstags schauten einige früher am Morgen auf ein Bier vorbei. „Normalerweise sind die Leute am Wochenende nach einem Besuch bei uns ins <a href="https://www.waz.de/staedte/duisburg/corona-pulp-djaezz-und-old-daddy-bangen-um-ihre-existenz-id229376278.html" title="www.waz.de">Pulp oder Old Daddy </a>gegangen. Aber das geht ja nun nicht.“ Der <a href="https://www.waz.de/staedte/duisburg/gastronomie-in-duisburg-vor-pleitewelle-dramatische-lage-id229302634.html" title="www.waz.de">Umsatz am Wochenende</a> werde fehlen. </p>
+<hl2>„Hübi“ hat Trennwände für die Tische selbst gebaut</hl2>
+<p>Zusätzlich hat Jahn in Trennwände investiert, die nun zwischen den Tischen aufgestellt wurden. Zwei Räume sind bereits ausgestattet, der Wintergarten wird in nächster Zeit entsprechend hergerichtet. „Aber was mach ich, wenn drei Pärchen zusammen sitzen wollen. Fünf ist eine doofe Zahl.“</p>
+<p>Dirk Hübertz, Betreiber des „<a href="https://www.waz.de/staedte/duisburg/im-huebi-wird-die-hafenkneipen-tradition-gepflegt-id209718525.html" title="www.waz.de">Hübi</a>“ in Ruhrort, hat sich selbst auf Bettrahmen und Plexiglase Schutzwände für seine Tische gebaut. „Wenn das Wetter gut ist, spielt sich momentan noch viel draußen ab. Da nehmen wir mit, was geht.“ Mit Blick auf die kältere Jahreszeit ist er allerdings froh, dass er nun die Trennwände hat. „Die Leute fühlen sich dann sicherer“, weiß er. </p>
+<p>Die Wirte ahnen: Die schwierigen Monate stehen ihnen noch bevor.</p><media class="teaser" id="escenic-image-230666786" media-type="image">
+	<media-reference source="https://img.waz.de/img/duisburg/origs230666786/1212538474-w1280-h960/93594f24-0dfa-11eb-832f-e12cb3a7ec3d.jpg" width="1280" height="853" alternate-text="Der „Fährmann“ in Duisburg-Neudorf hat gerade erst wiedereröffnet. Nun trifft die Betreiber die neue Sperrstunde." copyright="FUNKE Foto Services"/><media-caption>
+		Der „Fährmann“ in Duisburg-Neudorf hat gerade erst wiedereröffnet. Nun trifft die Betreiber die neue Sperrstunde.</media-caption>
+</media>
+<block class="related-links">
+								</block>
+						</body.content>
+					</body>
+				</nitf>
+			</DataContent>
+		</ContentItem>
+	</NewsComponent>
+</NewsItem></NewsML>
+
