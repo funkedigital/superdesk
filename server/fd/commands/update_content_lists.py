@@ -46,14 +46,18 @@ class UpdateContentLists(superdesk.Command):
         req = requests.get(publisher_domain + '/api/v2/content/lists/?limit=99999', headers={'Authorization': 'Basic ' + token})
         if req.status_code == 200:
             for b in req.json()['_embedded']['_items']:
-                filters = json.dumps(b['filters'])
-                if len(filters) != 0:
-                    url = publisher_domain + '/api/v2/content/lists/' + str(b['id'])
-                    headers = {'Authorization': 'Basic ' + token}
-                    payload_empty = {"filters":"{\"route\":[],\"author\":[],\"metadata\":{}}"}
-                    r1 = requests.patch(url, payload_empty, headers=headers)
-                    payload = {'filters': filters}
-                    r = requests.patch(url, payload, headers=headers)
+                if 'route' in b['filters']:
+                    routes = b['filters']['route'] 
+                    # shuffle the routes so that patch updates the category
+                    b['filters']['route'] = sorted(routes, key = lambda x: random.random())
+                    filters = json.dumps(b['filters'])
+                    if len(filters) != 0:
+                        url = publisher_domain + '/api/v2/content/lists/' + str(b['id'])
+                        headers = {'Authorization': 'Basic ' + token}
+                        #payload_empty = {"filters":"{\"route\":[],\"author\":[],\"metadata\":{}}"}
+                        #r1 = requests.patch(url, payload_empty, headers=headers)
+                        payload = {'filters': filters}
+                        r = requests.patch(url, payload, headers=headers)
         logger.info('content lists are updated')
         unlock(lock_name)
 
