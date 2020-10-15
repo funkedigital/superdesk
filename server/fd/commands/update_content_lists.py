@@ -13,6 +13,7 @@ import csv
 import superdesk
 import requests
 import os
+import random
 from flask import current_app as app
 from superdesk import get_resource_service
 from superdesk.metadata.item import CONTENT_STATE, ITEM_STATE
