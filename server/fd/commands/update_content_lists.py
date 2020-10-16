@@ -55,8 +55,9 @@ class UpdateContentLists(superdesk.Command):
                     if len(filters) != 0:
                         url = publisher_domain + '/api/v2/content/lists/' + str(b['id'])
                         headers = {'Authorization': 'Basic ' + token}
-                        #payload_empty = {"filters":"{\"route\":[],\"author\":[],\"metadata\":{}}"}
-                        #r1 = requests.patch(url, payload_empty, headers=headers)
+                        if len(routes) == 1:
+                            payload_empty = {"filters":"{\"route\":[],\"author\":[],\"metadata\":{}}"}
+                            r1 = requests.patch(url, payload_empty, headers=headers)
                         payload = {'filters': filters}
                         r = requests.patch(url, payload, headers=headers)
         logger.info('content lists are updated')
