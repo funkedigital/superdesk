@@ -30,8 +30,8 @@ from superdesk.io.feeding_services.rss import RSSFeedingService, generate_tag_fr
 logger = logging.getLogger(__name__)
 
 
-class EscenicSpotonFeedParser(XMLFeedParser):
+class SpotonFeedParser(XMLFeedParser):
     pass
 
 
-register_feed_parser(EscenicSpotonFeedParser.NAME, EscenicSpotonFeedParser())
+register_feed_parser(SpotonFeedParser.NAME, SpotonFeedParser())

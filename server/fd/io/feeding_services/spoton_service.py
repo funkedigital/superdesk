@@ -17,10 +17,10 @@ import requests
 from superdesk.errors import IngestApiError, ParserError
 from superdesk.io.registry import register_feeding_service, register_feeding_service_parser
 from superdesk.io.feeding_services.http_base_service import HTTPFeedingServiceBase
-from fd.io.feed_parsers.spoton_parser import EscenicSpotonFeedParser
+from fd.io.feed_parsers.spoton_parser import SpotonFeedParser
 
 
-class EscenicXMLIFeedingService(HTTPFeedingServiceBase):
+class SpotonFeedingService(HTTPFeedingServiceBase):
     """
     Feeding Service class for FUNKE XMLI Feeding Service
     """
@@ -66,11 +66,11 @@ class EscenicXMLIFeedingService(HTTPFeedingServiceBase):
         for item in items[:50]:
             print(item)
             xml_elements = etree.fromstring(item)
-            xmliparser = EscenicSpotonFeedParser()
+            xmliparser = SpotonFeedParser()
             items.append(xmliparser.parse(xml_elements, self.provider))
                 
         return items
 
 
-register_feeding_service(EscenicSpotonFeedParser)
-register_feeding_service_parser(EscenicSpotonFeedParser.NAME, None)
+register_feeding_service(SpotonFeedingService)
+register_feeding_service_parser(SpotonFeedingService.NAME, None)
