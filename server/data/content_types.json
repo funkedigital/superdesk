@@ -284,6 +284,290 @@
     }
   },
   {
+    "_id": "5cd9ac14a7bd87627c5dssdc",
+    "label": "news_article_SpotOn",
+    "is_used": true,
+    "description": "News Article template for SpotOn",
+    "priority": 0,
+    "enabled": true,
+    "schema": {
+      "subject": {
+        "type": "list",
+        "nullable": false,
+        "required": false,
+        "enabled": true,
+        "mandatory_in_list": {
+          "scheme": {}
+        },
+        "schema": {}
+      },
+      "teaser_mediawall_title": null,
+      "subtitle": null,
+      "location": null,
+      "customembed": {
+        "nullable": true,
+        "required": false,
+        "enabled": true,
+        "type": "embed"
+      },
+      "footer": null,
+      "body_html": {
+        "nullable": false,
+        "type": "string",
+        "required": true
+      },
+      "byline": null,
+      "seo_canonical_url": null,
+      "gallery": {
+        "nullable": true,
+        "required": false,
+        "enabled": true,
+        "type": "media"
+      },
+      "authors": {
+        "schema": {
+          "schema": {
+            "role": {
+              "type": "string"
+            },
+            "parent": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "dict"
+        },
+        "nullable": true,
+        "required": false,
+        "type": "list",
+        "mandatory_in_list": null
+      },
+      "bulletpoints": null,
+      "feature_media": {
+        "nullable": true,
+        "type": "media",
+        "required": false
+      },
+      "priority": null,
+      "urgency": null,
+      "attachments": null,
+      "usageterms": null,
+      "media_description": {
+        "nullable": true,
+        "required": false,
+        "enabled": true,
+        "type": "string"
+      },
+      "seo_title": {
+        "nullable": false,
+        "required": true,
+        "enabled": true,
+        "type": "text"
+      },
+      "video": null,
+      "dateline": null,
+      "abstract": {
+        "nullable": true,
+        "type": "string",
+        "required": false
+      },
+      "slugline": {
+        "nullable": false,
+        "required": true,
+        "enabled": true,
+        "type": "string"
+      },
+      "audio": null,
+      "ednote": null,
+      "anpa_take_key": null,
+      "company_codes": null,
+      "sign_off": null,
+      "genre": null,
+      "sms": null,
+      "metaDescription": null,
+      "anpa_category": null,
+      "body_footer": null,
+      "headline": {
+        "nullable": false,
+        "type": "string",
+        "required": true
+      },
+      "keywords": {
+        "nullable": true,
+        "required": false,
+        "enabled": true,
+        "type": "list"
+      },
+      "place": null,
+      "waz_channel": {
+        "type": "text",
+        "required": false,
+        "enabled": true,
+        "nullable": true
+      },
+      "kicker": {
+        "type": "text",
+        "required": false,
+        "enabled": true,
+        "nullable": true
+      },
+      "videoembed": null,
+      "language": null
+    },
+    "editor": {
+      "teaser_mediawall_title": null,
+      "subtitle": null,
+      "location": null,
+      "customembed": {
+        "sdWidth": "full",
+        "order": 12,
+        "section": "content"
+      },
+      "footer": null,
+      "body_html": {
+        "order": 10,
+        "imageTitle": true,
+        "required": true,
+        "sdWidth": "full",
+        "formatOptions": [
+          "h2",
+          "bold",
+          "italic",
+          "underline",
+          "quote",
+          "link",
+          "embed",
+          "media",
+          "h3",
+          "h4",
+          "ordered list",
+          "strikethrough",
+          "table",
+          "unordered list",
+          "subscript",
+          "superscript"
+        ],
+        "editor3": true,
+        "cleanPastedHTML": false
+      },
+      "byline": null,
+      "seo_canonical_url": null,
+      "seo_metadata": {
+        "order": 13,
+        "required": false,
+        "section": "header"
+      },
+      "publishing_options": {
+        "order": 14,
+        "required": false,
+        "section": "header"
+      },
+      "paid_content": {
+        "order": 15,
+        "required": false,
+        "section": "header",
+        "sdWidth": "full"
+      },
+      "gallery": {
+        "showCrops": true,
+        "section": "content",
+        "imageTitle": true,
+        "sdWidth": "full",
+        "order": 11
+      },
+      "authors": {
+        "sdWidth": "full",
+        "order": 1,
+        "required": false
+      },
+      "bulletpoints": null,
+      "feature_media": {
+        "showCrops": true,
+        "sdWidth": "full",
+        "order": 6
+      },
+      "subject": {
+        "sdWidth": "full",
+        "order": 10,
+        "required": false,
+        "section": "header"
+      },
+      "is_no_follow": null,
+      "urgency": null,
+      "priority": null,
+      "attachments": null,
+      "usageterms": null,
+      "media_description": {
+        "sdWidth": "full",
+        "order": 9,
+        "section": "content"
+      },
+      "seo_title": {
+        "section": "content",
+        "required": true,
+        "sdWidth": "full",
+        "order": 5
+      },
+      "video": null,
+      "dateline": null,
+      "abstract": {
+        "required": false,
+        "sdWidth": "full",
+        "formatOptions": [
+          "link"
+        ],
+        "order": 7
+      },
+      "slugline": {
+        "section": "header",
+        "required": true,
+        "sdWidth": "full",
+        "order": 3
+      },
+      "audio": null,
+      "ednote": null,
+      "anpa_take_key": null,
+      "company_codes": null,
+      "sign_off": null,
+      "genre": null,
+      "sms": null,
+      "metaDescription": null,
+      "anpa_category": null,
+      "body_footer": null,
+      "headline": {
+        "required": true,
+        "sdWidth": "full",
+        "formatOptions": [
+          "underline",
+          "link",
+          "bold"
+        ],
+        "order": 4
+      },
+      "keywords": {
+        "section": "header",
+        "required": false,
+        "sdWidth": "full",
+        "order": 2
+      },
+      "place": null,
+      "waz_channel": {
+        "order": 17,
+        "section": "header",
+        "required": false
+      },
+      "kicker": {
+        "order": 18,
+        "section": "header",
+        "required": false
+      },
+      "videoembed": null,
+      "language": null
+    }
+  },
+  {
     "_id": "5d48392332827c0ea7f5e5a6",
     "priority": 0,
     "label": "verticals_evergreen",

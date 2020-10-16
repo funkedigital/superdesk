@@ -34,6 +34,40 @@
     ]
   },
   {
+    "_id": "5d19fc703092d23fcec90c89",
+    "data": {
+      "type": "text",
+      "abstract": "",
+      "language": "de",
+      "headline": "",
+      "format": "HTML",
+      "flags": {
+        "marked_for_legal": false,
+        "marked_for_sms": false,
+        "marked_for_not_publication": false,
+        "marked_archived_only": false
+      },
+      "profile": "5cd9ac14a7bd87627c5dffdc",
+      "body_html": "",
+      "pubstatus": "usable",
+      "byline": ""
+    },
+    "is_public": true,
+    "template_type": "create",
+    "next_run": null,
+    "user": "5cdab6d2ec36e30ccc7255f0",
+    "template_name": "news article spoton",
+    "schedule": {
+      "is_active": false,
+      "time_zone": "Europe/Berlin",
+      "cron_list": [],
+      "day_of_week": []
+    },
+    "template_desks": [
+      "5f042d5263ac432ad4569de5"
+    ]
+  },
+  {
     "template_name": "VERTICALS EVERGREEN",
     "is_public": true,
     "template_type": "create",
