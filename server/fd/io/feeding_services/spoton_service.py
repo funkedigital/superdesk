@@ -66,7 +66,7 @@ class EscenicXMLIFeedingService(HTTPFeedingServiceBase):
         for item in items[:50]:
             print(item)
             xml_elements = etree.fromstring(item)
-            xmliparser = EscenicXMLIFeedParser()
+            xmliparser = EscenicSpotonFeedParser()
             items.append(xmliparser.parse(xml_elements, self.provider))
                 
         return items
