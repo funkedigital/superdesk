@@ -284,8 +284,8 @@
     }
   },
   {
-    "_id": "5cd9ac14a7bd87627c5dssdc",
-    "label": "news_article_SpotOn",
+    "_id": "5f8d4bfe7c8ae722a5984c38",
+    "label": "news_article_spoton",
     "is_used": true,
     "description": "News Article template for SpotOn",
     "priority": 0,
