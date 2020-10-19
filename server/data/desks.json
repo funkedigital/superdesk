@@ -157,7 +157,7 @@
     "content_expiry" : null,
     "name" : "SPOTON",
     "description" : "spoton importer",
-    "source" : "waz",
+    "source" : "spoton",
     "desk_type" : "production",
     "monitoring_default_view" : "swimlane",
     "preserve_published_content" : false,
