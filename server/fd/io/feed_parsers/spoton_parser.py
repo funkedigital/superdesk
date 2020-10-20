@@ -88,6 +88,9 @@ class SpotonFeedParser(XMLFeedParser):
         department = meta_elements.get('Department', '')
         items['extra'].update( {'department' : department} )
 
+        headline_elem = xml.find('Content/Headline')
+        items['headline'] = headline_elem.text
+
 
 
     def parse_content(self, items, xml):

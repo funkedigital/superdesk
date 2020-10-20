@@ -46,3 +46,4 @@ class SpotonParserTest(unittest.TestCase):
         self.assertEqual(self.item['keywords'], ['Christina Stürmer', 'Schwangerschaft', 'Oliver Varga', 'Instagram'])
         self.assertEqual(self.item['versioncreated'], datetime.datetime.strptime('Tue, 20 Oct 2020 09:39:41 +0000', '%a, %d %b %Y %H:%M:%S %z'))
         self.assertEqual(self.item['extra'], {'department': 'People', 'location': 'AT'})
+        self.assertEqual(self.item['headline'], 'Christina Stürmer wird erneut Mutter')
