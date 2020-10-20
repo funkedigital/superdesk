@@ -51,6 +51,7 @@ class SpotonFeedParser(XMLFeedParser):
             logger.info(ex)
     
     def parse_metadata(self, items, xml):
+        items['extra'] = {}
         meta_elements = self.parse_elements(xml.find('Meta'))
 
         author = [{
@@ -80,6 +81,14 @@ class SpotonFeedParser(XMLFeedParser):
         revision_created = meta_elements.get('RevisionCreated', '')
         if len(revision_created) > 0:
             items['versioncreated'] = self.datetime(revision_created)
+        
+        location = meta_elements.get('Location', '')
+        items['extra'].update( {'location' : location} )
+        
+        department = meta_elements.get('Department', '')
+        items['extra'].update( {'department' : department} )
+
+
 
     def parse_content(self, items, xml):
         pass
