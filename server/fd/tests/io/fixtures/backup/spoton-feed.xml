@@ -1,0 +1,131 @@
+
+
+        <NewsItem>
+            <Meta>
+                <URN>urn:sponxmlv1:spot-on-news.de:20201020:754307</URN>
+                
+              	<Revision>1</Revision>
+              	
+                <FirstCreated>Tue, 20 Oct 2020 09:39:41 +0000</FirstCreated>
+                
+                <RevisionCreated>Tue, 20 Oct 2020 09:39:41 +0000</RevisionCreated>
+                
+                
+                <ValidTo>Wed, 20 Oct 2021 09:39:41 +0000</ValidTo>
+              	
+                <Author>(hub/spot)</Author>
+                <Type>article</Type>
+                <Department><![CDATA[People]]></Department>
+                <Location>AT</Location>
+                <Priority>3</Priority>
+                <Format>STD</Format>
+                <Keywords>
+                    
+                    <Keyword><![CDATA[Christina Stürmer]]></Keyword>
+                    
+                    <Keyword><![CDATA[Schwangerschaft]]></Keyword>
+                    
+                    <Keyword><![CDATA[Oliver Varga]]></Keyword>
+                    
+                    <Keyword><![CDATA[Instagram]]></Keyword>
+                    
+                </Keywords>
+            </Meta>
+            <Content>
+                <Headline><![CDATA[Christina Stürmer wird erneut Mutter]]></Headline>
+                <SubHeadline><![CDATA[Zweites Kind für die Sängerin]]></SubHeadline>
+                <Teaser>
+                    <Text><![CDATA[Die österreichische Sängerin Christina Stürmer erwartet ihr zweites Kind. Das verriet sie auf Instagram mit einem eindeutigen Hinweis.]]></Text>
+                    <Media>
+                        
+                        
+                        <Image src="http://static.lr.airmotion.de/dsl/xml/images/offline/754/bild754307_1000x562.jpg" width="1000" height="562" validTo="Wed, 20 Oct 2021 09:39:42 +0000">
+                            <Caption><![CDATA[Christina Stürmer wird zum zweiten Mal Mutter.]]></Caption>
+                            <Copyright><![CDATA[imago images / Hartenfelser]]></Copyright>
+                        </Image>
+                        
+                        
+                    </Media>
+                </Teaser>
+                
+                <Body>
+                    <Pages>
+                        
+                        <Page>
+                            
+                            
+                                    <Block>
+                                      	
+                                        
+                                        <Text><![CDATA[<p>Ein Mutter-Kind-Pass zusammen mit einem Herz- und einem Feier-Emoji genügen: Die österreichische Sängerin Christina Stürmer (38, <a href="https://www.amazon.de/%C3%9Cberall-zu-Hause-Christina-St%C3%BCrmer/dp/B07G1Z4JZK/ref=sr_1_3?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;dchild=1&amp;keywords=Christina+St%C3%BCrmer&amp;qid=1603185836&amp;sr=8-3&amp;tag=spot_on_bildderfrau-21" title="Affiliate-Link" rel="nofollow" onclick="spotonTrackOutboundLink(this.href)">&#34;Überall zu Hause&#34;</a>) hat <a href="https://www.instagram.com/p/CGh7s3tjAC_/" onclick="spotonTrackOutboundLink(this.href)">auf Instagram zwar nichts weiter verraten</a>, Glückwünsche zum baldigen Babyglück gibt es aber schon sehr zahlreich. Für die 38-Jährige ist es bereits das zweite Kind.</p>]]></Text>
+                                        
+                                        
+                                    </Block>
+                                
+                            
+                                    <Block>
+                                      	
+                                        
+                                        <Text><![CDATA[<p>
+  
+	<socialMediaEmbed type="instagram" url="https://www.instagram.com/p/CGh7s3tjAC_/" />
+  
+</p>]]></Text>
+                                        
+                                        
+                                    </Block>
+                                
+                            
+                                    <Block>
+                                      	
+                                        
+                                        <Text><![CDATA[<p>
+  
+	
+	
+	<script async src="//component-vvs.glomex.com/glomex-embed/1/glomex-embed.js"></script>
+	<div class="">
+    	<glomex-player data-player-id="" data-playlist-id="v-c5y4hfqj7x5t-fa" data-width="588" data-height="330"></glomex-player>
+	</div>
+  	
+  
+</p>]]></Text>
+                                        
+                                        
+                                    </Block>
+                                
+                            
+                                    <Block>
+                                      	
+                                        
+                                        <Text><![CDATA[<p>Zusammen mit Band-Gitarrist Oliver Varga (38), mit dem Stürmer seit 2006 liiert ist, hat die Sängerin die vierjährige Tochter Marina. Die darf sich nun auf ein Geschwisterchen freuen. Der Familienzuwachs macht seiner großen Schwester in Sachen Stimmgewalt dann sicherlich Konkurrenz. Zur Geburt ihrer Tochter hatte die Österreicherin 2016 gescherzt: &#34;Marina ist mit einem Startgewicht von knapp 3 kg und einer gewaltigen Gesangsstimme auf die Welt gekommen.&#34;</p>]]></Text>
+                                        
+                                        
+                                    </Block>
+                                
+                            
+                            
+                          	
+                          		<Block>
+                          			<Text><![CDATA[<p><script>
+        (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,"script","//www.google-analytics.com/analytics.js","ga");
+
+          ga("create", "UA-48907336-17", "auto", {"name": "SpotOnTracker"});
+          ga("SpotOnTracker.require", "displayfeatures");
+          ga("SpotOnTracker.set", "anonymizeIp", true);
+          ga("SpotOnTracker.send", "pageview");
+          var spotonTrackOutboundLink = function(url) {ga("SpotOnTracker.send", "event", "outbound", "click", url);}
+          </script></p>]]></Text>
+                          		</Block>
+                          		
+                        </Page>
+                        
+                    </Pages>
+                </Body>
+                
+                
+            </Content>
+        </NewsItem>
