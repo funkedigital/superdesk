@@ -4,11 +4,11 @@
     "content_expiry": null,
     "description": "The new vertical for young women.",
     "name": "WMN",
-    "incoming_stage": "5d0b88d910e7ed66382aa4a5",
     "preserve_published_content": false,
     "desk_type": "production",
     "desk_metadata": {},
-    "working_stage": "5d0b88d910e7ed66382aa4a4",
+    "working_stage" : "5f8f1461e9890d80f32ced42",
+    "incoming_stage" : "5f8f14561b565b5e56a3f826",
     "source": "wmn",
     "default_content_template": "5d19f1323092d23fcec90bac",
     "default_content_profile": "5cd99da6a7bd87627c5dffbb",
@@ -83,35 +83,7 @@
         "user": "5d4848e3c86e6f6b15679551"
       }
     ],
-    "content_profiles": {},
-    "monitoring_default_view": "swimlane",
-    "monitoring_settings": [
-      {
-        "_id": "5d0b88d910e7ed66382aa4a4",
-        "type": "stage",
-        "max_items": 25
-      },
-      {
-        "_id": "5d0b88d910e7ed66382aa4a6:output",
-        "type": "deskOutput",
-        "max_items": 25
-      },
-      {
-        "_id": "5d0b88d910e7ed66382aa4a6:scheduled",
-        "type": "scheduledDeskOutput",
-        "max_items": 10
-      }
-    ],
-    "preferred_cv_items": {
-      "crop_sizes": [
-        {
-          "width": 960,
-          "height": 540,
-          "scheme": null,
-          "name": "16-9-m"
-        }
-      ]
-    }
+    "content_profiles": {}
   },
 
   {
@@ -153,18 +125,18 @@
   },
 
   {
-    "_id" : "5f8d4c649200206b313a4c03",
-    "content_expiry" : null,
-    "name" : "SPOTON",
-    "description" : "spoton importer",
-    "source" : "spoton",
-    "desk_type" : "production",
-    "monitoring_default_view" : "swimlane",
-    "preserve_published_content" : false,
-    "working_stage" : "5f042d5263ac432ad456d9e3",
-    "incoming_stage" : "5f042d5263ac432ad456d9e4",
+    "_id": "5f8d4c649200206b313a4c03",
+    "source": "spoton",
     "default_content_template": "5f8d4c13d839c938cf086abd",
-    "default_content_profile": "5f8d4c13d839c938cf086abd",
+    "name": "SPOTON",
+    "description": "spoton importer",
+    "monitoring_default_view": "swimlane",
+    "default_content_profile": "5f8d4bfe7c8ae722a5984c38",
+    "desk_type": "production",
+    "working_stage" : "5f8f12dbf40bb9f3ef5d28cd",
+    "incoming_stage" : "5f8f12e6fec1df2e5ed15568",
+    "preserve_published_content": false,
+    "content_expiry": null,
     "members" : [
       {
         "user" : "5ddec97f3987ff073597d965"
