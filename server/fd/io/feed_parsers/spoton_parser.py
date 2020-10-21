@@ -70,7 +70,7 @@ class SpotonFeedParser(XMLFeedParser):
 
         items['format'] = meta_elements.get('Format', 'html')
 
-        items['type'] = meta_elements.get('Type', 'text')
+        #items['type'] = meta_elements.get('Type', 'text')
 
         keywords_elem = xml.find('schemaLocation:Meta/schemaLocation:Keywords', namespaces=self.NSPS)
         keywords = []
