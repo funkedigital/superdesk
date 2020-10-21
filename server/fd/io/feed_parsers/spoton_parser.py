@@ -94,7 +94,13 @@ class SpotonFeedParser(XMLFeedParser):
 
 
     def parse_content(self, items, xml):
-        pass
+
+        body_elem = etree.tostring(xml.find('Content/Body'), encoding='unicode')
+        items['body_html'] = body_elem
+    
+        sub_headline_elem = xml.find('Content/SubHeadline')
+        items['extra'].update( {'sub_headline' : sub_headline_elem.text} )
+
 
 
     def parse_elements(self, tree):
