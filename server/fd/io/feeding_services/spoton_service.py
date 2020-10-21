@@ -63,7 +63,7 @@ class SpotonFeedingService(HTTPFeedingServiceBase):
         response = requests.get(url)
         data = xmltodict.parse(response.content)
         parsed_items = []
-        items = xml_elements.findall('schemaLocation:NewsItems/schemaLocation:NewsItem', namespaces=NSPS)
+        items = data.findall('schemaLocation:NewsItems/schemaLocation:NewsItem', namespaces=NSPS)
         spoton_parser = SpotonFeedParser()
         for item in items[:500]:
             parsed_items.append(spoton_parser.parse(item, self.provider))
