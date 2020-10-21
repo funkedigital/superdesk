@@ -25,7 +25,7 @@ class SpotonFeedingService(HTTPFeedingServiceBase):
     Feeding Service class for FUNKE XMLI Feeding Service
     """
 
-    NAME = 'spoton'
+    NAME = 'spoton_fd'
     ERRORS = [ParserError.parseMessageError().get_error_description()]
 
     label = 'Funke Spoton Service'
