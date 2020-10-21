@@ -34,6 +34,7 @@ class SpotonFeedParser(XMLFeedParser):
     """ Feed Parser for SpotOn """
 
     NAME = 'spoton'
+    NSPS = {'schemaLocation': 'http://schema.spot-on-news.de'}
 
     label = 'SpotOn Parser'
 
@@ -52,8 +53,7 @@ class SpotonFeedParser(XMLFeedParser):
     
     def parse_metadata(self, items, xml):
         items['extra'] = {}
-        meta_elements = self.parse_elements(xml.find('Meta'))
-        print(meta_elements)
+        meta_elements = self.parse_elements(xml.find('schemaLocation:Meta', namespaces=self.NSPS))
 
         author = [{
                     'name':  meta_elements.get('Author', ''),
@@ -72,7 +72,7 @@ class SpotonFeedParser(XMLFeedParser):
 
         items['type'] = meta_elements.get('Type', 'text')
 
-        keywords_elem = xml.find('Meta/Keywords')
+        keywords_elem = xml.find('schemaLocation:Meta/schemaLocation:Keywords', namespaces=self.NSPS)
         keywords = []
         if len(keywords_elem) > 0:
             for k in keywords_elem:
@@ -89,33 +89,35 @@ class SpotonFeedParser(XMLFeedParser):
         department = meta_elements.get('Department', '')
         items['extra'].update( {'department' : department} )
 
-        headline_elem = xml.find('Content/Headline')
+        headline_elem = xml.find('schemaLocation:Content/schemaLocation:Headline', namespaces=self.NSPS)
         items['headline'] = headline_elem.text
+
+        items['guid'] = xml.find('schemaLocation:Meta/schemaLocation:URN', namespaces=self.NSPS).text
 
 
 
     def parse_content(self, items, xml):
 
-        body_elem = etree.tostring(xml.find('Content/Body'), encoding='unicode')
+        body_elem = etree.tostring(xml.find('schemaLocation:Content/schemaLocation:Body', namespaces=self.NSPS), encoding='unicode')
         items['body_html'] = body_elem
     
-        sub_headline_elem = xml.find('Content/SubHeadline')
+        sub_headline_elem = xml.find('schemaLocation:Content/schemaLocation:SubHeadline', namespaces=self.NSPS)
         items['extra'].update( {'sub_headline' : sub_headline_elem.text} )
 
         attributes = {}
         
-        teaser_description_elem = xml.find('Content/Teaser/Text')
+        teaser_description_elem = xml.find('schemaLocation:Content/schemaLocation:Teaser/schemaLocation:Text', namespaces=self.NSPS)
         attributes['description'] = teaser_description_elem.text
 
-        teaser_media_elem = xml.find('Content/Teaser/Media/Image')
+        teaser_media_elem = xml.find('schemaLocation:Content/schemaLocation:Teaser/schemaLocation:Media/schemaLocation:Image', namespaces=self.NSPS)
         attributes['source'] = teaser_media_elem.get('src')
         attributes['width'] = teaser_media_elem.get('width')
         attributes['height'] = teaser_media_elem.get('height')
 
-        teaser_caption_elem = xml.find('Content/Teaser/Media/Image/Caption')
+        teaser_caption_elem = xml.find('schemaLocation:Content/schemaLocation:Teaser/schemaLocation:Media/schemaLocation:Image/schemaLocation:Caption', namespaces=self.NSPS)
         attributes['caption'] = teaser_caption_elem.text
 
-        teaser_copyright_elem = xml.find('Content/Teaser/Media/Image/Copyright')
+        teaser_copyright_elem = xml.find('schemaLocation:Content/schemaLocation:Teaser/schemaLocation:Media/schemaLocation:Image/schemaLocation:Copyright', namespaces=self.NSPS)
         attributes['copyright'] = teaser_copyright_elem.text
 
         self.import_images(items['associations'], 'featuremedia', attributes)
@@ -174,7 +176,7 @@ class SpotonFeedParser(XMLFeedParser):
         parsed = {}
         for item in tree:
             # read the value for the items
-            parsed[item.tag] = item.text
+            parsed[item.tag.replace('{' + self.NSPS.get('schemaLocation') + '}', '')] = item.text
         # remove empty objects
         parsed = {k: '' if not v else v for k, v in parsed.items()}
         return parsed

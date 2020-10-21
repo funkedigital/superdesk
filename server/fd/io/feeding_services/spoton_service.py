@@ -25,7 +25,7 @@ class SpotonFeedingService(HTTPFeedingServiceBase):
     Feeding Service class for FUNKE XMLI Feeding Service
     """
 
-    NAME = 'spoton_fd'
+    NAME = 'spoton'
     ERRORS = [ParserError.parseMessageError().get_error_description()]
 
     label = 'Funke Spoton Service'
@@ -62,12 +62,10 @@ class SpotonFeedingService(HTTPFeedingServiceBase):
         url = self.config['url']
         response = requests.get(url)
         parsed_items = []
-        print('debug')
         xml_elements = etree.fromstring(response.content)
         items  = xml_elements.findall('schemaLocation:NewsItems/schemaLocation:NewsItem', namespaces=NSPS)
         spoton_parser = SpotonFeedParser()
-        for item in items[:5]:
-            print(item)
+        for item in items[:500]:
             parsed_items.append(spoton_parser.parse(item, self.provider))
         return parsed_items
 

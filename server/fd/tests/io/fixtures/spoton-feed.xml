@@ -1,6 +1,7 @@
-
-
-        <NewsItem>
+<NewsItem xmlns="http://schema.spot-on-news.de"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://schema.spot-on-news.de http://schema.spot-on-news.de/concast/full_v1.xsd"
+            version="1.0">
             <Meta>
                 <URN>urn:sponxmlv1:spot-on-news.de:20201020:754307</URN>
                 
