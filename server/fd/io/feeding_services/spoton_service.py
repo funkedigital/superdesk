@@ -62,10 +62,12 @@ class SpotonFeedingService(HTTPFeedingServiceBase):
         url = self.config['url']
         response = requests.get(url)
         parsed_items = []
+        print('debug')
         xml_elements = etree.fromstring(response.content)
         items  = xml_elements.findall('schemaLocation:NewsItems/schemaLocation:NewsItem', namespaces=NSPS)
         spoton_parser = SpotonFeedParser()
-        for item in items[:500]:
+        for item in items[:5]:
+            print(item)
             parsed_items.append(spoton_parser.parse(item, self.provider))
         return parsed_items
 

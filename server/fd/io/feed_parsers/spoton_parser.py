@@ -53,6 +53,7 @@ class SpotonFeedParser(XMLFeedParser):
     def parse_metadata(self, items, xml):
         items['extra'] = {}
         meta_elements = self.parse_elements(xml.find('Meta'))
+        print(meta_elements)
 
         author = [{
                     'name':  meta_elements.get('Author', ''),
