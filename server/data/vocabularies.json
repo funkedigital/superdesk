@@ -3140,5 +3140,69 @@
         "text": "Other"
       }
     ]
-  }
+  },
+  {
+    "_id": "department",
+    "schema": {
+        "qcode": {},
+        "name": {},
+        "parent": {}
+    },
+    "unique_field": "qcode",
+    "display_name": "Department",
+    "field_type": "text",
+    "service": {
+        "all": 1
+    },
+    "items": [],
+    "type": "manageable",
+    "_deleted": false
+},
+{
+  "_id": "content_validity",
+  "schema": {
+      "qcode": {},
+      "name": {},
+      "parent": {}
+  },
+  "date_shortcuts": [{
+      "term": "days",
+      "label": "ValidTo",
+      "value": 0
+  }, {
+      "term": "days",
+      "label": "",
+      "value": 0
+  }, {
+      "term": "days",
+      "label": "",
+      "value": 0
+  }],
+  "display_name": "Content Validity",
+  "field_type": "date",
+  "service": {
+      "all": 1
+  },
+  "items": [],
+  "type": "manageable",
+  "_deleted": false,
+  "unique_field": "qcode"
+},
+{
+    "_id": "sub_headline",
+    "schema": {
+        "qcode": {},
+        "name": {},
+        "parent": {}
+    },
+    "unique_field": "qcode",
+    "display_name": "Sub headline",
+    "field_type": "text",
+    "service": {
+        "all": 1
+    },
+    "items": [],
+    "type": "manageable",
+    "_deleted": false
+}
 ]
