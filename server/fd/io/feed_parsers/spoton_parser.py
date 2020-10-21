@@ -78,9 +78,9 @@ class SpotonFeedParser(XMLFeedParser):
                 keywords.append(k.text)
         items['keywords'] = keywords
 
-        #revision_created = meta_elements.get('RevisionCreated', '')
-        #if len(revision_created) > 0:
-        #    items['versioncreated'] = self.datetime(revision_created)
+        revision_created = meta_elements.get('RevisionCreated', '')
+        if len(revision_created) > 0:
+            items['versioncreated'] = self.datetime(revision_created)
         
         location = meta_elements.get('Location', '')
         items['extra'].update( {'location' : location} )
