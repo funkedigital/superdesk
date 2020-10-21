@@ -1,162 +1,68 @@
 [{
-    "_id": "5cd9ad02a7bd87627c5dffe1",
-    "working_stage": true,
-    "local_readonly": false,
-    "default_incoming": false,
-    "content_expiry": null,
-    "is_visible": true,
-    "desk_order": 1,
-    "name": "Working Stage",
-    "desk": "5cd9ad02a7bd87627c5dffe3"
-  },{
-    "_id": "5cdac458ec36e30ccc725650",
-    "name": "Working Stage",
-    "local_readonly": false,
-    "default_incoming": false,
-    "content_expiry": null,
-    "working_stage": true,
-    "is_visible": true,
-    "desk_order": 1,
-    "desk": "5cdac458ec36e30ccc725652"
-  },{
-    "_id": "5cd9ad02a7bd87627c5dffe2",
-    "working_stage": false,
-    "content_expiry": null,
-    "name": "Incoming Stage",
+  "_id": "5f042d5263ac432ad456d9e3",
+  "name": "Working Stage",
+  "working_stage": true,
+  "desk_order": 1,
+  "content_expiry": null,
+  "default_incoming": false,
+  "is_visible": true,
+  "local_readonly": false,
+  "desk": "5f042d5263ac432ad456d9e5"
+},{
+  "_id": "5f042d5263ac432ad456d9e4",
+  "name": "Incoming Stage",
+  "default_incoming": true,
+  "desk_order": 2,
+  "content_expiry": null,
+  "working_stage": false,
+  "is_visible": true,
+  "local_readonly": false,
+  "desk": "5f042d5263ac432ad456d9e5"
+},
 
-    "local_readonly": false,
-    "is_visible": true,
-    "desk_order": 2,
-    "default_incoming": true,
-    "desk": "5cd9ad02a7bd87627c5dffe3"
-  },{
-    "_id": "5cdac503ec36e30ccc725661",
-    "name": "Working Stage",
-    "local_readonly": true,
-    "default_incoming": false,
-    "content_expiry": null,
-    "working_stage": true,
-    "is_visible": false,
-    "desk_order": 1,
-    "desk": "5cdac503ec36e30ccc725663"
-  },{
-    "_id": "5cdac503ec36e30ccc725662",
-    "name": "Incoming Stage",
-    "local_readonly": false,
-    "default_incoming": true,
-    "content_expiry": null,
-    "working_stage": false,
-    "is_visible": true,
-    "desk_order": 2,
-    "desk": "5cdac503ec36e30ccc725663"
-  },{
-    "_id": "5cdac53dec36e30ccc72566a",
-    "name": "Working Stage",
-    "local_readonly": false,
-    "default_incoming": false,
-    "content_expiry": null,
-    "working_stage": true,
-    "is_visible": false,
-    "desk_order": 1,
-    "desk": "5cdac53dec36e30ccc72566c"
-  },{
-    "_id": "5cdac458ec36e30ccc725651",
-    "name": "Incoming Stage",
-    "local_readonly": false,
-    "default_incoming": true,
-    "content_expiry": null,
-    "working_stage": false,
-    "is_visible": true,
-    "desk_order": 2,
-    "desk": "5cdac458ec36e30ccc725652"
-  },{
-    "_id": "5cdac53dec36e30ccc72566b",
-    "name": "Incoming Stage",
-    "local_readonly": false,
-    "default_incoming": true,
-    "content_expiry": null,
-    "working_stage": false,
-    "is_visible": true,
-    "desk_order": 2,
-    "desk": "5cdac53dec36e30ccc72566c"
-  },{
-    "_id": "5cdac5e6ec36e30ccc725680",
-    "name": "Incoming Stage",
-    "local_readonly": true,
-    "default_incoming": true,
-    "content_expiry": null,
-    "working_stage": false,
-    "is_visible": false,
-    "desk_order": 2,
-    "desk": "5cdac5e6ec36e30ccc725681"
-  },{
-    "_id": "5cdac5e6ec36e30ccc72567f",
-    "name": "Working Stage",
-    "local_readonly": true,
-    "default_incoming": false,
-    "content_expiry": null,
-    "working_stage": true,
-    "is_visible": false,
-    "desk_order": 1,
-    "desk": "5cdac5e6ec36e30ccc725681"
-  },{
-    "_id": "5da87d6707d612ceff8b4f3d",
-    "desk_order": 1,
-    "content_expiry": null,
-    "default_incoming": false,
-    "is_visible": true,
-    "name": "Working Stage",
-    "working_stage": true,
-    "local_readonly": false,
-    "desk": "5da87d6707d612ceff8b4f3f"
-  },{
-    "_id": "5d0b88d910e7ed66382aa4a5",
-    "desk_order": 2,
-    "name": "Incoming Stage",
-    "local_readonly": false,
-    "content_expiry": null,
-    "is_visible": true,
-    "default_incoming": true,
-    "working_stage": false,
-    "desk": "5d0b88d910e7ed66382aa4a6"
-  },{
-    "_id": "5da87d6707d612ceff8b4f3e",
-    "desk_order": 2,
-    "content_expiry": null,
-    "default_incoming": true,
-    "is_visible": true,
-    "name": "Incoming Stage",
-    "working_stage": false,
-    "local_readonly": false,
-    "desk": "5da87d6707d612ceff8b4f3f"
-  },{
-    "_id": "5d0b88d910e7ed66382aa4a4",
-    "desk_order": 1,
-    "name": "Working Stage",
-    "local_readonly": false,
-    "content_expiry": null,
-    "is_visible": true,
-    "default_incoming": false,
-    "working_stage": true,
-    "desk": "5d0b88d910e7ed66382aa4a6"
-  },{
-    "_id": "5f042d5263ac432ad456d9e3",
-    "name": "Working Stage",
-    "working_stage": true,
-    "desk_order": 1,
-    "content_expiry": null,
-    "default_incoming": false,
-    "is_visible": true,
-    "local_readonly": false,
-    "desk": "5f042d5263ac432ad456d9e5"
-  },{
-    "_id": "5f042d5263ac432ad456d9e4",
-    "name": "Incoming Stage",
-    "default_incoming": true,
-    "desk_order": 2,
-    "content_expiry": null,
-    "working_stage": false,
-    "is_visible": true,
-    "local_readonly": false,
-    "desk": "5f042d5263ac432ad456d9e5"
-  }]
+
+{
+  "_id": "5f8f12dbf40bb9f3ef5d28cd",
+  "name": "Working Stage",
+  "working_stage": true,
+  "desk_order": 1,
+  "content_expiry": null,
+  "default_incoming": false,
+  "is_visible": true,
+  "local_readonly": false,
+  "desk": "5f8d4c649200206b313a4c03"
+},{
+  "_id": "5f8f12e6fec1df2e5ed15568",
+  "name": "Incoming Stage",
+  "default_incoming": true,
+  "desk_order": 2,
+  "content_expiry": null,
+  "working_stage": false,
+  "is_visible": true,
+  "local_readonly": false,
+  "desk": "5f8d4c649200206b313a4c03"
+},
+
+
+{
+  "_id": "5f8f1461e9890d80f32ced42",
+  "name": "Working Stage",
+  "working_stage": true,
+  "desk_order": 1,
+  "content_expiry": null,
+  "default_incoming": false,
+  "is_visible": true,
+  "local_readonly": false,
+  "desk": "5d0b88d910e7ed66382aa4a6"
+},{
+  "_id": "5f8f14561b565b5e56a3f826",
+  "name": "Incoming Stage",
+  "default_incoming": true,
+  "desk_order": 2,
+  "content_expiry": null,
+  "working_stage": false,
+  "is_visible": true,
+  "local_readonly": false,
+  "desk": "5d0b88d910e7ed66382aa4a6"
+}
+]
