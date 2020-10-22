@@ -96,8 +96,8 @@ class SpotonFeedParser(XMLFeedParser):
 
     def parse_content(self, items, xml):
 
-        body_elem = etree.tostring(xml.find('schemaLocation:Content/schemaLocation:Body', namespaces=self.NSPS), encoding='unicode')
-        body_html = html.unescape(body_elem.decode("utf-8"))
+        body_elem = etree.tostring(xml.find('schemaLocation:Content/schemaLocation:Body/schemaLocation:Pages', namespaces=self.NSPS), encoding='unicode')
+        body_html = html.unescape(body_elem)
         items['body_html'] = body_elem
     
         sub_headline_elem = xml.find('schemaLocation:Content/schemaLocation:SubHeadline', namespaces=self.NSPS)
