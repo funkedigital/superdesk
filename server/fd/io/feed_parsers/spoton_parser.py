@@ -62,6 +62,9 @@ class SpotonFeedParser(XMLFeedParser):
             }]
         items['author'] = author
         
+        content_validity_elem = meta_elements.get('ValidTo', '')
+        items['extra'].update( {'content_validity' : content_validity_elem} )
+        
         if meta_elements.get('Revision') != None:
             items['version'] = int(meta_elements.get('Revision'))
 
