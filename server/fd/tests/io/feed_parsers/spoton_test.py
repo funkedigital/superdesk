@@ -38,7 +38,7 @@ class SpotonParserTest(unittest.TestCase):
                 self.item = SpotonFeedParser().parse(etree.fromstring(self.nitf), provider)
 
     def test_parse_metadata(self):
-        self.assertEqual(self.item['author'], [{'name': '(hub/spot)', 'role': 'writer', 'avatar_url': 'https://api.adorable.io/avatars/285/abott@adorable.png'}])
+        self.assertEqual(self.item['authors'], [{'name': '(hub/spot)', 'role': 'writer', 'avatar_url': 'https://api.adorable.io/avatars/285/abott@adorable.png'}])
         self.assertEqual(self.item['version'], 1)
         self.assertEqual(self.item['priority'], 3)
         self.assertEqual(self.item['format'], 'STD')

@@ -60,8 +60,8 @@ class SpotonFeedParser(XMLFeedParser):
                     'role': 'writer',
                     'avatar_url': 'https://api.adorable.io/avatars/285/abott@adorable.png'
             }]
-        items['author'] = author
-        
+        items['authors'] = author
+
         content_validity_elem = meta_elements.get('ValidTo', '')
         items['extra'].update( {'content_validity' : content_validity_elem} )
         
