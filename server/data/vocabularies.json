@@ -3160,33 +3160,23 @@
 },
 {
   "_id": "content_validity",
-  "schema": {
-      "qcode": {},
-      "name": {},
-      "parent": {}
-  },
-  "date_shortcuts": [{
-      "term": "days",
-      "label": "ValidTo",
-      "value": 0
-  }, {
-      "term": "days",
-      "label": "",
-      "value": 0
-  }, {
-      "term": "days",
-      "label": "",
-      "value": 0
-  }],
   "display_name": "Content Validity",
-  "field_type": "date",
-  "service": {
-      "all": 1
-  },
-  "items": [],
+  "unique_field": "qcode",
   "type": "manageable",
+  "schema": {
+    "qcode": {},
+    "parent": {},
+    "name": {}
+  },
+  "field_type": "text",
+  "items": [],
+  "service": {
+    "all": 1
+  },
   "_deleted": false,
-  "unique_field": "qcode"
+  "field_options": {
+    "single": true
+  }
 },
 {
     "_id": "sub_headline",

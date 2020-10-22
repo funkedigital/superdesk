@@ -461,7 +461,7 @@
         "required": false
       },
       "content_validity": {
-        "type": "date",
+        "type": "text",
         "nullable": true,
         "enabled": true,
         "required": false
