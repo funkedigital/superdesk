@@ -41,6 +41,7 @@ class SpotonParserTest(unittest.TestCase):
         self.assertEqual(self.item['authors'], [{'name': '(hub/spot)', 'role': 'writer', 'avatar_url': 'https://api.adorable.io/avatars/285/abott@adorable.png'}])
         self.assertEqual(self.item['version'], 1)
         self.assertEqual(self.item['priority'], 3)
+        self.assertEqual(self.item['uri'], 'urn:sponxmlv1:spot-on-news.de:20201020:754307')
         self.assertEqual(self.item['format'], 'STD')
         self.assertEqual(self.item['keywords'], ['Christina Stürmer', 'Schwangerschaft', 'Oliver Varga', 'Instagram'])
         self.assertEqual(self.item['versioncreated'], datetime.datetime.strptime('Tue, 20 Oct 2020 09:39:41 +0000', '%a, %d %b %Y %H:%M:%S %z'))
