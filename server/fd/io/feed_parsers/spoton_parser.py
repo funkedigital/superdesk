@@ -92,6 +92,7 @@ class SpotonFeedParser(XMLFeedParser):
 
         headline_elem = xml.find('schemaLocation:Content/schemaLocation:Headline', namespaces=self.NSPS)
         items['headline'] = headline_elem.text
+        items['slugline'] = headline.lower().replace(' ', '-')
 
         items['guid'] = xml.find('schemaLocation:Meta/schemaLocation:URN', namespaces=self.NSPS).text
 
