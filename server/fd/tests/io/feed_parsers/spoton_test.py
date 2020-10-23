@@ -47,4 +47,4 @@ class SpotonParserTest(unittest.TestCase):
         self.assertEqual(self.item['extra'], {'department': 'People', 'location': 'AT', 'content_validity': 'Wed, 20 Oct 2021 09:39:41 +0000', 'sub_headline': 'Zweites Kind für die Sängerin'})
         self.assertEqual(self.item['headline'], 'Christina Stürmer wird erneut Mutter')
         self.assertEqual(len(self.item['body_html']), 1223)
-        self.assertEqual(self.items['slugline'], 'christina-stürmer-wird-erneut-mutter')
+        self.assertEqual(self.item['slugline'], 'christina-stürmer-wird-erneut-mutter')
