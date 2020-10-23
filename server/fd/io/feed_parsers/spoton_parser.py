@@ -47,6 +47,7 @@ class SpotonFeedParser(XMLFeedParser):
         try:
             self.parse_metadata(items, xml)
             self.parse_content(items, xml)
+            self.parse_teaser(items, xml)
             return items
         except Exception as ex:
             logger.info(ex)
@@ -100,16 +101,13 @@ class SpotonFeedParser(XMLFeedParser):
         headline_elem = xml.find('schemaLocation:Content/schemaLocation:Headline', namespaces=self.NSPS)
         items['headline'] = headline_elem.text
 
-        slugline = re.sub('[^A-ZüÜäÄöÖßaé-z0-9]+', ' ', headline_elem.text)
+        slugline = re.sub('[^A-zZüÜäÄöÖßaé0-9]+', ' ', headline_elem.text)
         slugline = ' '.join(slugline.split())
         slugline = slugline.lower().replace(' ', '-')
 
         items['slugline'] = slugline
 
         items['guid'] = xml.find('schemaLocation:Meta/schemaLocation:URN', namespaces=self.NSPS).text
-
-        
-
 
 
     def parse_content(self, items, xml):
@@ -131,6 +129,9 @@ class SpotonFeedParser(XMLFeedParser):
     
         sub_headline_elem = xml.find('schemaLocation:Content/schemaLocation:SubHeadline', namespaces=self.NSPS)
         items['extra'].update( {'sub_headline' : sub_headline_elem.text} )
+    
+    
+    def parse_teaser(self, items, xml):
 
         attributes = {}
         
@@ -197,7 +198,6 @@ class SpotonFeedParser(XMLFeedParser):
                     }
                 },
             }
-
 
 
     def parse_elements(self, tree):
