@@ -68,6 +68,9 @@ class SpotonFeedParser(XMLFeedParser):
         if meta_elements.get('Revision') != None:
             items['version'] = int(meta_elements.get('Revision'))
 
+        if meta_elements.get('URN') != None:
+            items['uri'] = meta_elements.get('URN')
+
         if meta_elements.get('Priority') != None:
             items['priority'] = int(meta_elements.get('Priority'))
 
@@ -99,6 +102,8 @@ class SpotonFeedParser(XMLFeedParser):
         items['slugline'] = headline_elem.text.lower().replace(' ', '-')
 
         items['guid'] = xml.find('schemaLocation:Meta/schemaLocation:URN', namespaces=self.NSPS).text
+
+        
 
 
 
