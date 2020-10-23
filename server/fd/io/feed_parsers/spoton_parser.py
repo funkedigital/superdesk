@@ -100,7 +100,7 @@ class SpotonFeedParser(XMLFeedParser):
         headline_elem = xml.find('schemaLocation:Content/schemaLocation:Headline', namespaces=self.NSPS)
         items['headline'] = headline_elem.text
 
-        slugline = re.sub('[^A-ZüÜäÄöÖßa-z0-9]+', ' ', headline_elem.text)
+        slugline = re.sub('[^A-ZüÜäÄöÖßaé-z0-9]+', ' ', headline_elem.text)
         slugline = ' '.join(slugline.split())
         slugline = slugline.lower().replace(' ', '-')
 
