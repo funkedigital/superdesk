@@ -84,6 +84,10 @@ class SpotonFeedParser(XMLFeedParser):
         if len(revision_created) > 0:
             items['versioncreated'] = self.datetime(revision_created)
         
+        first_created = meta_elements.get('FirstCreated', '')
+        if len(first_created) > 0:
+            items['firstcreated'] = self.datetime(first_created)  
+        
         location = meta_elements.get('Location', '')
         items['extra'].update( {'location' : location} )
         
