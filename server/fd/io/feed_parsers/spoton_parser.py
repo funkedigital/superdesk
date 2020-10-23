@@ -104,7 +104,13 @@ class SpotonFeedParser(XMLFeedParser):
         for action, el in etree.iterwalk(body):
             elem_tag = el.tag.replace('{' + self.NSPS.get('schemaLocation') + '}', '')
             if elem_tag == 'Text':
-                body_html += html.unescape(el.text.encode().decode("utf-8"))
+                if el.text.find('<script') != -1:
+                    continue
+                elif el.text.find('spotonTrackOutboundLink') != -1:
+                    text_block = el.text.replace('onclick="spotonTrackOutboundLink(this.href)"', '')
+                    body_html += html.unescape(text_block.encode().decode("utf-8"))
+                else:
+                    body_html += html.unescape(el.text.encode().decode("utf-8"))
 
         items['body_html'] = body_html
     
