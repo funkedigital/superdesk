@@ -149,7 +149,7 @@ class SpotonFeedParser(XMLFeedParser):
         teaser_copyright_elem = xml.find('schemaLocation:Content/schemaLocation:Teaser/schemaLocation:Media/schemaLocation:Image/schemaLocation:Copyright', namespaces=self.NSPS)
         attributes['copyright'] = teaser_copyright_elem.text
 
-        self.import_images(items['associations'], 'featuremedia', attributes)
+        import_images(items['associations'], 'featuremedia', attributes)
 
     def import_images(self, associations, name, attributes):
         """ import images to mongo """
