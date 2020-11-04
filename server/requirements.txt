@@ -7,4 +7,3 @@ requests>=2.23.0
 xmltodict
 
 -e git+git://github.com/superdesk/superdesk-core.git@release/1.34#egg=superdesk-core
-
