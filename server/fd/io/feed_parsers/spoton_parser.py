@@ -100,6 +100,8 @@ class SpotonFeedParser(XMLFeedParser):
 
         headline_elem = xml.find('schemaLocation:Content/schemaLocation:Headline', namespaces=self.NSPS)
         items['headline'] = headline_elem.text
+        items['extra'].update( {'seo_title' : headline_elem.text} )
+
 
         slugline = re.sub('[^A-zZüÜäÄöÖßaé0-9]+', ' ', headline_elem.text)
         slugline = ' '.join(slugline.split())
@@ -127,9 +129,6 @@ class SpotonFeedParser(XMLFeedParser):
 
         items['body_html'] = body_html
     
-        sub_headline_elem = xml.find('schemaLocation:Content/schemaLocation:SubHeadline', namespaces=self.NSPS)
-        items['extra'].update( {'sub_headline' : sub_headline_elem.text} )
-    
     
     def parse_teaser(self, items, xml):
 
@@ -150,54 +149,6 @@ class SpotonFeedParser(XMLFeedParser):
         attributes['copyright'] = teaser_copyright_elem.text
 
         import_images(items['associations'], 'featuremedia', attributes)
-
-    def import_images(self, associations, name, attributes):
-        """ import images to mongo """
-        href = attributes.get('source', '')
-        sc = requests.get(href)
-
-        if sc.status_code == 200:
-            description = attributes.get('description', 'picture description')
-            if len(description) == 0:
-                description = 'picture description'
-                
-            associations[name] = {
-                'type': 'picture',
-                'guid': generate_tag_from_url(
-                    attributes.get('source', '')),
-                'pubstatus': 'usable',
-                'headline': attributes.get('headline', 'picture'),
-                'alt_text': attributes.get('caption', 'alt text'),
-                'creditline': attributes.get('copyright', 'picture'),
-                'description_text': description,
-                'mimetype': 'image/jpeg',
-                'renditions': {
-                    'baseImage': {
-                        'href': href,
-                        'width': attributes.get('width', ''),
-                        'height': attributes.get('height', ''),
-                        'mimetype': 'image/jpeg',
-                    },
-                    'viewImage': {
-                        'href': href,
-                        'width': attributes.get('width', ''),
-                        'height': attributes.get('height', ''),
-                        'mimetype': 'image/jpeg',
-                    },
-                    'thumbnail': {
-                        'href': href,
-                        'width': attributes.get('width', ''),
-                        'height': attributes.get('height', ''),
-                        'mimetype': 'image/jpeg',
-                    },
-                    'original': {
-                        'href': href,
-                        'width': attributes.get('width', ''),
-                        'height': attributes.get('height', ''),
-                        'mimetype': 'image/jpeg',
-                    }
-                },
-            }
 
 
     def parse_elements(self, tree):
