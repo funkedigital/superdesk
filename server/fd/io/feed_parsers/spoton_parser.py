@@ -25,7 +25,6 @@ from superdesk.metadata.item import ITEM_TYPE, CONTENT_TYPE, GUID_FIELD
 from superdesk.metadata.utils import is_normal_package
 from superdesk.utc import utc
 from lxml import etree
-from .utils import import_images
 from superdesk.io.feeding_services.rss import RSSFeedingService, generate_tag_from_url
 
 logger = logging.getLogger(__name__)
@@ -151,7 +150,6 @@ class SpotonFeedParser(XMLFeedParser):
 
         self.import_images(items['associations'], 'featuremedia', attributes)
 
-<<<<<<< HEAD
     def import_images(self, associations, name, attributes):
         """ import images to mongo """
         href = attributes.get('source', '')
@@ -200,8 +198,6 @@ class SpotonFeedParser(XMLFeedParser):
                 },
             }
 
-=======
->>>>>>> 13d7c29f918591708d204d4728247f96a1864893
     def parse_elements(self, tree):
         parsed = {}
         for item in tree:
