@@ -25,6 +25,7 @@ from superdesk.metadata.item import ITEM_TYPE, CONTENT_TYPE, GUID_FIELD
 from superdesk.metadata.utils import is_normal_package
 from superdesk.utc import utc
 from lxml import etree
+from .utils import import_images
 from superdesk.io.feeding_services.rss import RSSFeedingService, generate_tag_from_url
 
 logger = logging.getLogger(__name__)
@@ -100,6 +101,8 @@ class SpotonFeedParser(XMLFeedParser):
 
         headline_elem = xml.find('schemaLocation:Content/schemaLocation:Headline', namespaces=self.NSPS)
         items['headline'] = headline_elem.text
+        items['extra'].update( {'seo_title' : headline_elem.text} )
+
 
         slugline = re.sub('[^A-zZüÜäÄöÖßaé0-9]+', ' ', headline_elem.text)
         slugline = ' '.join(slugline.split())
@@ -127,9 +130,6 @@ class SpotonFeedParser(XMLFeedParser):
 
         items['body_html'] = body_html
     
-        sub_headline_elem = xml.find('schemaLocation:Content/schemaLocation:SubHeadline', namespaces=self.NSPS)
-        items['extra'].update( {'sub_headline' : sub_headline_elem.text} )
-    
     
     def parse_teaser(self, items, xml):
 
@@ -151,6 +151,7 @@ class SpotonFeedParser(XMLFeedParser):
 
         self.import_images(items['associations'], 'featuremedia', attributes)
 
+<<<<<<< HEAD
     def import_images(self, associations, name, attributes):
         """ import images to mongo """
         href = attributes.get('source', '')
@@ -199,6 +200,8 @@ class SpotonFeedParser(XMLFeedParser):
                 },
             }
 
+=======
+>>>>>>> 13d7c29f918591708d204d4728247f96a1864893
     def parse_elements(self, tree):
         parsed = {}
         for item in tree:

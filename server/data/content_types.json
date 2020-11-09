@@ -377,10 +377,11 @@
         "order": 6,
         "required": false
       },
-      "sub_headline": {
+      "seo_title": {
         "section": "content",
-        "order": 8,
-        "required": false
+        "required": true,
+        "sdWidth": "full",
+        "order": 5
       },
       "keywords": {
         "order": 2,
@@ -461,16 +462,16 @@
         "required": false
       },
       "content_validity": {
-        "type": "text",
+        "type": "date",
         "nullable": true,
         "enabled": true,
         "required": false
       },
-      "sub_headline": {
-        "type": "text",
-        "nullable": true,
+      "seo_title": {
+        "nullable": false,
+        "required": true,
         "enabled": true,
-        "required": false
+        "type": "text"
       },
       "keywords": {
         "nullable": true,
