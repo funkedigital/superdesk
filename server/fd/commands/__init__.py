@@ -26,7 +26,7 @@ def init_app(app):
 
     app.config['CELERY_BEAT_SCHEDULE']['planning:updatecl'] = {
                 'task': 'fd.commands.updatecl',
-                'schedule': timedelta(minutes=30)
+                'schedule': timedelta(hours=1)
             }
 
 
