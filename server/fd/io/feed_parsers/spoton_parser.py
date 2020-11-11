@@ -39,7 +39,7 @@ class SpotonFeedParser(XMLFeedParser):
     label = 'SpotOn Parser'
 
     def can_parse(self, xml):
-        return xml.tag == 'NewsML'
+        return True
 
     def parse(self, xml, provider=None):
         items = {'associations': {}}
@@ -83,10 +83,6 @@ class SpotonFeedParser(XMLFeedParser):
             for k in keywords_elem:
                 keywords.append(k.text)
         items['keywords'] = keywords
-
-        revision_created = meta_elements.get('RevisionCreated', '')
-        if len(revision_created) > 0:
-            items['versioncreated'] = self.datetime(revision_created)
         
         first_created = meta_elements.get('FirstCreated', '')
         if len(first_created) > 0:
